@@ -1,0 +1,15 @@
+<div class="register-container">
+  <h2>Register - Step 1</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onContinue()">
+    <label for="profileFor">Profile For:</label>
+    <select id="profileFor" formControlName="profileFor">
+      <option value="" disabled>Select</option>
+      <option *ngFor="let option of profileOptions" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+
+    <button type="submit">Continue</button>
+  </form>
+</div>

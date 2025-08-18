@@ -1,0 +1,24 @@
+<div class="next-step-container">
+  <h2>Register - Step 2</h2>
+
+  <form [formGroup]="nextStepForm" (ngSubmit)="onContinue()">
+    <label for="fullName">Full Name:</label>
+    <input id="fullName" type="text" formControlName="fullName" />
+
+    <label for="dob">Date of Birth:</label>
+    <input id="dob" type="date" formControlName="dob" />
+
+    <label for="gender">Gender:</label>
+    <select id="gender" formControlName="gender">
+      <option value="" disabled>Select</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+
+    <button type="submit">Continue</button>
+  </form>
+</div>
+
+
+
+
