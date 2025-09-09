@@ -1,11 +1,14 @@
-<nav>
-  <a routerLink="/landing">Landing</a> |
-  <a routerLink="/register">Register</a> |
-  <a routerLink="/next-step">Next Step</a>
-</nav>
+<header>
+  <img src="assets/logo.png" alt="Logo" class="logo" />
+  <nav>
+    <a routerLink="/landing">Landing</a>
+    <a routerLink="/register">Register Here</a>
+    <a routerLink="/next-step">Next Step</a>
+    <a routerLink="/details">Details</a> <!-- ✅ Added -->
+  </nav>
+</header>
 
 <hr />
 
 <!-- Routed components will load here -->
-<router-outlet></router-outlet>
 <router-outlet></router-outlet>

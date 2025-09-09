@@ -1,50 +1,73 @@
-body {
-  background: url('/bg.jpeg') no-repeat center center/cover;
-}
+/* Header */
 .header {
+  height: 120px;
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  background: transparent; /* or a color if you want */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  background-color: orange;
 }
 
 .logo {
-  height: 100px;   /* adjust as per your image */
-  cursor: pointer;
+  width: 100px;
+  height: auto;
 }
 
-:host {
-  display: block;
-  height: 100vh; /* full screen height */
-  width: 100%;
-  background: url('/assets/bg.jpeg') no-repeat center center/cover;
-}
+/* Landing background */
 .landing-container {
-  height: 100vh;
+  height: calc(100vh - 120px);
   width: 100%;
   background: url('/assets/bg.jpeg') no-repeat center center/cover;
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;  /* push cards to right */
+  align-items: center;        /* vertical center */
+  padding-right: 30px;
+}
+
+/* Wrapper for Register + Welcome (side by side) */
+.right-cards {
+  display: flex;
+  flex-direction: row;        /* horizontal alignment */
+  gap: 20px;                  /* spacing between register and welcome */
+  align-items: flex-start;    /* align top edges */
+  justify-content: flex-end;  /* push both to right side */
+  width: 100%;
+}
+
+/* Register Card wrapper */
+.register-card {
+  width: 250px;
+  flex-shrink: 0;   /* fixed width */
+  margin-right: 650px; /* move it slightly left */
+  margin-top: -100px;   /* move it upward */
 }
 
 
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
+
+/* Welcome Card */
+.welcome-card {
+  background: #fff8b3;  /* soft yellow */
+  padding: 25px;
+  border-radius: 12px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in-out, background 0.3s ease;
+  flex-shrink: 0;
+}
+
+.welcome-card:hover {
+  transform: translateY(-5px);
+  background: #fff3a0;
+}
+
+.welcome-card h1 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.welcome-card p {
   font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(0,0,0,0.6);
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-button:hover {
-  background-color: rgba(0,0,0,0.8);
+  color: #555;
 }

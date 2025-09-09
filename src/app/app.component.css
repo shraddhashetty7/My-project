@@ -1,0 +1,25 @@
+header {
+  background-color:pink;   /* Yellow background */
+  height: 100px;              /* Increase height */
+  display: flex;              /* Arrange logo + nav side by side */
+  align-items: center;        /* Center vertically */
+  justify-content: space-between; /* Logo left, nav right */
+  padding: 0 20px;            /* Some spacing */
+}
+
+.logo {
+  height: 80px;   /* Adjust logo height */
+  width: auto;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;   /* Text color */
+}
+
+nav a:hover {
+  color: red;     /* Hover effect */
+}
