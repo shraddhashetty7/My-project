@@ -1,0 +1,91 @@
+.family-container {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.family-image img {
+  width: 280px;
+  height: auto;
+}
+
+.family-form {
+  flex: 1;
+}
+
+.family-form h2 {
+  color: #2c6e49;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-inline {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group label,
+.form-inline label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+}
+
+.form-inline input {
+  width: 100px;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.8rem;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.button-group button {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button-group button.active,
+.button-group button:hover {
+  background: #2c6e49;
+  color: white;
+  border-color: #2c6e49;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: #2c6e49;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #1e4d34;
+}

@@ -1,14 +1,19 @@
-<header>
-  <img src="assets/logo.png" alt="Logo" class="logo" />
-  <nav>
-    <a routerLink="/landing">Landing</a>
-    <a routerLink="/register">Register Here</a>
-    <a routerLink="/next-step">Next Step</a>
-    <a routerLink="/details">Details</a> <!-- ✅ Added -->
+<header class="app-header">
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="assets/logo.png" alt="Logo" class="logo" />
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a routerLink="/landing" routerLinkActive="active">Landing</a>
+    <a routerLink="/next-step" routerLinkActive="active">Person Details</a>
+    <a routerLink="/family-information" routerLinkActive="active">Family Information</a>
+
   </nav>
 </header>
 
-<hr />
-
-<!-- Routed components will load here -->
-<router-outlet></router-outlet>
+<!-- Routed pages -->
+<main class="page-content">
+  <router-outlet></router-outlet>
+</main>

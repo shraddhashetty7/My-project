@@ -1,0 +1,71 @@
+/* Background */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f8bfa8, #fcdcb0);
+}
+
+/* Card */
+.profile-card {
+  background: #fffbe9;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: left;
+}
+
+/* Title */
+.profile-card h2 {
+  text-align: center;
+  color: #5a189a;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+/* Labels */
+.profile-card label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Inputs */
+.profile-card input[type="text"],
+.profile-card input[type="date"],
+.profile-card input[type="tel"] {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* Radio options */
+.options {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Button */
+.profile-card button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.8rem;
+  background: linear-gradient(90deg, #7b2cbf, #9d4edd);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.profile-card button:hover {
+  background: linear-gradient(90deg, #9d4edd, #7b2cbf);
+}
