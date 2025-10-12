@@ -1,0 +1,90 @@
+<div class="expectations-container">
+  <!-- Left Image -->
+  <div class="image-section">
+    <img src="assets/my-expectations.jpg" alt="Couple" />
+  </div>
+
+  <!-- Right Form -->
+  <div class="form-section">
+    <h2>My Expectations</h2>
+
+    <!-- 🧍 Age Range -->
+    <label>Preferred Age Range</label>
+    <div class="range-group">
+      <input
+        type="number"
+        [(ngModel)]="ageFrom"
+        placeholder="From"
+        min="18"
+        class="range-input"
+      />
+      <span>to</span>
+      <input
+        type="number"
+        [(ngModel)]="ageTo"
+        placeholder="To"
+        min="18"
+        class="range-input"
+      />
+      <span>years</span>
+    </div>
+
+    <!-- 💰 Salary Range -->
+    <label>Expected Salary Range (per annum)</label>
+    <div class="range-group">
+      <input
+        type="number"
+        [(ngModel)]="salaryFrom"
+        placeholder="From (₹)"
+        class="range-input"
+      />
+      <span>to</span>
+      <input
+        type="number"
+        [(ngModel)]="salaryTo"
+        placeholder="To (₹)"
+        class="range-input"
+      />
+    </div>
+
+    <!-- 💍 Marital Status -->
+    <label>Marital Status</label>
+    <select [(ngModel)]="selectedMaritalStatus">
+      <option value="" disabled selected>Select Marital Status</option>
+      <option *ngFor="let status of maritalStatusOptions" [value]="status">
+        {{ status }}
+      </option>
+    </select>
+
+    <!-- 🌍 Region (Multi-select enabled) -->
+    <label>Select Region</label>
+    <select multiple [(ngModel)]="selectedRegions">
+      <option *ngFor="let region of regionOptions" [value]="region">
+        {{ region }}
+      </option>
+    </select>
+    <small class="hint">Hold Ctrl (Windows) or Command (Mac) to select multiple options</small>
+
+    <!-- 🎓 Profession (Multi-select) -->
+    <label>Graduation / Profession</label>
+    <select multiple [(ngModel)]="selectedProfessions">
+      <option *ngFor="let profession of professionOptions" [value]="profession">
+        {{ profession }}
+      </option>
+    </select>
+    <small class="hint">Hold Ctrl (Windows) or Command (Mac) to select multiple options</small>
+
+    <!-- 💬 Opinion -->
+    <label>Your Opinion / Description</label>
+    <textarea
+      [(ngModel)]="opinion"
+      placeholder="Write your thoughts here..."
+    ></textarea>
+
+    <!-- Buttons -->
+    <div class="form-actions">
+      <button class="back-btn" (click)="goBack()">⬅️ Back</button>
+      <button class="continue-btn" (click)="goToUploadPhotos()">Continue ➡️</button>
+    </div>
+  </div>
+</div>

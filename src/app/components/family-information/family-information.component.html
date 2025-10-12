@@ -1,71 +1,109 @@
 <div class="family-container">
-  <!-- Left illustration -->
+  <!-- Left Image -->
   <div class="family-image">
-    <img src="assets/family.jpg" alt="Family Illustration" />
+    <img src="assets/family.jpg" alt="Family Information" />
   </div>
 
-  <!-- Right form -->
+  <!-- Right Form -->
   <div class="family-form">
     <h2>Family Information</h2>
 
-    <form>
+    <form #familyForm="ngForm">
       <!-- Father Name & Profession -->
       <div class="form-group">
         <label>Father Name</label>
-        <input type="text" placeholder="Enter Father Name" />
+        <input type="text" [(ngModel)]="model.fatherName" name="fatherName" placeholder="Enter Father Name" />
       </div>
 
       <div class="form-group">
         <label>Father Profession</label>
-        <input type="text" placeholder="Enter Profession" />
+        <input type="text" [(ngModel)]="model.fatherProfession" name="fatherProfession" placeholder="Enter Profession" />
       </div>
 
       <!-- Mother Name & Profession -->
       <div class="form-group">
         <label>Mother Name</label>
-        <input type="text" placeholder="Enter Mother Name" />
+        <input type="text" [(ngModel)]="model.motherName" name="motherName" placeholder="Enter Mother Name" />
       </div>
 
       <div class="form-group">
         <label>Mother Profession</label>
-        <input type="text" placeholder="Enter Profession" />
-      </div>
-
-      <!-- Brothers -->
-      <div class="form-inline">
-        <label>No. of Brothers</label>
-        <input type="number" min="0" placeholder="Single" />
-        <input type="number" min="0" placeholder="Married" />
-      </div>
-
-      <!-- Sisters -->
-      <div class="form-inline">
-        <label>No. of Sisters</label>
-        <input type="number" min="0" placeholder="Single" />
-        <input type="number" min="0" placeholder="Married" />
+        <input type="text" [(ngModel)]="model.motherProfession" name="motherProfession" placeholder="Enter Profession" />
       </div>
 
       <!-- Family Value -->
-      <label>Family Value *</label>
+      <label>Family Value</label>
       <div class="button-group">
-        <button type="button">Liberal</button>
-        <button type="button" class="active">Moderate</button>
-        <button type="button">Orthodox</button>
-        <button type="button">Traditional</button>
+        <button type="button" [class.active]="model.familyValue === 'Liberal'" (click)="selectFamilyValue('Liberal')">Liberal</button>
+        <button type="button" [class.active]="model.familyValue === 'Moderate'" (click)="selectFamilyValue('Moderate')">Moderate</button>
+        <button type="button" [class.active]="model.familyValue === 'Orthodox'" (click)="selectFamilyValue('Orthodox')">Orthodox</button>
+        <button type="button" [class.active]="model.familyValue === 'Traditional'" (click)="selectFamilyValue('Traditional')">Traditional</button>
       </div>
 
       <!-- Family Status -->
-      <label>Family Status *</label>
+      <label>Family Status</label>
       <div class="button-group">
-        <button type="button">Affluent</button>
-        <button type="button" class="active">Middle</button>
-        <button type="button">Upper Middle</button>
+        <button type="button" [class.active]="model.familyStatus === 'Affluent'" (click)="selectFamilyStatus('Affluent')">Affluent</button>
+        <button type="button" [class.active]="model.familyStatus === 'Middle'" (click)="selectFamilyStatus('Middle')">Middle</button>
+        <button type="button" [class.active]="model.familyStatus === 'Upper Middle'" (click)="selectFamilyStatus('Upper Middle')">Upper Middle</button>
       </div>
 
-      <!-- Continue Button -->
-      <button type="button" class="submit-btn" (click)="goToLifestyle()">
-        Continue ➡️
-      </button>
+      <!-- Number of Siblings -->
+<div class="form-group">
+  <label>Number of Siblings</label>
+  <input type="number" [(ngModel)]="numSiblings" name="numSiblings" (input)="updateSiblings()" min="0" max="5" />
+</div>
+
+<!-- Sibling Section -->
+<div *ngFor="let s of siblings; let i = index" class="sibling-section">
+  <div class="sibling-header">
+    <h4>Sibling {{ i + 1 }}</h4>
+    <button type="button" class="remove-btn" (click)="removeSibling(i)">✖</button>
+  </div>
+
+  <div class="sibling-fields">
+    <div class="form-inline">
+      <label>Name</label>
+      <input type="text" [(ngModel)]="s.name" name="siblingName{{ i }}" placeholder="Enter Name" />
+    </div>
+
+    <div class="form-inline">
+      <label>Gender</label>
+      <select [(ngModel)]="s.gender" name="siblingGender{{ i }}">
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+    </div>
+
+    <div class="form-inline">
+      <label>Marital Status</label>
+      <select [(ngModel)]="s.maritalStatus" name="siblingMarital{{ i }}">
+        <option value="">Select</option>
+        <option>Married</option>
+        <option>Unmarried</option>
+      </select>
+    </div>
+
+    <div class="form-inline">
+      <label>Occupation</label>
+      <input type="text" [(ngModel)]="s.occupation" name="siblingOccupation{{ i }}" placeholder="Occupation Details" />
+    </div>
+  </div>
+</div>
+
+<!-- Add Sibling Button -->
+<div class="add-sibling-container">
+  <button type="button" class="add-sibling-btn" (click)="addSibling()">➕ Add Another Sibling</button>
+</div>
+
+
+      <!-- Buttons -->
+<div class="buttons">
+  <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
+  <button type="button" class="submit-btn" (click)="saveAndContinue()">Save & Continue ➡️</button>
+</div>
+
     </form>
   </div>
 </div>

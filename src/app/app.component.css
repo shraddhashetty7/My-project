@@ -3,12 +3,14 @@
   justify-content: space-between;
   align-items: center;
   background: #0d6631;
-  padding: 12px 30px;
+  height: 120px; /* fixed height */
+  padding: 0 30px; /* horizontal padding only */
   color: #fff;
 }
 
+
 .logo-container .logo {
-  height: 45px;
+  height: 100px;
 }
 
 .navbar {
@@ -29,3 +31,22 @@
   text-decoration: underline;
   font-weight: 600;
 }
+.navbar {
+  display: flex;
+  gap: 1rem;
+  background: #2e7d32;
+  padding: 1rem;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a.active {
+  text-decoration: underline;
+}
+
+
+

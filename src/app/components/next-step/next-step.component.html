@@ -1,44 +1,75 @@
-<div class="profile-container">
-  <div class="profile-card">
-    <h2>✨ Complete Your Profile</h2>
+<div class="register-container">
+  <div class="register-wrapper">
+    
+    <!-- 📝 Left Side – Form Section -->
+    <div class="register-form">
+      <h2>Register Your Profile</h2>
 
-    <form>
-      <!-- Full Name -->
-      <label>Full Name</label>
-      <input type="text" placeholder="Enter your name" />
+      <form #registerForm="ngForm" (ngSubmit)="goToEducationCareer()" novalidate>
+        <!-- Full Name -->
+        <label>Full Name</label>
+        <input
+          type="text"
+          name="fullName"
+          ngModel
+          #fullName="ngModel"
+          required
+          placeholder="Enter your full name"
+        />
+        <div *ngIf="fullName.invalid && (fullName.touched || registerForm.submitted)" class="error">
+          Full name is required
+        </div>
 
-      <!-- Date of Birth -->
-      <label>Date of Birth</label>
-      <input type="date" />
+        <!-- Email -->
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          ngModel
+          #email="ngModel"
+          required
+          placeholder="Enter your email address"
+        />
+        <div *ngIf="email.invalid && (email.touched || registerForm.submitted)" class="error">
+          A valid email is required
+        </div>
 
-      <!-- Gender -->
-      <label>Gender</label>
-      <div class="options">
-        <label><input type="radio" name="gender" /> Male</label>
-        <label><input type="radio" name="gender" /> Female</label>
-        <label><input type="radio" name="gender" /> Other</label>
-      </div>
+        <!-- Phone -->
+        <label>Phone Number</label>
+        <input
+          type="tel"
+          name="phone"
+          ngModel
+          #phone="ngModel"
+          required
+          placeholder="Enter your phone number"
+        />
+        <div *ngIf="phone.invalid && (phone.touched || registerForm.submitted)" class="error">
+          Phone number is required
+        </div>
 
-      <!-- Phone Number -->
-      <label>Phone Number</label>
-      <input type="tel" placeholder="+91 9876543210" />
+        <!-- Gender -->
+        <label>Gender</label>
+        <div class="gender-options">
+          <label><input type="radio" name="gender" ngModel required value="Male" /> Male</label>
+          <label><input type="radio" name="gender" ngModel required value="Female" /> Female</label>
+          <label><input type="radio" name="gender" ngModel required value="Other" /> Other</label>
+        </div>
 
-      <!-- Caste -->
-      <label>Caste</label>
-      <div class="options">
-        <label><input type="radio" name="caste" /> Bunts</label>
-        <label><input type="radio" name="caste" /> Billavas</label>
-      </div>
+        <!-- Buttons -->
+        <div class="button-group">
+          <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
+          <button type="submit" class="submit-btn" [disabled]="registerForm.invalid">
+            Register ➡️
+          </button>
+        </div>
+      </form>
+    </div>
 
-      <!-- Continue Button -->
-      <!-- Submit -->
-<button type="button" class="continue-btn" (click)="goToFamilyInfo()">
-  Continue ➡
-</button>
+    <!-- 📸 Right Side – Image Section -->
+    <div class="image-section">
+      <img src="assets/register.jpg" alt="Register Illustration" />
+    </div>
 
-
-
-
-    </form>
   </div>
 </div>

@@ -1,0 +1,62 @@
+<div class="verify-container">
+
+  <!-- Section 1: Verify Number -->
+  <div class="verify-section">
+    <div class="card">
+      <div class="card-left">
+        <img src="assets/secure-shield.jpg" alt="Secure" />
+        <p class="trusted">TRUSTED BY MILLIONS <br><small>since 2000</small></p>
+      </div>
+      <div class="card-right">
+        <!-- Phone Number Input -->
+        <h3>Enter your phone number</h3>
+        <input type="text" class="input-box" placeholder="Enter phone number" />
+
+        <!-- OTP Input -->
+        <h3>Enter the verification code we sent</h3>
+        <input type="text" class="input-box" placeholder="Enter OTP" />
+        <button class="btn">Verify</button>
+        <p class="resend">Not received your code? <a href="#">Resend code</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Verify Profile -->
+  <div class="verify-section">
+    <div class="card">
+      <!-- Left side -->
+      <div class="card-left">
+        <img src="assets/idcard.jpg" alt="ID Verification" />
+        <p class="trusted">100% SECURE <br><small>Your privacy is protected</small></p>
+      </div>
+
+      <!-- Right side -->
+      <div class="card-right">
+        <h2>Verify your Profile</h2>
+        <p>Verification with Govt. ID is required to ensure safety and authenticity.</p>
+
+        <div class="options">
+          <label><input type="radio" name="idType" checked> Aadhar Card</label>
+          <label><input type="radio" name="idType"> PAN Card</label>
+          <label><input type="radio" name="idType"> Voter ID</label>
+          <label><input type="radio" name="idType"> Driving License</label>
+        </div>
+
+        <input type="text" class="input-box" placeholder="Enter ID number" />
+        <button class="btn">Verify</button>
+
+        <div class="note-section">
+          <p class="note">Your details will NOT be stored or shown anywhere.</p>
+        </div>
+
+       
+      </div>
+
+    </div>
+  </div>
+   <!-- Navigation Buttons -->
+        <div class="button-group">
+          <button class="btn back-btn" (click)="goBack()">⬅️ Back</button>
+          <button class="btn continue-btn" (click)="goToPayment()">Continue & Save ➡️</button>
+        </div>
+</div>

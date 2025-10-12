@@ -1,0 +1,55 @@
+<div class="payment-container">
+  <h2>UPI Payment</h2>
+  <p>Secure your profile by completing your UPI payment below.</p>
+
+  <div class="payment-content">
+    <!-- Left Section: UPI Input + Scanner -->
+    <div class="upi-section">
+      <div class="method-box">
+        <label>Enter UPI ID</label>
+        <input
+          type="text"
+          placeholder="example@upi"
+          [(ngModel)]="upiId"
+          class="upi-input"
+        />
+
+        <p class="scan-text">Or scan UPI QR code:</p>
+
+        <!-- UPI QR Scanner -->
+        <zxing-scanner
+          (scanSuccess)="onCodeResult($event)"
+          [formats]="qrFormats"
+          style="
+            width: 100%;
+            max-width: 300px;
+            margin: 15px auto;
+            display: block;
+            border-radius: 12px;
+            overflow: hidden;
+          "
+        ></zxing-scanner>
+
+        <!-- Transaction ID -->
+        <label>Transaction ID</label>
+        <input
+          type="text"
+          placeholder="Enter Transaction ID"
+          [(ngModel)]="transactionId"
+          class="txn-input"
+        />
+      </div>
+    </div>
+
+    <!-- Right Section: Payment Summary -->
+    <div class="summary">
+      <h3>Order Summary</h3>
+      <p>Product: <strong>{{ product }}</strong></p>
+      <p>Subtotal: ₹{{ subtotal }}</p>
+      <p>GST ({{ gstPercent }}%): ₹{{ gst }}</p>
+      <hr />
+      <p class="total">Total: ₹{{ total }}</p>
+      <button class="pay-btn" (click)="proceed()">Proceed to Pay</button>
+    </div>
+  </div>
+</div>

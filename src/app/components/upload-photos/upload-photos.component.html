@@ -1,0 +1,88 @@
+<div class="upload-photo-container">
+  <h2>Upload Photo and get better Matches</h2>
+
+
+  <div class="content-wrapper">
+    <!-- LEFT SIDE -->
+    <div class="left-section">
+      <div class="photo-upload-box">
+        <div class="photo-placeholder">
+          <img src="assets/upload.jpg" alt="Profile Placeholder" />
+          <button class="upload-btn">📷</button>
+        </div>
+
+        <div class="upload-actions">
+          <button class="btn-primary">Upload From Computer</button>
+          <button class="btn-secondary">Email your Photos</button>
+        </div>
+      </div>
+    </div>
+     
+
+    <!-- RIGHT SIDE -->
+    <div class="right-section">
+      <!-- Guidelines Section -->
+      <div class="photo-guidelines">
+        <h3>Photo Guidelines</h3>
+        <div class="guideline-list">
+          <div class="guideline allowed">
+            <img src="assets/closeup.jpg" alt="Close up" />
+            <p>✔ Close up</p>
+          </div>
+          <div class="guideline allowed">
+            <img src="assets/halfview.jpg" alt="Half view" />
+            <p>✔ Half view</p>
+          </div>
+          <div class="guideline allowed">
+            <img src="assets/fullview.jpg" alt="Full view" />
+            <p>✔ Full view</p>
+          </div>
+          <div class="guideline not-allowed">
+            <img src="assets/side.jpg" alt="Side face" />
+            <p>❌ Side face</p>
+          </div>
+          <div class="guideline not-allowed">
+            <img src="assets/group.jpg" alt="Group" />
+            <p>❌ Group</p>
+          </div>
+          <div class="guideline not-allowed">
+            <img src="assets/unclear.jpg" alt="Unclear" />
+            <p>❌ Unclear</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Do's & Don'ts -->
+      <div class="photo-dos">
+        <h3>Know More</h3>
+        <div class="dos-donts">
+          <div class="dos">
+            <h4>✅ Do’s</h4>
+            <ul>
+              <li>Upload a recent photo (within 6 months).</li>
+              <li>Ensure your face is clearly visible with good lighting.</li>
+              <li>Prefer a simple background (no distractions).</li>
+              <li>Wear neat and presentable attire.</li>
+            </ul>
+          </div>
+          <div class="donts">
+            <h4>❌ Don’ts</h4>
+            <ul>
+              <li>Don’t upload group or side-face photos.</li>
+              <li>Avoid blurry or unclear pictures.</li>
+              <li>Don’t use filters or celebrity images.</li>
+              <li>Avoid inappropriate clothing or poses.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Buttons -->
+  <div class="button-row">
+    <button (click)="goBack()" class="back-btn">⬅️ Back</button>
+    <button (click)="goToVerify()" class="continue-btn">Continue ➡️</button>
+  </div>
+</div>
+    </div>
+  </div>
+
+ 

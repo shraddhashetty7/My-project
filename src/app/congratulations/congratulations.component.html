@@ -1,0 +1,32 @@
+<div class="congrats-wrap">
+  <div class="congrats-card">
+    <!-- Confetti Layer -->
+    <div class="sparkles"></div>
+
+    <div class="congrats-body">
+      <!-- Celebratory Icon -->
+      <div class="icon-circle">🎉</div>
+
+      <h1 class="congrats-title">Congratulations!</h1>
+      <p class="congrats-sub">Your profile has been successfully created.</p>
+
+      <!-- Countdown -->
+      <div class="countdown-row">
+        <span class="count-text">Redirecting in</span>
+        <span class="count-number">{{ secondsLeft }}</span>
+        <span class="count-text">seconds...</span>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="progressPercent"></div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button class="btn skip-btn" (click)="goToPayment()">Go to Payment</button>
+        <button class="btn secondary-btn" (click)="goHome()">Back to Home</button>
+      </div>
+    </div>
+  </div>
+</div>

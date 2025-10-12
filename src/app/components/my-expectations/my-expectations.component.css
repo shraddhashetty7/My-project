@@ -1,0 +1,226 @@
+/* 🧩 Main Container */
+.expectations-container {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem auto;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f9f9ff, #f2f7ff);
+  padding: 40px 5%;
+  border-radius: 12px;
+  flex-direction: row-reverse; /* ✅ Image on right */
+  color: #0078d4; /* ✅ All text blue */
+}
+
+/* 🖼️ Left Image */
+.image-section img {
+  width: 750px;
+  height: 550px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 📋 Right Form */
+.form-section {
+  flex: 1;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+   color: #0078d4; /* ✅ All text blue */
+}
+
+/* Heading */
+.form-section h2 {
+   color: #0078d4; /* ✅ All text blue */
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+ color: #0078d4; /* ✅ All text blue */
+}
+
+/* Dropdowns, Inputs & Textareas */
+select,
+textarea,
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+select:focus,
+textarea:focus,
+input:focus {
+  border-color: #4826cf;
+  box-shadow: 0 0 6px rgba(72, 38, 207, 0.2);
+  outline: none;
+}
+
+/* 🧮 Range Groups (Age & Salary) */
+.range-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0.5rem;
+  margin-bottom: 15px;
+   color: #0078d4; /* ✅ All text blue */
+}
+
+.range-input {
+  width: 120px;
+  padding: 8px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.range-input:focus {
+  border-color: #3b3b98;
+  box-shadow: 0 0 6px rgba(59, 59, 152, 0.2);
+}
+
+span {
+  color: #555;
+  font-weight: 500;
+}
+
+/* 🧾 Multi-select (Graduation / Profession) */
+select[multiple] {
+  height: 130px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1.5px solid #ccc;
+  background-color: #fafafa;
+  font-size: 0.95rem;
+  cursor: pointer;
+   
+}
+
+select[multiple]:focus {
+  border-color: #3b3b98;
+  box-shadow: 0 0 6px rgba(59, 59, 152, 0.2);
+}
+
+/* Hint below multi-select */
+.hint {
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+/* ✏️ Textarea */
+textarea {
+  height: 100px;
+  resize: none;
+}
+
+/* Buttons Row */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  gap: 15px;
+}
+
+
+/* 🎯 Shared Button Styles */
+.continue-btn,
+.back-btn {
+  position: relative;
+  overflow: hidden; /* for shine animation */
+  margin-top: 20px;
+  padding: 12px 28px;
+  color: #fff;
+  border: none;
+  border-radius: 50px; /* pill shape */
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  width: 250px;
+  letter-spacing: 0.6px;
+  transition: all 0.5s ease-in-out; /* ✅ slower, smoother */
+  box-shadow: 0 5px 15px rgba(0, 120, 212, 0.25);
+  transform: translateY(0);
+}
+
+/* 🌈 Primary Button */
+.continue-btn {
+  background: linear-gradient(135deg, #0078d4, #00b8a9);
+}
+.continue-btn:hover {
+  background: linear-gradient(135deg, #00b894, #2ecc71);
+  box-shadow: 0 10px 25px rgba(0, 184, 148, 0.4);
+  transform: translateY(-3px) scale(1.04);
+}
+.continue-btn:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 3px 8px rgba(0, 120, 212, 0.3);
+}
+
+/* 🟠 Secondary Button */
+.back-btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  font-weight: 500;
+  font-size: 15px;
+}
+.back-btn:hover {
+  background: linear-gradient(135deg, #de7f53, #ff9f43);
+  box-shadow: 0 10px 25px rgba(255, 159, 67, 0.4);
+  transform: translateY(-3px) scale(1.04);
+}
+.back-btn:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 3px 8px rgba(222, 127, 83, 0.3);
+}
+
+/* ✨ Shine Effect */
+.continue-btn::after,
+.back-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-25deg);
+  transition: left 0.6s ease-in-out; /* ✅ slower shine animation */
+}
+
+.continue-btn:hover::after,
+.back-btn:hover::after {
+  left: 100%;
+}
+
+/* 🌐 Responsive */
+@media (max-width: 992px) {
+  .expectations-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-section img {
+    width: 100%;
+    height: auto;
+  }
+
+  .form-section {
+    width: 100%;
+  }
+  
+}

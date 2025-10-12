@@ -1,0 +1,225 @@
+/* --------------------------------------------------------------
+   🪐 Astrology Component Styling (Clean & Unified)
+-------------------------------------------------------------- */
+
+/* Container */
+.astrology-container {
+  display: flex;
+  flex-direction: row-reverse; /* ✅ Image on right */
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 40px 5%;
+  background: linear-gradient(135deg, #f9f9ff, #f2f7ff);
+  min-height: 70vh;
+  font-family: "Poppins", sans-serif;
+  color: #0078d4; /* ✅ All text blue */
+}
+
+/* --------------------------------------------------------------
+   📋 Form Section
+-------------------------------------------------------------- */
+.form-section {
+  flex: 1;
+  width: 70%;
+  max-width: 600px;
+  background: #ffffff;
+  padding:50px;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+.form-section:hover {
+  transform: translateY(-3px);
+}
+
+/* Heading */
+.form-section h2 {
+  text-align: center;
+  font-size: 2 rem;
+  font-weight: 600;
+  color: #0078d4;
+  margin-bottom: 20px;
+}
+
+/* Alert Box */
+.alert {
+  background: #eaf1ff;
+  color: #3b3b98;
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+/* Form Layout */
+.astrology-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  width: 100%;   /* ✅ Fixes layout */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;   /* ✅ Avoid fixed small size */
+}
+
+
+.small-field {
+  width: 70%;  /* Or 60%, or a fixed px like 200px */
+}
+
+
+
+label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+select,
+input {
+  padding: 10px 14px;
+  border: 1.8px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+select:focus,
+input:focus {
+  outline: none;
+  border-color: #3b3b98;
+  box-shadow: 0 0 6px rgba(59, 59, 152, 0.2);
+}
+.form-actions {
+  display: flex;
+  justify-content: flex-start; /* Align left side */
+  align-items: center;
+  gap: 20px;  /* Space between Back and Continue buttons */
+  margin-top: 20px;
+}
+
+/* --------------------------------------------------------------
+   🎯 Unified Modern Buttons (Save & Continue + Back)
+-------------------------------------------------------------- */
+
+.continue-btn,
+.back-btn {
+  position: relative;
+  overflow: hidden;
+  margin-top: 20px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 50px; /* ✅ same round pill shape */
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  width: 250px;
+  cursor: pointer;
+  letter-spacing: 0.6px;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* 🌈 Save & Continue (Green-Blue Gradient) */
+.continue-btn {
+  background: linear-gradient(135deg, #0078d4, #00b8a9);
+}
+.continue-btn:hover {
+  background: linear-gradient(135deg, #00b894, #2ecc71);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 20px rgba(0, 184, 148, 0.35);
+}
+
+/* 🟦 Back Button (Purple-Blue Gradient) */
+.back-btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+.back-btn:hover {
+  background: linear-gradient(135deg, #de7f53, #ff9f43);
+  box-shadow: 0 10px 25px rgba(255, 159, 67, 0.4);
+  transform: translateY(-3px) scale(1.04);
+}
+
+/* ✨ Shine Animation */
+.continue-btn::after,
+.back-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-25deg);
+  transition: left 0.6s ease-in-out;
+}
+.continue-btn:hover::after,
+.back-btn:hover::after {
+  left: 100%;
+}
+.time-picker {
+  display: flex;
+  gap: 10px;
+}
+
+.time-picker select {
+  flex: 1;
+}
+
+
+/* --------------------------------------------------------------
+   📱 Responsive Design
+-------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .lifestyle-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .lifestyle-form {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .lifestyle-image img {
+    max-width: 600px;
+  }
+
+  .continue-btn,
+  .back-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* --------------------------------------------------------------
+   🌄 Image Section
+-------------------------------------------------------------- */
+.image-section {
+  flex: 1;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.image-section img {
+  width: 90%;
+  max-width: 480px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.image-section img:hover {
+  transform: scale(1.03);
+}
+

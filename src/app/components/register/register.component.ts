@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
-  profileOptions = ['Self', 'Son', 'Daughter', 'Relative', 'Friend'];
+  profileOptions = ['Self', 'Son', 'Daughter', 'Relative', 'Friend','agent'];
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.registerForm = this.fb.group({

@@ -1,3 +1,7 @@
+/* --------------------------------------------------------------
+   🏡 Lifestyle Component Styling (Clean & Unified)
+-------------------------------------------------------------- */
+
 /* Container */
 .lifestyle-container {
   display: flex;
@@ -6,35 +10,36 @@
   gap: 40px;
   padding: 40px;
   font-family: "Segoe UI", Roboto, sans-serif;
-  flex-wrap: wrap; /* mobile responsive */
+  flex-wrap: wrap;
   background: #f9fafb;
   min-height: 100vh;
+  color: #0078d4; /* ✅ All text blue */
+  flex-direction: row-reverse; /* ✅ Form left, image right */
 }
 
 /* Left Image & Text */
 .lifestyle-image {
   flex: 1;
   text-align: center;
-  min-width: 500px; /* was 280px */
+  min-width: 500px;
 }
 
 .lifestyle-image img {
-  max-width: 700px;   /* was 280px */
-  width: 100%;        /* keeps it responsive */
+  max-width: 700px;
+  width: 100%;
   margin-bottom: 20px;
-  border-radius: 16px; /* slightly bigger corners */
+  border-radius: 16px;
 }
-
 
 .lifestyle-image .headline {
   font-size: 22px;
   font-weight: 600;
-  color: #333;
+  color: #0078d4; /* ✅ Blue text */
   line-height: 1.4;
 }
 
 .lifestyle-image .headline span {
-  color: #0d6631;
+  color: #0078d4;
   font-weight: 700;
 }
 
@@ -52,7 +57,7 @@
   margin-bottom: 25px;
   font-size: 24px;
   font-weight: 700;
-  color: #0d6631;
+  color: #0078d4; /* ✅ Blue heading */
   text-align: center;
   border-bottom: 2px solid #e6e6e6;
   padding-bottom: 12px;
@@ -67,7 +72,7 @@
   display: block;
   font-weight: 600;
   margin-bottom: 10px;
-  color: #444;
+  color: #0078d4; /* ✅ Blue label text */
   font-size: 15px;
 }
 
@@ -82,7 +87,7 @@
   padding: 10px 20px;
   border: 1.5px solid #0d6631;
   background: #fff;
-  color: #0d6631;
+  color: #0078d4; /* ✅ Blue text */
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -102,31 +107,69 @@
   color: #fff;
 }
 
-/* Submit Button */
-.submit-btn-wrapper {
-  text-align: center;
-  margin-top: 35px;
-}
+/* --------------------------------------------------------------
+   🎯 Unified Modern Buttons (Save & Continue + Back)
+-------------------------------------------------------------- */
 
-.submit-btn {
-  background: #0d6631;
-  color: #fff;
-  padding: 14px 36px;
+.submit-btn,
+.back-btn {
+  position: relative;
+  overflow: hidden;
+  margin-top: 20px;
+  padding: 12px 28px;
   border: none;
-  border-radius: 10px;
-  font-size: 16px;
+  border-radius: 50px; /* ✅ same round pill shape */
+  color: #fff;
   font-weight: 600;
+  font-size: 16px;
+  width: 250px;
   cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.6px;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
+/* 🌈 Save & Continue (Green-Blue Gradient) */
+.submit-btn {
+  background: linear-gradient(135deg, #0078d4, #00b8a9);
+}
 .submit-btn:hover {
-  background: #0b5529;
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #00b894, #2ecc71);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 20px rgba(0, 184, 148, 0.35);
 }
 
-/* Responsive (mobile) */
+/* 🟦 Back Button (Purple-Blue Gradient) */
+.back-btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+.back-btn:hover {
+  background: linear-gradient(135deg, #de7f53, #ff9f43);
+  box-shadow: 0 10px 25px rgba(255, 159, 67, 0.4);
+  transform: translateY(-3px) scale(1.04);
+}
+
+/* ✨ Shine Animation */
+.submit-btn::after,
+.back-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-25deg);
+  transition: left 0.6s ease-in-out;
+}
+.submit-btn:hover::after,
+.back-btn:hover::after {
+  left: 100%;
+}
+
+/* --------------------------------------------------------------
+   📱 Responsive Design
+-------------------------------------------------------------- */
 @media (max-width: 768px) {
   .lifestyle-container {
     flex-direction: column;
@@ -140,6 +183,12 @@
   }
 
   .lifestyle-image img {
-    max-width: 220px;
+    max-width: 600px;
+  }
+
+  .submit-btn,
+  .back-btn {
+    width: 100%;
+    max-width: 280px;
   }
 }

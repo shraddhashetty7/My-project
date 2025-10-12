@@ -1,15 +1,18 @@
 .family-container {
   display: flex;
+  flex-direction: row-reverse; /* ✅ this moves image to the right */
   gap: 2rem;
   align-items: flex-start;
   padding: 2rem;
-  background: #fff;
+  color: #0078d4; /* all text blue */
+  padding: 20px;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
+
 .family-image img {
-  width: 280px;
+  width: 650px;
   height: auto;
 }
 
@@ -18,7 +21,7 @@
 }
 
 .family-form h2 {
-  color: #2c6e49;
+  color: #0078d4;
   margin-bottom: 1rem;
 }
 
@@ -75,17 +78,141 @@ input[type="number"] {
   border-color: #2c6e49;
 }
 
-.submit-btn {
-  width: 100%;
-  padding: 0.8rem;
-  background: #2c6e49;
-  color: white;
+/* 🎯 Shared Button Styles */
+.submit-btn,
+.back-btn {
+  position: relative;
+  overflow: hidden; /* for shine animation */
+  margin-top: 20px;
+  padding: 12px 28px;
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+  border-radius: 50px; /* pill shape */
   cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  width: 250px;
+  letter-spacing: 0.6px;
+  transition: all 0.5s ease-in-out; /* ✅ slower, smoother */
+  box-shadow: 0 5px 15px rgba(0, 120, 212, 0.25);
+  transform: translateY(0);
 }
 
+/* 🌈 Primary Button */
+.submit-btn {
+  background: linear-gradient(135deg, #0078d4, #00b8a9);
+}
 .submit-btn:hover {
-  background: #1e4d34;
+  background: linear-gradient(135deg, #00b894, #2ecc71);
+  box-shadow: 0 10px 25px rgba(0, 184, 148, 0.4);
+  transform: translateY(-3px) scale(1.04);
+}
+.submit-btn:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 3px 8px rgba(0, 120, 212, 0.3);
+}
+
+/* 🟠 Secondary Button */
+.back-btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  font-weight: 500;
+  font-size: 15px;
+}
+.back-btn:hover {
+  background: linear-gradient(135deg, #de7f53, #ff9f43);
+  box-shadow: 0 10px 25px rgba(255, 159, 67, 0.4);
+  transform: translateY(-3px) scale(1.04);
+}
+.back-btn:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 3px 8px rgba(222, 127, 83, 0.3);
+}
+
+/* ✨ Shine Effect */
+.submit-btn::after,
+.back-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-25deg);
+  transition: left 0.6s ease-in-out; /* ✅ slower shine animation */
+}
+
+.submit-btn:hover::after,
+.back-btn:hover::after {
+  left: 100%;
+}
+/*--------------------------------------------------------------*/
+/* --- Modern Sibling Section --- */
+.sibling-section {
+  background: #f9f6ff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(67, 9, 147, 0.08);
+  transition: all 0.3s ease;
+}
+
+.sibling-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(67, 9, 147, 0.15);
+}
+
+.sibling-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sibling-header h4 {
+  color: #430993;
+  margin: 0;
+  font-weight: 600;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: #ff4d4d;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.remove-btn:hover {
+  color: #d60000;
+}
+
+/* --- Add Sibling Button --- */
+.add-sibling-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.add-sibling-btn {
+  background: linear-gradient(135deg, #ede85e, #48b9e1);
+  color: #000;
+;
+
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgba(207, 69, 145, 0.3);
+  transition: all 0.3s ease;
+}
+
+.add-sibling-btn:hover {
+  background: linear-gradient(135deg, #69e6ba, #b7a4e7);
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(67, 9, 147, 0.4);
 }

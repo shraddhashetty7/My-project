@@ -1,0 +1,99 @@
+<div class="education-career-container">
+  <h2>Education & Career Details</h2>
+
+  <div class="content-wrapper">
+    <!-- Left Image -->
+    <div class="image-section">
+      <img src="assets/education-career.jpg" alt="Education & Career" />
+    </div>
+
+    <!-- Right Form -->
+    <div class="form-section">
+      <form #careerForm="ngForm" (ngSubmit)="saveAndContinue()">
+        <!-- 🌟 Career / Profession Details FIRST -->
+        <h3>Career Details</h3>
+
+        <!-- Occupation -->
+        <label>Occupation</label>
+        <select [(ngModel)]="model.occupation" name="occupation" required>
+          <option value="" disabled>Select Occupation</option>
+          <option *ngFor="let occ of occupations" [value]="occ">{{ occ }}</option>
+        </select>
+
+        <!-- Designation -->
+        <label>Designation</label>
+        <input
+          type="text"
+          [(ngModel)]="model.designation"
+          name="designation"
+          placeholder="Eg: Software Engineer"
+        />
+
+        <!-- Organization -->
+        <label>Organization</label>
+        <input
+          type="text"
+          [(ngModel)]="model.organization"
+          name="organization"
+          placeholder="Eg: Infosys"
+        />
+
+        <!-- Total Experience -->
+        <label>Total Experience (Years)</label>
+        <input
+          type="number"
+          [(ngModel)]="model.totalExperience"
+          name="totalExperience"
+          min="0"
+          placeholder="Eg: 7"
+        />
+
+        <!-- Relevant Experience -->
+        <label>Relevant Experience (Years)</label>
+        <input
+          type="number"
+          [(ngModel)]="model.relevantExperience"
+          name="relevantExperience"
+          min="0"
+          placeholder="Eg: 5"
+        />
+
+        <!-- Annual Income -->
+        <label>Annual Income</label>
+        <input
+          type="number"
+          [(ngModel)]="model.annualIncome"
+          name="annualIncome"
+          min="0"
+          placeholder="Eg: 1200000"
+        />
+
+        <!-- ===== Education Section ===== -->
+        <h3>Education Details</h3>
+        <label>Education Level</label>
+        <select [(ngModel)]="model.education" name="education">
+          <option value="" disabled>Select Education</option>
+          <option *ngFor="let edu of educationLevels" [value]="edu">
+            {{ edu }}
+          </option>
+        </select>
+
+        <label>Education Detail</label>
+        <input
+          type="text"
+          [(ngModel)]="model.educationDetail"
+          name="educationDetail"
+          placeholder="Eg: Electronics & Communication"
+        />
+
+        <!-- Buttons -->
+        <div class="buttons">
+          <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
+          <button type="submit" class="submit-btn" [disabled]="careerForm.invalid">
+            Save & Continue ➡️
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
