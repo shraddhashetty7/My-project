@@ -13,21 +13,52 @@ import { CommonModule } from '@angular/common';
 export class LifestyleComponent {
   model: any = {
     diet: '',
+    complexion: '',
+    physique: '',
+    disability: '',
     smoke: '',
-    drink: '',
-    hobbies: ''
+    drink: ''
   };
 
   constructor(private router: Router) {}
 
-  // ✅ Save & Continue → Astrological Information Page
+  // ✅ Selection Methods
+  selectDiet(value: string) {
+    this.model.diet = value;
+  }
+
+  selectComplexion(value: string) {
+    this.model.complexion = value;
+  }
+
+  selectPhysique(value: string) {
+    this.model.physique = value;
+  }
+
+  selectDisability(value: string) {
+    this.model.disability = value;
+  }
+
+  selectSmoke(value: string) {
+    this.model.smoke = value;
+  }
+
+  selectDrink(value: string) {
+    this.model.drink = value;
+  }
+
+  // ✅ Navigation
   saveAndContinue() {
     console.log('✅ Lifestyle Information Saved:', this.model);
     this.router.navigate(['/astrological-information']);
   }
 
-  // ✅ Back → Family Information Page
   goBack() {
     this.router.navigate(['/family-information']);
+  }
+
+  skip() {
+    console.log('⏭️ Skipped Lifestyle Info');
+    this.router.navigate(['/astrological-information']);
   }
 }

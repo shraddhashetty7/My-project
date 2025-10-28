@@ -18,8 +18,22 @@
       <div class="form-group">
         <label>Your Diet *</label>
         <div class="options">
-          <button type="button" class="option-btn">Vegetarian</button>
-          <button type="button" class="option-btn">Non-Vegetarian</button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.diet === 'Vegetarian'"
+            (click)="model.diet = 'Vegetarian'"
+          >
+            Vegetarian
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.diet === 'Non-Vegetarian'"
+            (click)="model.diet = 'Non-Vegetarian'"
+          >
+            Non-Vegetarian
+          </button>
         </div>
       </div>
 
@@ -27,10 +41,38 @@
       <div class="form-group">
         <label>Complexion *</label>
         <div class="options">
-          <button type="button" class="option-btn">Dark</button>
-          <button type="button" class="option-btn">Fair</button>
-          <button type="button" class="option-btn">Very Fair</button>
-          <button type="button" class="option-btn">Wheatish</button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.complexion === 'Dark'"
+            (click)="model.complexion = 'Dark'"
+          >
+            Dark
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.complexion === 'Fair'"
+            (click)="model.complexion = 'Fair'"
+          >
+            Fair
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.complexion === 'Very Fair'"
+            (click)="model.complexion = 'Very Fair'"
+          >
+            Very Fair
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.complexion === 'Wheatish'"
+            (click)="model.complexion = 'Wheatish'"
+          >
+            Wheatish
+          </button>
         </div>
       </div>
 
@@ -38,11 +80,46 @@
       <div class="form-group">
         <label>Physique *</label>
         <div class="options">
-          <button type="button" class="option-btn">Athletic</button>
-          <button type="button" class="option-btn">Average</button>
-          <button type="button" class="option-btn">Heavy</button>
-          <button type="button" class="option-btn">Slim</button>
-          <button type="button" class="option-btn">Well Built</button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.physique === 'Athletic'"
+            (click)="model.physique = 'Athletic'"
+          >
+            Athletic
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.physique === 'Average'"
+            (click)="model.physique = 'Average'"
+          >
+            Average
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.physique === 'Heavy'"
+            (click)="model.physique = 'Heavy'"
+          >
+            Heavy
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.physique === 'Slim'"
+            (click)="model.physique = 'Slim'"
+          >
+            Slim
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.physique === 'Well Built'"
+            (click)="model.physique = 'Well Built'"
+          >
+            Well Built
+          </button>
         </div>
       </div>
 
@@ -50,8 +127,22 @@
       <div class="form-group">
         <label>Physical Disability *</label>
         <div class="options">
-          <button type="button" class="option-btn">Yes</button>
-          <button type="button" class="option-btn">No</button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.disability === 'Yes'"
+            (click)="model.disability = 'Yes'"
+          >
+            Yes
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.disability === 'No'"
+            (click)="model.disability = 'No'"
+          >
+            No
+          </button>
         </div>
       </div>
 
@@ -59,9 +150,30 @@
       <div class="form-group">
         <label>Smoking Habits *</label>
         <div class="options">
-          <button type="button" class="option-btn">No</button>
-          <button type="button" class="option-btn">Yes</button>
-          <button type="button" class="option-btn">Occasionally</button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.smoke === 'No'"
+            (click)="model.smoke = 'No'"
+          >
+            No
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.smoke === 'Yes'"
+            (click)="model.smoke = 'Yes'"
+          >
+            Yes
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.smoke === 'Occasionally'"
+            (click)="model.smoke = 'Occasionally'"
+          >
+            Occasionally
+          </button>
         </div>
       </div>
 
@@ -69,14 +181,42 @@
       <div class="form-group">
         <label>Drinking Habits *</label>
         <div class="options">
-          <button type="button" class="option-btn">No</button>
-          <button type="button" class="option-btn">Yes</button>
-          <button type="button" class="option-btn">Occasionally</button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.drink === 'No'"
+            (click)="model.drink = 'No'"
+          >
+            No
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.drink === 'Yes'"
+            (click)="model.drink = 'Yes'"
+          >
+            Yes
+          </button>
+          <button
+            type="button"
+            class="option-btn"
+            [class.selected]="model.drink === 'Occasionally'"
+            (click)="model.drink = 'Occasionally'"
+          >
+            Occasionally
+          </button>
         </div>
       </div>
 
+      <!-- Navigation Buttons -->
       <div class="buttons">
-  <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
-  <button type="button" class="submit-btn" (click)="saveAndContinue()">Save & Continue ➡️</button>
+        <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
+        <button type="button" class="skip-btn" (click)="skip()">Skip & Continue ➡️</button>
+        <button type="button" class="submit-btn" (click)="saveAndContinue()">Save & Continue ➡️</button>
+      </div>
+    </form>
+  </div>
 </div>
 
+<!-- Debug (optional): -->
+<!-- <pre>{{ model | json }}</pre> -->

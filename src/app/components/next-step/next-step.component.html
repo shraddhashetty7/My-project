@@ -1,11 +1,10 @@
 <div class="register-container">
   <div class="register-wrapper">
-    
     <!-- 📝 Left Side – Form Section -->
     <div class="register-form">
       <h2>Register Your Profile</h2>
 
-      <form #registerForm="ngForm" (ngSubmit)="goToEducationCareer()" novalidate>
+      <form #registerForm="ngForm" (ngSubmit)="goToEducationCareer(registerForm)" novalidate>
         <!-- Full Name -->
         <label>Full Name</label>
         <input
@@ -16,7 +15,10 @@
           required
           placeholder="Enter your full name"
         />
-        <div *ngIf="fullName.invalid && (fullName.touched || registerForm.submitted)" class="error">
+        <div
+          *ngIf="fullName.invalid && (fullName.touched || registerForm.submitted)"
+          class="error"
+        >
           Full name is required
         </div>
 
@@ -28,9 +30,13 @@
           ngModel
           #email="ngModel"
           required
+          email
           placeholder="Enter your email address"
         />
-        <div *ngIf="email.invalid && (email.touched || registerForm.submitted)" class="error">
+        <div
+          *ngIf="email.invalid && (email.touched || registerForm.submitted)"
+          class="error"
+        >
           A valid email is required
         </div>
 
@@ -42,10 +48,14 @@
           ngModel
           #phone="ngModel"
           required
+          pattern="^[0-9]{10}$"
           placeholder="Enter your phone number"
         />
-        <div *ngIf="phone.invalid && (phone.touched || registerForm.submitted)" class="error">
-          Phone number is required
+        <div
+          *ngIf="phone.invalid && (phone.touched || registerForm.submitted)"
+          class="error"
+        >
+          Please enter a valid 10-digit phone number
         </div>
 
         <!-- Gender -->
@@ -53,15 +63,80 @@
         <div class="gender-options">
           <label><input type="radio" name="gender" ngModel required value="Male" /> Male</label>
           <label><input type="radio" name="gender" ngModel required value="Female" /> Female</label>
-          <label><input type="radio" name="gender" ngModel required value="Other" /> Other</label>
+          
         </div>
+        <div
+          *ngIf="registerForm.submitted && !registerForm.value.gender"
+          class="error"
+        >
+          Please select a gender
+        </div>
+        <!-- 🪶 Caste Section -->
+<label>Caste</label>
+<div class="caste-options">
+  <label>
+    <input
+      type="radio"
+      name="caste"
+      [(ngModel)]="model.caste"
+      value="Shetty"
+      (change)="onCasteChange('Shetty')"
+      required
+    /> Shetty
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="caste"
+      [(ngModel)]="model.caste"
+      value="Billava"
+      (change)="onCasteChange('Billava')"
+      required
+    /> Billava
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="caste"
+      [(ngModel)]="model.caste"
+      value="Other"
+      (change)="onCasteChange('Other')"
+      required
+    /> Other
+  </label>
+</div>
+
+<!-- Show input if 'Other' is selected -->
+<div *ngIf="isOtherCasteSelected" class="other-caste">
+  <label>Please mention your caste</label>
+  <input
+    type="text"
+    name="otherCaste"
+    [(ngModel)]="model.otherCaste"
+    #otherCaste="ngModel"
+    required
+    placeholder="Enter caste name"
+  />
+  <div
+    *ngIf="otherCaste.invalid && (otherCaste.touched || form.submitted)"
+    class="error"
+  >
+    Please mention your caste
+  </div>
+</div>
+
+<!-- Validation if no caste is selected -->
+<div *ngIf="form.submitted && !model.caste" class="error">
+  Please select your caste
+</div>
+
 
         <!-- Buttons -->
         <div class="button-group">
           <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
-          <button type="submit" class="submit-btn" [disabled]="registerForm.invalid">
-            Register ➡️
-          </button>
+          <button type="submit" class="submit-btn">Register ➡️</button>
         </div>
       </form>
     </div>
@@ -70,6 +145,5 @@
     <div class="image-section">
       <img src="assets/register.jpg" alt="Register Illustration" />
     </div>
-
   </div>
 </div>

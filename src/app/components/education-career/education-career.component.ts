@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-education-career',
   standalone: true,
@@ -12,10 +13,13 @@ import { Router } from '@angular/router';
 })
 export class EducationCareerComponent {
 
+
   constructor(private router: Router) {}
+
 
   // Dropdown arrays
   currencies: string[] = ['INR', 'USD', 'EUR', 'GBP', 'AUD'];
+
 
   educationLevels: string[] = [
     'Bachelors in Engineering',
@@ -27,6 +31,7 @@ export class EducationCareerComponent {
     'Degree',
     'Other'
   ];
+
 
   occupations: string[] = [
     'Software Engineer',
@@ -44,6 +49,7 @@ export class EducationCareerComponent {
     'Other'
   ];
 
+
   model = {
     occupation: '',
     designation: '',
@@ -57,11 +63,13 @@ export class EducationCareerComponent {
     educationDetail: ''
   };
 
+
   // Save & Continue → Family Information
   saveAndContinue() {
     console.log('Saved Education & Career Details:', this.model);
     this.router.navigate(['/family-information']);
   }
+
 
   // Back → Next Step
   goBack() {

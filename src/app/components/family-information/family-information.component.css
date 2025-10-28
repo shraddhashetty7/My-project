@@ -1,21 +1,28 @@
+/* ================================
+   🌸 FAMILY PAGE MAIN CONTAINER
+================================ */
 .family-container {
   display: flex;
-  flex-direction: row-reverse; /* ✅ this moves image to the right */
+  flex-direction: row-reverse; /* Image on right */
   gap: 2rem;
   align-items: flex-start;
-  padding: 2rem;
-  color: #0078d4; /* all text blue */
-  padding: 20px;
+  padding: 2rem 20px;
+  color: #0078d4;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-
+/* ================================
+   🖼️ IMAGE SECTION
+================================ */
 .family-image img {
   width: 650px;
   height: auto;
 }
 
+/* ================================
+   📄 FORM SECTION
+================================ */
 .family-form {
   flex: 1;
 }
@@ -43,8 +50,8 @@
   display: block;
 }
 
-input[type="text"],
-input[type="number"] {
+input[type='text'],
+input[type='number'] {
   padding: 0.6rem;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -56,6 +63,9 @@ input[type="number"] {
   width: 100px;
 }
 
+/* ================================
+   🔘 BUTTON GROUP
+================================ */
 .button-group {
   display: flex;
   gap: 0.8rem;
@@ -78,27 +88,30 @@ input[type="number"] {
   border-color: #2c6e49;
 }
 
-/* 🎯 Shared Button Styles */
+/* ================================
+   🌈 MAIN BUTTON STYLES
+================================ */
 .submit-btn,
-.back-btn {
+.back-btn,
+.skip-btn {
   position: relative;
-  overflow: hidden; /* for shine animation */
+  overflow: hidden;
   margin-top: 20px;
   padding: 12px 28px;
   color: #fff;
   border: none;
-  border-radius: 50px; /* pill shape */
+  border-radius: 50px;
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;
   width: 250px;
   letter-spacing: 0.6px;
-  transition: all 0.5s ease-in-out; /* ✅ slower, smoother */
+  transition: all 0.5s ease-in-out;
   box-shadow: 0 5px 15px rgba(0, 120, 212, 0.25);
   transform: translateY(0);
 }
 
-/* 🌈 Primary Button */
+/* ✅ Submit Button */
 .submit-btn {
   background: linear-gradient(135deg, #0078d4, #00b8a9);
 }
@@ -109,29 +122,38 @@ input[type="number"] {
 }
 .submit-btn:active {
   transform: translateY(2px) scale(0.98);
-  box-shadow: 0 3px 8px rgba(0, 120, 212, 0.3);
 }
 
-/* 🟠 Secondary Button */
+/* 🔵 Back Button */
 .back-btn {
   background: linear-gradient(135deg, #6a11cb, #2575fc);
-  font-weight: 500;
-  font-size: 15px;
 }
 .back-btn:hover {
   background: linear-gradient(135deg, #de7f53, #ff9f43);
   box-shadow: 0 10px 25px rgba(255, 159, 67, 0.4);
   transform: translateY(-3px) scale(1.04);
 }
-.back-btn:active {
-  transform: translateY(2px) scale(0.98);
-  box-shadow: 0 3px 8px rgba(222, 127, 83, 0.3);
+
+/* 🟡 Skip Button */
+.skip-btn {
+  background: linear-gradient(135deg, #f4b400, #ffe082);
+  color: #000;
+  font-weight: 600;
+}
+.skip-btn:hover {
+  background: linear-gradient(135deg, #ffca28, #fff59d);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 202, 40, 0.4);
+}
+.skip-btn:active {
+  transform: translateY(2px) scale(0.97);
 }
 
 /* ✨ Shine Effect */
 .submit-btn::after,
-.back-btn::after {
-  content: "";
+.back-btn::after,
+.skip-btn::after {
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -139,15 +161,18 @@ input[type="number"] {
   height: 100%;
   background: rgba(255, 255, 255, 0.25);
   transform: skewX(-25deg);
-  transition: left 0.6s ease-in-out; /* ✅ slower shine animation */
+  transition: left 0.6s ease-in-out;
 }
 
 .submit-btn:hover::after,
-.back-btn:hover::after {
+.back-btn:hover::after,
+.skip-btn:hover::after {
   left: 100%;
 }
-/*--------------------------------------------------------------*/
-/* --- Modern Sibling Section --- */
+
+/* ================================
+   👨‍👩‍👧 SIBLING SECTION
+================================ */
 .sibling-section {
   background: #f9f6ff;
   border: 1px solid #ddd;
@@ -157,7 +182,6 @@ input[type="number"] {
   box-shadow: 0 4px 12px rgba(67, 9, 147, 0.08);
   transition: all 0.3s ease;
 }
-
 .sibling-section:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 16px rgba(67, 9, 147, 0.15);
@@ -169,7 +193,6 @@ input[type="number"] {
   align-items: center;
   margin-bottom: 1rem;
 }
-
 .sibling-header h4 {
   color: #430993;
   margin: 0;
@@ -184,12 +207,11 @@ input[type="number"] {
   cursor: pointer;
   transition: 0.2s;
 }
-
 .remove-btn:hover {
   color: #d60000;
 }
 
-/* --- Add Sibling Button --- */
+/* 🟢 Add Sibling Button */
 .add-sibling-container {
   text-align: center;
   margin-top: 1rem;
@@ -198,21 +220,117 @@ input[type="number"] {
 .add-sibling-btn {
   background: linear-gradient(135deg, #ede85e, #48b9e1);
   color: #000;
-;
-
   border: none;
   padding: 0.8rem 1.6rem;
   border-radius: 10px;
   font-size: 1rem;
   font-weight: 500;
-  letter-spacing: 0.3px;
   cursor: pointer;
   box-shadow: 0 5px 12px rgba(207, 69, 145, 0.3);
   transition: all 0.3s ease;
 }
-
 .add-sibling-btn:hover {
   background: linear-gradient(135deg, #69e6ba, #b7a4e7);
   transform: scale(1.05);
-  box-shadow: 0 8px 18px rgba(67, 9, 147, 0.4);
+}
+
+/* ================================
+   📱 RESPONSIVE DESIGN
+================================ */
+
+/* Tablets & Small Laptops */
+@media (max-width: 1024px) {
+  .family-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .family-image img {
+    width: 90%;
+    max-width: 450px;
+  }
+
+  .family-form {
+    width: 90%;
+  }
+
+  .form-inline {
+    flex-direction: column;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .submit-btn,
+  .back-btn,
+  .skip-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 768px) {
+  .family-container {
+    padding: 1rem;
+    box-shadow: none;
+  }
+
+  .family-image img {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .form-group {
+    margin-bottom: 0.8rem;
+  }
+
+  .form-inline {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  input[type='text'],
+  input[type='number'] {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .submit-btn,
+  .back-btn,
+  .skip-btn {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
+/* Small Mobiles */
+@media (max-width: 480px) {
+  .family-container {
+    padding: 0.8rem;
+  }
+
+  .family-image img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .submit-btn,
+  .back-btn,
+  .skip-btn {
+    font-size: 14px;
+    padding: 10px 22px;
+  }
+
+  .add-sibling-btn {
+    width: 100%;
+  }
 }

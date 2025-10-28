@@ -1,6 +1,7 @@
 <div class="register-container">
   <h2>Register Here</h2>
 
+
   <form [formGroup]="registerForm" (ngSubmit)="onContinue()">
     <label for="profileFor">Profile For:</label>
     <select id="profileFor" formControlName="profileFor">
@@ -10,6 +11,9 @@
       </option>
     </select>
 
+
     <button type="submit">Continue</button>
   </form>
 </div>
+
+

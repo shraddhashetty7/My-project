@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -12,7 +13,8 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
-  profileOptions = ['Self', 'Son', 'Daughter', 'Relative', 'Friend','agent'];
+  profileOptions = ['Self', 'Son', 'Daughter', 'Relative', 'Friend','Agent'];
+
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.registerForm = this.fb.group({
@@ -20,10 +22,12 @@ export class RegisterComponent {
     });
   }
 
+
   onContinue() {
     if (this.registerForm.valid) {
       const selected = this.registerForm.value.profileFor;
       console.log('Selected profile:', selected);
+
 
       // ✅ Navigate directly to NextStep page
       this.router.navigate(['/next-step']);
@@ -32,3 +36,5 @@ export class RegisterComponent {
     }
   }
 }
+
+

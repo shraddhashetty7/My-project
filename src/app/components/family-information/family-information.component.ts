@@ -69,9 +69,9 @@ export class FamilyInformationComponent {
   }
 
   // ========================
-  // 🔹 SAVE & NAVIGATION
-  // ========================
-  saveAndContinue() {
+// 🔹 SAVE & NAVIGATION
+// ========================
+saveAndContinue() {
   const familyInfo = {
     ...this.model,
     siblings: this.siblings
@@ -83,7 +83,12 @@ export class FamilyInformationComponent {
   this.router.navigate(['/lifestyle']);
 }
 
-  goBack() {
-    this.router.navigate(['/education-career']);
-  }
+skip() {
+  console.log('⏭️ Skipped Family Info');
+  this.router.navigate(['/lifestyle']);
+}
+
+goBack() {
+  this.router.navigate(['/education-career']);
+}
 }
