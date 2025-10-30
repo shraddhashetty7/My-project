@@ -3,81 +3,119 @@
 
 
   <div class="content-wrapper">
-    <!-- Left Image -->
+    <!-- right Image -->
     <div class="image-section">
       <img src="assets/education-career.jpg" alt="Education & Career" />
     </div>
 
 
-    <!-- Right Form -->
+    <!-- left Form -->
     <div class="form-section">
       <form #careerForm="ngForm" (ngSubmit)="saveAndContinue()">
-        <!-- 🌟 Career / Profession Details FIRST -->
-        <h3>Career Details</h3>
+       
+       
+       
+        <!-- 🌟 Career Details -->
+<h3>Career Details</h3>
 
-
-        <select
+<label>Occupation</label>
+<select
   name="occupation"
   [(ngModel)]="model.occupation"
-  #occupation="ngModel">
+  (change)="onOccupationChange(model.occupation)"
+  #occupation="ngModel"
+>
   <option value="">Select Occupation</option>
   <option *ngFor="let o of occupations" [value]="o">{{ o }}</option>
 </select>
 
+<!-- ✅ Show NON-BUSINESS fields only when not business -->
+<div *ngIf="!isBusinessSelected">
+  <!-- Designation -->
+  <label>Designation</label>
+  <input
+    type="text"
+    [(ngModel)]="model.designation"
+    name="designation"
+    placeholder="Eg: Software Engineer"
+  />
 
+  <!-- Organization -->
+  <label>Organization</label>
+  <input
+    type="text"
+    [(ngModel)]="model.organization"
+    name="organization"
+    placeholder="Eg: Infosys"
+  />
 
-        <!-- Designation -->
-        <label>Designation</label>
-        <input
-          type="text"
-          [(ngModel)]="model.designation"
-          name="designation"
-          placeholder="Eg: Software Engineer"
-        />
+  <!-- Total Experience -->
+  <label>Total Experience (Years)</label>
+  <input
+    type="number"
+    [(ngModel)]="model.totalExperience"
+    name="totalExperience"
+    min="0"
+    placeholder="Eg: 7"
+  />
 
+  <!-- Relevant Experience -->
+  <label>Relevant Experience (Years)</label>
+  <input
+    type="number"
+    [(ngModel)]="model.relevantExperience"
+    name="relevantExperience"
+    min="0"
+    placeholder="Eg: 5"
+  />
 
-        <!-- Organization -->
-        <label>Organization</label>
-        <input
-          type="text"
-          [(ngModel)]="model.organization"
-          name="organization"
-          placeholder="Eg: Infosys"
-        />
+  <!-- Annual Income -->
+  <label>Annual Income</label>
+  <input
+    type="number"
+    [(ngModel)]="model.annualIncome"
+    name="annualIncome"
+    min="0"
+    placeholder="Eg: 1200000"
+  />
+</div>
 
+<!-- ✅ Show BUSINESS fields only when business is selected -->
+<div *ngIf="isBusinessSelected" class="business-section">
+  <h3>Business Details</h3>
 
-        <!-- Total Experience -->
-        <label>Total Experience (Years)</label>
-        <input
-          type="number"
-          [(ngModel)]="model.totalExperience"
-          name="totalExperience"
-          min="0"
-          placeholder="Eg: 7"
-        />
+  <label>Business Name</label>
+  <input
+    type="text"
+    [(ngModel)]="model.businessName"
+    name="businessName"
+    placeholder="Eg: Shetty Enterprises"
+  />
 
+  <label>Business Type</label>
+  <input
+    type="text"
+    [(ngModel)]="model.businessType"
+    name="businessType"
+    placeholder="Eg: Manufacturing / IT / Retail"
+  />
 
-        <!-- Relevant Experience -->
-        <label>Relevant Experience (Years)</label>
-        <input
-          type="number"
-          [(ngModel)]="model.relevantExperience"
-          name="relevantExperience"
-          min="0"
-          placeholder="Eg: 5"
-        />
+  <label>Key Designations / Roles</label>
+  <textarea
+    [(ngModel)]="model.businessDesignations"
+    name="businessDesignations"
+    placeholder="Eg: Owner, Manager, Director"
+  ></textarea>
 
-
-        <!-- Annual Income -->
-        <label>Annual Income</label>
-        <input
-          type="number"
-          [(ngModel)]="model.annualIncome"
-          name="annualIncome"
-          min="0"
-          placeholder="Eg: 1200000"
-        />
-
+  <label>Approximate Annual Income</label>
+  <input
+    type="number"
+    [(ngModel)]="model.businessIncome"
+    name="businessIncome"
+    min="0"
+    placeholder="Eg: 5000000"
+  />
+</div>
 
         <!-- ===== Education Section ===== -->
         <h3>Education Details</h3>
@@ -97,6 +135,7 @@
           name="educationDetail"
           placeholder="Eg: Electronics & Communication"
         />
+        
 
 
         <!-- Buttons -->

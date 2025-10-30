@@ -10,6 +10,50 @@
   align-items: flex-start;
   gap: 40px;
 }
+.career-container {
+  width: 60%;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+select,
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+.income-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #0078d4;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005ea6;
+}
 
 
 /* 📸 Right Image Section */

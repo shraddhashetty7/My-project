@@ -11,11 +11,16 @@ export class VerifyNumberProfileComponent {
   constructor(private router: Router) {}
 
   goBack() {
-    this.router.navigate(['/upload-photos']);
-  }
+  this.router.navigate(['/upload-photos']);
+}
 
-  goToPayment() {
-  // Instead of directly navigating to payment, go to congratulations page
+goToPayment() {
+  // Navigate to congratulations page
+  this.router.navigate(['/congratulations']);
+}
+
+// ✅ Skip & Continue button action
+skipAndContinue() {
   this.router.navigate(['/congratulations']);
 }
 

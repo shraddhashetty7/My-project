@@ -48,31 +48,38 @@ export class AstrologicalInformationComponent {
   hours: number[] = Array.from({ length: 12 }, (_, i) => i + 1); // 1 to 12
   minutes: string[] = Array.from({ length: 60 }, (_, i) => (i < 10 ? '0' + i : '' + i)); // 00 to 59
 
-  // Actions
-  goBack() {
-    this.router.navigate(['/lifestyle']);
-  }
+  // ========================
+  // 🔹 SAVE & NAVIGATION
+  // ========================
+  saveAndContinue() {
+    const formattedTime =
+      this.birthHour && this.birthMinute && this.birthPeriod
+        ? `${this.padZero(this.birthHour)}:${this.birthMinute} ${this.birthPeriod}`
+        : '';
 
-  goToExpectations() {
-    const formattedTime = this.birthHour && this.birthMinute && this.birthPeriod
-      ? `${this.padZero(this.birthHour)}:${this.birthMinute} ${this.birthPeriod}`
-      : '';
-
-    console.log('⭐ Astrological Info:', {
+    const astroInfo = {
       raasi: this.selectedRaasi,
       nakshatra: this.selectedStar,
+      dosham: this.selectedDosham,
       birthDate: this.birthDate,
-      birthTime: formattedTime,
-      dosham: this.selectedDosham
-    });
+      birthTime: formattedTime
+    };
 
-    // You can pass this info to a service or state management if needed
+    console.log('✅ Astrological Information Saved:', astroInfo);
 
+    // Navigate to My Expectations page
+    this.router.navigate(['/my-expectations']);
+  }
+  padZero(birthHour: number) {
+    throw new Error('Method not implemented.');
+  }
+
+  skip() {
+    console.log('⏭️ Skipped Astrological Information');
     this.router.navigate(['/my-expectations']);
   }
 
-  // Pad single-digit hour with 0 for consistency
-  padZero(value: number): string {
-    return value < 10 ? '0' + value : value.toString();
+  goBack() {
+    this.router.navigate(['/lifestyle']);
   }
 }

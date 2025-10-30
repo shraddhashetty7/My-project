@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-education-career',
   standalone: true,
@@ -13,17 +12,14 @@ import { Router } from '@angular/router';
 })
 export class EducationCareerComponent {
 
-
   constructor(private router: Router) {}
-
 
   // Dropdown arrays
   currencies: string[] = ['INR', 'USD', 'EUR', 'GBP', 'AUD'];
 
-
   educationLevels: string[] = [
     'Bachelors in Engineering',
-    'M.tech',
+    'M.Tech',
     'Doctor',
     'Lawyer',
     'PhD',
@@ -32,24 +28,23 @@ export class EducationCareerComponent {
     'Other'
   ];
 
-
   occupations: string[] = [
-    'Software Engineer',
-    'Doctor',
-    'Teacher / Professor',
-    'Lawyer',
-    'Business',
-    'Government Job',
-    'Banking / Finance',
-    'Healthcare Professional',
-    'Freelancer',
-    'Small business',
-    'Mid-level business',
-    'Large business',
-    'Other'
-  ];
+  'Software Engineer',
+  'Doctor',
+  'Teacher / Professor',
+  'Lawyer',
+  'Government Job',
+  'Banking / Finance',
+  'Healthcare Professional',
+  'Freelancer',
+  'Small business',
+  'Mid-level business',
+  'Large business',
+  'Other'
+];
 
 
+  // 🧠 Model (Form Data)
   model = {
     occupation: '',
     designation: '',
@@ -60,18 +55,33 @@ export class EducationCareerComponent {
     currency: 'INR',
     incomeType: '',
     education: '',
-    educationDetail: ''
+    educationDetail: '',
+
+    // ✅ Business section
+    businessLevel: '',
+    businessName: '',
+    businessType: '',
+    businessDesignations: '',
+    businessIncome: ''
   };
 
+  // 🌟 UI Control Flag
+  isBusinessSelected: boolean = false;
 
-  // Save & Continue → Family Information
+  // 🔁 When occupation changes
+  onOccupationChange(occupation: string) {
+    // If any of the 3 business types is selected, show business details section
+    const businessOptions = ['Small business', 'Mid-level business', 'Large business'];
+    this.isBusinessSelected = businessOptions.includes(occupation);
+  }
+
+  // 💾 Save & Continue
   saveAndContinue() {
     console.log('Saved Education & Career Details:', this.model);
     this.router.navigate(['/family-information']);
   }
 
-
-  // Back → Next Step
+  // ⬅️ Go Back
   goBack() {
     this.router.navigate(['/next-step']);
   }

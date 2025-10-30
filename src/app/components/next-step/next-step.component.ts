@@ -57,7 +57,8 @@ form: any;
     education: '',
     educationDetail: '',
     caste: '',            // ✅ Added caste field
-    otherCaste: ''         // ✅ Added otherCaste for text box
+    otherCaste: '' ,        // ✅ Added otherCaste for text box
+    workLocation: ''  // ✅ Added new property
   };
 
   // --- Track 'Other' caste selection ---

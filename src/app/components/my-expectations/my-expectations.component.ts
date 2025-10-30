@@ -70,4 +70,10 @@ maritalStatusOptions: any;
   goBack() {
     this.router.navigate(['/astrological-information']);
   }
+
+  // ✅ Save & Continue logic (optional)
+  saveAndContinue() {
+    // Add your save logic here, then navigate if needed
+    this.router.navigate(['/upload-photos']);
+  }
 }

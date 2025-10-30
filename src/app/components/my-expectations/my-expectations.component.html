@@ -82,9 +82,11 @@
     ></textarea>
 
     <!-- Buttons -->
-    <div class="form-actions">
-      <button class="back-btn" (click)="goBack()">⬅️ Back</button>
-      <button class="continue-btn" (click)="goToUploadPhotos()">Continue ➡️</button>
-    </div>
+<div class="buttons">
+  <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
+  <button type="button" class="submit-btn" (click)="saveAndContinue()">Save & Continue ➡️</button>
+  <button type="button" class="skip-btn" (click)="goToUploadPhotos()">Skip & Continue ➡️</button>
+</div>
+
   </div>
 </div>

@@ -108,11 +108,43 @@
 }
 
 /* ================================
+   🔘 BUTTON GROUP
+================================ */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.button-group button {
+  padding: 10px 20px;
+  border: 2px solid #0078d4;
+  border-radius: 25px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  color: #0078d4;
+  transition: all 0.3s ease;
+}
+
+.button-group button.active {
+  background: linear-gradient(135deg, #0078d4, #00b8a9);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
+}
+
+.button-group button:hover {
+  transform: translateY(-2px);
+}
+
+/* ================================
    🌈 MAIN BUTTON STYLES
 ================================ */
 .submit-btn,
-.back-btn,
-.skip-btn {
+.skip-btn,
+.back-btn {
   position: relative;
   overflow: hidden;
   margin-top: 20px;
@@ -123,7 +155,6 @@
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;
-  width: 250px;
   letter-spacing: 0.6px;
   transition: all 0.5s ease-in-out;
   box-shadow: 0 5px 15px rgba(0, 120, 212, 0.25);
@@ -132,40 +163,52 @@
 
 /* ✅ Submit Button */
 .submit-btn {
-  background: linear-gradient(135deg, #0078d4, #00b8a9);
-}
-.submit-btn:hover {
   background: linear-gradient(135deg, #00b894, #2ecc71);
-  box-shadow: 0 10px 25px rgba(0, 184, 148, 0.4);
-  transform: translateY(-3px) scale(1.04);
-}
-.submit-btn:active {
-  transform: translateY(2px) scale(0.98);
+  border-radius: 8px;
+  padding: 10px 20px;
 }
 
-/* 🔵 Back Button */
+.submit-btn:hover {
+  background: linear-gradient(135deg, #1dd1a1, #10ac84);
+  box-shadow: 0 10px 25px rgba(0, 184, 148, 0.5);
+  transform: translateY(-3px) scale(1.1);
+}
+
+.submit-btn:active {
+  transform: translateY(2px) scale(0.95);
+}
+
+/* 🔹 Back Button */
 .back-btn {
+  width: 180px !important;
+  padding: 10px 20px;
+  font-size: 15px;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
 }
+
 .back-btn:hover {
   background: linear-gradient(135deg, #de7f53, #ff9f43);
   box-shadow: 0 10px 25px rgba(255, 159, 67, 0.4);
-  transform: translateY(-3px) scale(1.04);
+  transform: translateY(-2px);
 }
 
-/* 🟡 Skip Button */
+/* 🌼 Skip Button */
 .skip-btn {
   background: linear-gradient(135deg, #f4b400, #ffe082);
   color: #000;
   font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 20px;
 }
+
 .skip-btn:hover {
-  background: linear-gradient(135deg, #ffca28, #fff59d);
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 202, 40, 0.4);
+  background: linear-gradient(135deg, #ffd54f, #fff176);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 8px 20px rgba(244, 180, 0, 0.4);
 }
+
 .skip-btn:active {
-  transform: translateY(2px) scale(0.97);
+  transform: translateY(2px) scale(0.95);
 }
 
 /* ✨ Shine Effect */
@@ -188,7 +231,6 @@
 .skip-btn:hover::after {
   left: 100%;
 }
-
 /* --------------------------------------------------------------
    📱 Responsive Design
 -------------------------------------------------------------- */

@@ -57,7 +57,22 @@
         >
           Please enter a valid 10-digit phone number
         </div>
-
+<!-- 🌍 Work Location -->
+<label>Work Location</label>
+<input
+  type="text"
+  name="workLocation"
+  ngModel
+  #workLocation="ngModel"
+  required
+  placeholder="Enter your work location"
+/>
+<div
+  *ngIf="workLocation.invalid && (workLocation.touched || registerForm.submitted)"
+  class="error"
+>
+  Work location is required
+</div>
         <!-- Gender -->
         <label>Gender</label>
         <div class="gender-options">

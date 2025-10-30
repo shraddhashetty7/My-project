@@ -11,12 +11,18 @@ export class UploadPhotosComponent {
   constructor(private router: Router) {}
 
  // ✅ Navigate to Verify page
-  goToVerify() {
-    this.router.navigate(['/verify']);
-  }
+goToVerify() {
+  this.router.navigate(['/verify']);
+}
 
-  // ✅ Navigate back to My Expectations page
-  goBack() {
-    this.router.navigate(['/my-expectations']);
-  }
+// ✅ Navigate back to My Expectations page
+goBack() {
+  this.router.navigate(['/my-expectations']);
+}
+
+// ✅ Skip & Continue (same as goToVerify)
+skipAndContinue() {
+  this.router.navigate(['/verify']);
+}
+
 }
