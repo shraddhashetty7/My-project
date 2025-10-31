@@ -11,18 +11,33 @@ import { Router } from '@angular/router'; // ✅ Import Router
   styleUrls: ['./my-expectations.component.css']
 })
 export class MyExpectationsComponent {
-maritalStatusOptions: any;
-  constructor(private router: Router) {}
+
+  constructor(private router: Router) {} // ✅ Proper dependency injection
+
+  maritalStatusOptions: string[] = [
+    'Single',
+    'Married',
+    'Divorced',
+    'Widow / Widower'
+  ];
 
   // 🌍 Multi-select Regions
   selectedRegions: string[] = [];
   regionOptions: string[] = [
-    'North India',
-    'South India',
-    'East India',
-    'West India',
-    'Central India',
-    'Abroad'
+    'Udupi',
+    'Kundapura',
+    'Mangalore',
+    'Bangalore',
+    'Other parts of Karnataka',
+    'Mumbai',
+    'Pune',
+    'Goa',
+    'Other states of India',
+    'Gulf Countries (UAE, Qatar, Oman, etc.)',
+    'Europe Countries',
+    'USA / Canada',
+    'Australia / New Zealand',
+    'Other Foreign Countries'
   ];
 
   // 🎓 Multi-select Professions
@@ -30,10 +45,28 @@ maritalStatusOptions: any;
   professionOptions: string[] = [
     'Engineer',
     'Doctor',
-    'Teacher',
+    'Teacher / Professor',
+    'Medical Sector',
     'Business',
     'Lawyer',
     'Artist',
+    'Government Employee',
+    'Private Sector Employee',
+    'IT / Software Professional',
+    'Banking / Finance Professional',
+    'Chartered Accountant / Auditor',
+    'Architect',
+    'Civil Services (IAS / IPS / IFS)',
+    'Defence Services',
+    'Scientist / Researcher',
+    'Pharmacist',
+    'Fashion Designer',
+    'Journalist / Writer',
+    'Social Worker / NGO',
+    'Agriculture / Farming',
+    'Self-Employed / Freelancer',
+    'Student',
+    'Not Working',
     'Other'
   ];
 
@@ -73,7 +106,6 @@ maritalStatusOptions: any;
 
   // ✅ Save & Continue logic (optional)
   saveAndContinue() {
-    // Add your save logic here, then navigate if needed
     this.router.navigate(['/upload-photos']);
   }
 }

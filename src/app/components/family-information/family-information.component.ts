@@ -13,13 +13,17 @@ import { Router } from '@angular/router';
 export class FamilyInformationComponent {
   // Model for family info
   model: any = {
-    fatherName: '',
-    fatherProfession: '',
-    motherName: '',
-    motherProfession: '',
-    familyValue: '',
-    familyStatus: ''
-  };
+  fatherName: '',
+  fatherProfession: '',
+  fatherHometown: '',
+  motherName: '',
+  motherProfession: '',
+  motherHometown: '',
+presentHometown: '',
+  familyValue: '',
+  familyStatus: ''
+};
+
 
   // Sibling fields
   numSiblings: number = 0;

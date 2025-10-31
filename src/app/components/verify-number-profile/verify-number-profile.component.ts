@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
 export class VerifyNumberProfileComponent {
 
   constructor(private router: Router) {}
-
+//✅  Navigate to upload photos 
   goBack() {
   this.router.navigate(['/upload-photos']);
 }
 
 goToPayment() {
-  // Navigate to congratulations page
+  //✅  Navigate to congratulations page
   this.router.navigate(['/congratulations']);
 }
 

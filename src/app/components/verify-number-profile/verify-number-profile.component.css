@@ -12,13 +12,14 @@
 }
 
 /* Card Styles (applies to both sections) */
-.card, .profile-card {
+.card,
+.profile-card {
   display: flex;
   flex-direction: row;
   background: #fff;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   align-items: center;
 }
 
@@ -54,20 +55,6 @@
   border-radius: 6px;
 }
 
-.btn {
-  background: rgb(96, 23, 214);
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: darkorange;
-}
-
 /* Note section under verify button */
 .note-section {
   display: flex;
@@ -79,7 +66,7 @@
   width: 50px;
   height: 50px;
   margin-right: 10px;
-  background: #f0f0f0;  /* fallback box if image not available */
+  background: #f0f0f0; /* fallback box if image not available */
   border-radius: 8px;
   object-fit: cover;
 }
@@ -89,142 +76,47 @@
   font-size: 0.85rem;
   color: #555;
 }
+
 .button-group {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* spacing between buttons */
   margin-top: 25px;
+  flex-wrap: wrap;
 }
 
+
+/* Button base */
 .btn {
+  min-width: 180px;
   padding: 10px 25px;
   border: none;
   border-radius: 8px;
   font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-/* ================================
-   🔘 BUTTON GROUP
-================================ */
-.button-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.button-group button {
-  padding: 10px 20px;
-  border: 2px solid #0078d4;
-  border-radius: 25px;
-  background: #fff;
-  cursor: pointer;
-  font-weight: 500;
-  color: #0078d4;
-  transition: all 0.3s ease;
-}
-
-.button-group button.active {
-  background: linear-gradient(135deg, #0078d4, #00b8a9);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
-}
-
-.button-group button:hover {
-  transform: translateY(-2px);
-}
-
-/* ================================
-   🌈 MAIN BUTTON STYLES
-================================ */
-.submit-btn,
-.skip-btn,
-.back-btn {
-  position: relative;
-  overflow: hidden;
-  margin-top: 20px;
-  padding: 12px 28px;
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
   font-weight: 600;
-  font-size: 16px;
-  letter-spacing: 0.6px;
-  transition: all 0.5s ease-in-out;
-  box-shadow: 0 5px 15px rgba(0, 120, 212, 0.25);
-  transform: translateY(0);
+  cursor: pointer;
+  color: white;
+  background-color:blue;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* ✅ Submit Button */
-.submit-btn {
-  background: linear-gradient(135deg, #00b894, #2ecc71);
-  border-radius: 8px;
-  padding: 10px 20px;
+/* Hover effect */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: yellow;
 }
 
-.submit-btn:hover {
-  background: linear-gradient(135deg, #1dd1a1, #10ac84);
-  box-shadow: 0 10px 25px rgba(0, 184, 148, 0.5);
-  transform: translateY(-3px) scale(1.1);
-}
-
-.submit-btn:active {
-  transform: translateY(2px) scale(0.95);
-}
-
-/* 🔹 Back Button */
+/* Different button colors */
 .back-btn {
-  width: 180px !important;
-  padding: 10px 20px;
-  font-size: 15px;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
 }
 
-.back-btn:hover {
-  background: linear-gradient(135deg, #de7f53, #ff9f43);
-  box-shadow: 0 10px 25px rgba(255, 159, 67, 0.4);
-  transform: translateY(-2px);
+.continue-btn {
+  background: linear-gradient(135deg, #ff9f43, #ff6b6b);
 }
 
-/* 🌼 Skip Button */
 .skip-btn {
-  background: linear-gradient(135deg, #f4b400, #ffe082);
-  color: #000;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 10px 20px;
+  background: linear-gradient(135deg, #43cea2, #185a9d);
 }
 
-.skip-btn:hover {
-  background: linear-gradient(135deg, #ffd54f, #fff176);
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 8px 20px rgba(244, 180, 0, 0.4);
-}
-
-.skip-btn:active {
-  transform: translateY(2px) scale(0.95);
-}
-
-/* ✨ Shine Effect */
-.submit-btn::after,
-.back-btn::after,
-.skip-btn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.25);
-  transform: skewX(-25deg);
-  transition: left 0.6s ease-in-out;
-}
-
-.submit-btn:hover::after,
-.back-btn:hover::after,
-.skip-btn:hover::after {
-  left: 100%;
-}

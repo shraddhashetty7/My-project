@@ -61,7 +61,25 @@ input[type='number'] {
 
 .form-inline input {
   width: 100px;
+  flex: 1; /* ✅ Ensures both inputs take equal space */
 }
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  flex: 1 1 100%; /* full width for profession line */
+}
+
 
 /* ================================
    🔘 BUTTON GROUP

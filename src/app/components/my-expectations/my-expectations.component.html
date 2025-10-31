@@ -48,13 +48,14 @@
     </div>
 
     <!-- 💍 Marital Status -->
-    <label>Marital Status</label>
-    <select [(ngModel)]="selectedMaritalStatus">
-      <option value="" disabled selected>Select Marital Status</option>
-      <option *ngFor="let status of maritalStatusOptions" [value]="status">
-        {{ status }}
-      </option>
-    </select>
+<label>Marital Status</label>
+<select [(ngModel)]="selectedMaritalStatus" multiple>
+  <option *ngFor="let status of maritalStatusOptions" [value]="status">
+    {{ status }}
+  </option>
+</select>
+<small class="hint">Hold Ctrl (Windows) or Command (Mac) to select multiple options</small>
+
 
     <!-- 🌍 Region (Multi-select enabled) -->
     <label>Select Region</label>
