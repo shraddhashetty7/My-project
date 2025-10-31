@@ -49,31 +49,65 @@
 
     <!-- 💍 Marital Status -->
 <label>Marital Status</label>
-<select [(ngModel)]="selectedMaritalStatus" multiple>
-  <option *ngFor="let status of maritalStatusOptions" [value]="status">
+<div class="button-group">
+  <button
+    type="button"
+    *ngFor="let status of maritalStatusOptions"
+    [class.active]="isMaritalStatusSelected(status)"
+    (click)="toggleMaritalStatus(status)"
+  >
     {{ status }}
-  </option>
-</select>
-<small class="hint">Hold Ctrl (Windows) or Command (Mac) to select multiple options</small>
+  </button>
+</div>
+
+<!-- 🗣️ Expected Languages Known -->
+<div class="form-group">
+  <label>Expected Languages Known</label>
+
+  <div class="toggle-group">
+    <button
+      type="button"
+      *ngFor="let language of languageOptions"
+      (click)="toggleLanguage(language)"
+      [class.selected]="isLanguageSelected(language)">
+      {{ language }}
+    </button>
+  </div>
+</div>
 
 
-    <!-- 🌍 Region (Multi-select enabled) -->
-    <label>Select Region</label>
-    <select multiple [(ngModel)]="selectedRegions">
-      <option *ngFor="let region of regionOptions" [value]="region">
-        {{ region }}
-      </option>
-    </select>
-    <small class="hint">Hold Ctrl (Windows) or Command (Mac) to select multiple options</small>
+
+    <!-- 🌍 Preferred Regions -->
+<div class="section">
+  <h3>Preferred Regions</h3>
+  <div class="toggle-group">
+    <button
+      *ngFor="let region of regionOptions"
+      type="button"
+      [class.selected]="isRegionSelected(region)"
+      (click)="toggleRegion(region)"
+    >
+      {{ region }}
+    </button>
+  </div>
+</div>
+
 
     <!-- 🎓 Profession (Multi-select) -->
-    <label>Graduation / Profession</label>
-    <select multiple [(ngModel)]="selectedProfessions">
-      <option *ngFor="let profession of professionOptions" [value]="profession">
-        {{ profession }}
-      </option>
-    </select>
-    <small class="hint">Hold Ctrl (Windows) or Command (Mac) to select multiple options</small>
+<label>Graduation / Profession</label>
+<div class="toggle-group">
+  <button
+    *ngFor="let profession of professionOptions"
+    type="button"
+    [class.selected]="isProfessionSelected(profession)"
+    (click)="toggleProfession(profession)"
+  >
+    {{ profession }}
+  </button>
+</div>
+
+    
+
 
     <!-- 💬 Opinion -->
     <label>Your Opinion / Description</label>

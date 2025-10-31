@@ -82,17 +82,72 @@
       </div>
 
       <!-- 🏠 Current Hometown -->
-      <div class="form-row">
-        <div class="form-group full-width">
-          <label>Current Hometown</label>
-          <input
-            type="text"
-            [(ngModel)]="model.currentHometown"
-            name="currentHometown"
-            placeholder="Enter Current Hometown"
-          />
-        </div>
-      </div>
+<div class="form-row">
+  <div class="form-group full-width">
+    <label>Current Hometown</label>
+    <input
+      type="text"
+      [(ngModel)]="model.currentHometown"
+      name="currentHometown"
+      placeholder="Enter Current Hometown"
+    />
+  </div>
+</div>
+
+<!-- 🗣️ Languages Known -->
+<label>Languages Known</label>
+<div class="button-group">
+  <button
+    type="button"
+    [class.active]="isLanguageSelected('Kannada')"
+    (click)="toggleLanguage('Kannada')"
+  >
+    Kannada
+  </button>
+
+  
+  <button
+    type="button"
+    [class.active]="isLanguageSelected('Tulu')"
+    (click)="toggleLanguage('Tulu')"
+  >
+    Tulu
+  </button>
+  <button
+    type="button"
+    [class.active]="isLanguageSelected('Kundapura Kannada')"
+    (click)="toggleLanguage('Kundapura Kannada')"
+  >
+    Kundapura Kannada
+  </button>
+
+
+  <button
+    type="button"
+    [class.active]="isLanguageSelected('Hindi')"
+    (click)="toggleLanguage('Hindi')"
+  >
+    Hindi
+  </button>
+
+  <button
+    type="button"
+    [class.active]="isLanguageSelected('Marathi')"
+    (click)="toggleLanguage('Marathi')"
+  >
+    Marathi
+  </button>
+
+  <button
+    type="button"
+    [class.active]="isLanguageSelected('English')"
+    (click)="toggleLanguage('English')"
+  >
+    English
+  </button>
+</div>
+
+
 
       <!-- Family Value -->
       <label>Family Value</label>

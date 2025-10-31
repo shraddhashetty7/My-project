@@ -14,6 +14,8 @@ export class MyExpectationsComponent {
 
   constructor(private router: Router) {} // ✅ Proper dependency injection
 
+  opinion: string = '';
+
   maritalStatusOptions: string[] = [
     'Single',
     'Married',
@@ -21,24 +23,65 @@ export class MyExpectationsComponent {
     'Widow / Widower'
   ];
 
+
+  // 🗣️ Expected Languages Known
+expectedLanguages: string[] = []; // To store selected languages
+languageOptions: string[] = [
+  'Kannada',
+  'Tulu',
+  'Kundapura Kannada',
+  'English',
+  'Hindi'
+];
+
+// ✅ Toggle a language on/off
+toggleLanguage(language: string) {
+  const index = this.expectedLanguages.indexOf(language);
+  if (index === -1) {
+    this.expectedLanguages.push(language); // Add
+  } else {
+    this.expectedLanguages.splice(index, 1); // Remove
+  }
+}
+
+// ✅ Check if a language is already selected
+isLanguageSelected(language: string): boolean {
+  return this.expectedLanguages.includes(language);
+}
+
   // 🌍 Multi-select Regions
-  selectedRegions: string[] = [];
-  regionOptions: string[] = [
-    'Udupi',
-    'Kundapura',
-    'Mangalore',
-    'Bangalore',
-    'Other parts of Karnataka',
-    'Mumbai',
-    'Pune',
-    'Goa',
-    'Other states of India',
-    'Gulf Countries (UAE, Qatar, Oman, etc.)',
-    'Europe Countries',
-    'USA / Canada',
-    'Australia / New Zealand',
-    'Other Foreign Countries'
-  ];
+selectedRegions: string[] = [];
+regionOptions: string[] = [
+  'Udupi',
+  'Kundapura',
+  'Mangalore',
+  'Bangalore',
+  'Other parts of Karnataka',
+  'Mumbai',
+  'Pune',
+  'Goa',
+  'Other states of India',
+  'Gulf Countries (UAE, Qatar, Oman, etc.)',
+  'Europe Countries',
+  'USA / Canada',
+  'Australia / New Zealand',
+  'Other Foreign Countries'
+];
+
+// ✅ Toggle Region
+toggleRegion(region: string) {
+  const index = this.selectedRegions.indexOf(region);
+  if (index === -1) {
+    this.selectedRegions.push(region);
+  } else {
+    this.selectedRegions.splice(index, 1);
+  }
+}
+
+// ✅ Check if region is selected
+isRegionSelected(region: string): boolean {
+  return this.selectedRegions.includes(region);
+}
 
   // 🎓 Multi-select Professions
   selectedProfessions: string[] = [];
@@ -69,6 +112,21 @@ export class MyExpectationsComponent {
     'Not Working',
     'Other'
   ];
+  // ✅ Toggle Profession
+toggleProfession(profession: string) {
+  const index = this.selectedProfessions.indexOf(profession);
+  if (index === -1) {
+    this.selectedProfessions.push(profession);
+  } else {
+    this.selectedProfessions.splice(index, 1);
+  }
+}
+
+// ✅ Check if Profession is selected
+isProfessionSelected(profession: string): boolean {
+  return this.selectedProfessions.includes(profession);
+}
+
 
   // 🧍 Age + Salary range fields
   ageFrom: string = '';
@@ -76,9 +134,25 @@ export class MyExpectationsComponent {
   salaryFrom: string = '';
   salaryTo: string = '';
 
-  // 💍 Other selected values
-  selectedMaritalStatus: string = '';
-  opinion: string = '';
+  
+
+// To store selected statuses
+selectedMaritalStatus: string[] = [];
+
+// ✅ Toggle a marital status on/off
+toggleMaritalStatus(status: string) {
+  const index = this.selectedMaritalStatus.indexOf(status);
+  if (index === -1) {
+    this.selectedMaritalStatus.push(status); // Add
+  } else {
+    this.selectedMaritalStatus.splice(index, 1); // Remove
+  }
+}
+
+// ✅ Check if a status is already selected
+isMaritalStatusSelected(status: string): boolean {
+  return this.selectedMaritalStatus.includes(status);
+}
 
   // ✅ Submit handler
   onSubmit() {

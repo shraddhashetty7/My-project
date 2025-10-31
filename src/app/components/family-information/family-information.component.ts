@@ -12,17 +12,35 @@ import { Router } from '@angular/router';
 })
 export class FamilyInformationComponent {
   // Model for family info
-  model: any = {
+  model = {
   fatherName: '',
-  fatherProfession: '',
   fatherHometown: '',
+  fatherProfession: '',
   motherName: '',
-  motherProfession: '',
   motherHometown: '',
-presentHometown: '',
+  motherProfession: '',
+  currentHometown: '',
+  languagesKnown: [] as string[],   // store selected languages
   familyValue: '',
   familyStatus: ''
 };
+
+// ✅ Toggle language selection on/off
+toggleLanguage(language: string) {
+  const index = this.model.languagesKnown.indexOf(language);
+  if (index === -1) {
+    this.model.languagesKnown.push(language); // Add language
+  } else {
+    this.model.languagesKnown.splice(index, 1); // Remove if already selected
+  }
+}
+
+// ✅ Check if language is active (for button highlight)
+isLanguageSelected(language: string): boolean {
+  return this.model.languagesKnown.includes(language);
+}
+
+
 
 
   // Sibling fields
