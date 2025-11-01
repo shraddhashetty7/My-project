@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +14,20 @@ export class LoginComponent {
   email = '';
   password = '';
 
-  onLogin() {
+  // 🔹 Regular login
+  onLogin(form: NgForm) {
+    if (form.invalid) {
+      alert('Please fill in all required fields correctly.');
+      return;
+    }
+
     console.log('Login with Email:', this.email);
     alert('Logged in successfully!');
   }
 
+  // 🔹 Google login
   onGoogleLogin() {
+    console.log('Google Login Clicked');
     alert('Google login clicked!');
   }
 }

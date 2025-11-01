@@ -25,6 +25,8 @@
   <label>Complexion</label>
   <div class="button-group">
     <button type="button" [class.active]="model.complexion === 'Dark'" (click)="selectComplexion('Dark')">Dark</button>
+    <button type="button" [class.active]="model.complexion === 'Brown'" (click)="selectComplexion('Brown')">Brown</button>
+    <button type="button" [class.active]="model.complexion === 'Light brown'" (click)="selectComplexion('Light brown')">Light brown</button>
     <button type="button" [class.active]="model.complexion === 'Fair'" (click)="selectComplexion('Fair')">Fair</button>
     <button type="button" [class.active]="model.complexion === 'Very Fair'" (click)="selectComplexion('Very Fair')">Very Fair</button>
     <button type="button" [class.active]="model.complexion === 'Wheatish'" (click)="selectComplexion('Wheatish')">Wheatish</button>

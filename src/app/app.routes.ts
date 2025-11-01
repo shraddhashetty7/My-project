@@ -1,5 +1,8 @@
 import { Routes } from '@angular/router';
 import { LandingComponent } from './components/landing/landing.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+
 import { NextStepComponent } from './components/next-step/next-step.component';
 
 import { EducationCareerComponent } from './components/education-career/education-career.component';
@@ -19,6 +22,8 @@ import { PaymentComponent } from './components/payment/payment.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
   { path: 'landing', component: LandingComponent },
+   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'next-step', component: NextStepComponent },
   { path: 'education-career', component: EducationCareerComponent },
   { path: 'family-information', component: FamilyInformationComponent },

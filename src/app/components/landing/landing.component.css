@@ -1,130 +1,66 @@
-
-
+/* 🌅 Landing Page Container */
 .landing-container {
-  min-height: 100vh; 
+  min-height: 100vh;
   width: 100%;
   background: url('/assets/bg.jpeg') no-repeat center center/cover;
-  position: relative;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  padding-right: 30px;
+  padding: 30px;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
 }
+
+/* 🧭 Wrapper for Login, Register, and Welcome Cards */
 .right-cards {
   display: flex;
-  gap: 30px;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-
-
-
-
-
-
-/* Wrapper for Register + Welcome (side by side) */
-.right-cards {
- /* display: flex;*/
-  flex-direction: row;        /* horizontal alignment */
-  gap: 20px;                  /* spacing between register and welcome */
-  align-items: flex-start;    /* align top edges */
-  justify-content: flex-end;  /* push both to right side */
+  gap: 25px;
   width: 100%;
 }
 
-/* Register Card wrapper */
-.register-card {
-  width: 500px;
-  flex-shrink: 0;
-  margin-left: 50px;   /* move slightly left */
-  margin-top: -100px;  /* keep your upward adjustment */
+/* 🟢 Login + Register Cards */
+.login-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 20px;
+  width: 400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.login-card:hover,
+.register-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
 
-
-
-/* 🌼 Beautiful Welcome Card */
-/* 🌟 Modern Welcome Card */
+/* 💛 Welcome Card */
 .welcome-card {
-  background: linear-gradient(145deg, #fff9c8, #fff3b8); /* soft warm gradient */
+  background: linear-gradient(145deg, #fff9c8, #fff3b8);
   padding: 35px 30px;
   border-radius: 20px;
   width: 320px;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(255, 255, 255, 0.25) inset; /* depth + subtle inner glow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex-shrink: 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12),
+              0 4px 10px rgba(255, 255, 255, 0.25) inset;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-/* Hover effect: lift + glow */
-.welcome-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18), 0 4px 10px rgba(255, 255, 255, 0.25) inset;
-}
-
-/* Decorative sparkle circles */
+/* ✨ Decorative circles */
 .welcome-card::before,
 .welcome-card::after {
   content: '';
   position: absolute;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
-  width: 60px;
-  height: 60px;
-  top: -20px;
-  right: -20px;
-  transform: rotate(25deg);
   transition: all 0.3s ease;
 }
 
-.welcome-card::after {
-  width: 30px;
-  height: 30px;
-  bottom: -15px;
-  left: -15px;
-}
-
-/* Card Heading */
-.welcome-card h2 {
-  font-size: 22px;
-  font-weight: 700;
-  color: #ff8c42; /* warm accent */
-  margin-bottom: 10px;
-}
-
-/* Card Subtext */
-.welcome-card p {
-  font-size: 15px;
-  color: #333;
-  line-height: 1.5;
-}
-
-/* Optional: Button inside card */
-.welcome-card .card-btn {
-  margin-top: 20px;
-  padding: 10px 25px;
-  background: linear-gradient(135deg, #ffb347, #ffcc33);
-  border: none;
-  border-radius: 50px;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(255, 204, 51, 0.4);
-  transition: all 0.3s ease;
-}
-
-.welcome-card .card-btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 8px 20px rgba(255, 204, 51, 0.6);
-}
-
-
-/* Subtle decorative shine effect */
 .welcome-card::before {
   content: "";
   position: absolute;
@@ -137,46 +73,145 @@
   transition: 0.8s;
 }
 
-/* Card content styling */
-.welcome-card h2 {
-  font-size: 1.6rem;
-  color: #444;
-  margin-bottom: 10px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-.welcome-card p {
-  color: #666;
-  font-size: 0.95rem;
-  margin-bottom: 15px;
-}
-
-/* Hover effects */
-.welcome-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(135deg, #fff5a3, #ffef85);
-}
-
 .welcome-card:hover::before {
   left: 125%;
 }
 
-/* Optional button inside card */
+.welcome-card::after {
+  width: 30px;
+  height: 30px;
+  bottom: -15px;
+  left: -15px;
+}
+
+/* 🖋️ Text Styles */
+.welcome-card h1,
+.welcome-card h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ff8c42;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.welcome-card p {
+  font-size: 0.95rem;
+  color:  #ff8c42;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+/* 💫 Hover effect */
+.welcome-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18),
+              0 4px 10px rgba(255, 255, 255, 0.25) inset;
+  background: linear-gradient(135deg, #fff5a3, #ffef85);
+}
+
+/* 🔘 Optional Button inside card */
 .welcome-card button {
-  background: #ffcc33;
-  color: #333;
+  margin-top: 15px;
+  padding: 10px 25px;
+  background: greenyellow;
   border: none;
-  border-radius: 8px;
-  padding: 10px 18px;
-  font-weight: 500;
+  border-radius: 50px;
+  color: #fff;
+  font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 5px 15px rgba(255, 204, 51, 0.4);
   transition: all 0.3s ease;
 }
 
 .welcome-card button:hover {
   background: #ffd84d;
   transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 204, 51, 0.6);
+}
+
+/* 🧭 Landing Content (used for button-based landing page) */
+.landing-content {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* 🎯 Buttons on Landing Page */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+button {
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.signup-btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+}
+
+.login-btn {
+  background: #fff;
+  border: 2px solid #2575fc;
+  color: #2575fc;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .right-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-card,
+  .register-card,
+  .welcome-card {
+    width: 90%;
+  }
+}
+/* 🎯 Position Sign Up & Login Buttons at Top Right */
+.top-right-buttons {
+  position: absolute;
+  top: 125px;
+  right: 40px;
+  display: flex;
+  gap: 15px;
+  z-index: 10;
+}
+
+.top-right-buttons .signup-btn,
+.top-right-buttons .login-btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.top-right-buttons .signup-btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  border: none;
+}
+
+.top-right-buttons .login-btn {
+  background: #fff;
+  border: 2px solid #2575fc;
+  color: #2575fc;
+}
+
+.top-right-buttons .signup-btn:hover,
+.top-right-buttons .login-btn:hover {
+  transform: scale(1.05);
+  transition: 0.3s ease;
 }
 

@@ -5,7 +5,7 @@ import { LoginComponent } from "../login/login.component";
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [RegisterComponent, LoginComponent],
+  imports: [RegisterComponent],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })
