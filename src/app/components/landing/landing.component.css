@@ -2,16 +2,17 @@
 .landing-container {
   min-height: 100vh;
   width: 100%;
-  background: url('/assets/bg.jpeg') no-repeat center center/cover;
+  background: url('/assets/bg.jpeg') no-repeat center center / cover;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 30px;
   font-family: 'Poppins', sans-serif;
   text-align: center;
+  position: relative;
 }
 
-/* 🧭 Wrapper for Login, Register, and Welcome Cards */
+/* 🧭 Wrapper for All Cards */
 .right-cards {
   display: flex;
   flex-wrap: wrap;
@@ -21,8 +22,8 @@
   width: 100%;
 }
 
-/* 🟢 Login + Register Cards */
-.login-card {
+/* 🟢 Shared Card Style */
+.card {
   background: rgba(255, 255, 255, 0.95);
   padding: 30px;
   border-radius: 20px;
@@ -31,8 +32,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.login-card:hover,
-.register-card:hover {
+.card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
@@ -46,21 +46,12 @@
   text-align: center;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12),
               0 4px 10px rgba(255, 255, 255, 0.25) inset;
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-}
-
-/* ✨ Decorative circles */
-.welcome-card::before,
-.welcome-card::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
 }
 
+/* ✨ Light Animation */
 .welcome-card::before {
   content: "";
   position: absolute;
@@ -77,16 +68,8 @@
   left: 125%;
 }
 
-.welcome-card::after {
-  width: 30px;
-  height: 30px;
-  bottom: -15px;
-  left: -15px;
-}
-
-/* 🖋️ Text Styles */
-.welcome-card h1,
-.welcome-card h2 {
+/* 🖋️ Welcome Text */
+.welcome-card h1 {
   font-size: 1.6rem;
   font-weight: 700;
   color: #ff8c42;
@@ -96,73 +79,59 @@
 
 .welcome-card p {
   font-size: 0.95rem;
-  color:  #ff8c42;
+  color: #444;
   line-height: 1.5;
-  margin-bottom: 15px;
 }
 
-/* 💫 Hover effect */
+/* 💫 Hover Effect */
 .welcome-card:hover {
   transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18),
-              0 4px 10px rgba(255, 255, 255, 0.25) inset;
   background: linear-gradient(135deg, #fff5a3, #ffef85);
 }
 
-/* 🔘 Optional Button inside card */
-.welcome-card button {
-  margin-top: 15px;
-  padding: 10px 25px;
-  background: greenyellow;
+/* 🌈 Fancy Top-Right Buttons */
+.top-right-buttons {
+  position: absolute;
+  top: 25px;
+  right: 90px;
+  display: flex;
+  gap: 15px;
+  z-index: 10;
+}
+
+.top-right-buttons button {
+  padding: 12px 28px;
   border: none;
   border-radius: 50px;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(255, 204, 51, 0.4);
-  transition: all 0.3s ease;
-}
-
-.welcome-card button:hover {
-  background: #ffd84d;
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 204, 51, 0.6);
-}
-
-/* 🧭 Landing Content (used for button-based landing page) */
-.landing-content {
-  background: #fff;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-/* 🎯 Buttons on Landing Page */
-.button-group {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 25px;
-}
-
-button {
-  padding: 12px 25px;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
   font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* 🩵 Sign Up Button */
 .signup-btn {
   background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: #fff;
 }
 
+.signup-btn:hover {
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  box-shadow: 0 0 15px rgba(111, 66, 193, 0.7);
+  transform: translateY(-2px);
+}
+
+/* 🧡 Login Button */
 .login-btn {
-  background: #fff;
-  border: 2px solid #2575fc;
-  color: #2575fc;
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, #ff6a88, #ff99ac);
+  box-shadow: 0 0 15px rgba(255, 120, 120, 0.7);
+  transform: translateY(-2px);
 }
 
 /* 📱 Responsive Design */
@@ -172,46 +141,20 @@ button {
     align-items: center;
   }
 
-  .login-card,
-  .register-card,
+  .card,
   .welcome-card {
     width: 90%;
   }
-}
-/* 🎯 Position Sign Up & Login Buttons at Top Right */
-.top-right-buttons {
-  position: absolute;
-  top: 125px;
-  right: 40px;
-  display: flex;
-  gap: 15px;
-  z-index: 10;
-}
 
-.top-right-buttons .signup-btn,
-.top-right-buttons .login-btn {
-  padding: 10px 20px;
-  font-size: 15px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-}
+  .top-right-buttons {
+    top: 15px;
+    right: 20px;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-.top-right-buttons .signup-btn {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: #fff;
-  border: none;
+  .top-right-buttons button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 }
-
-.top-right-buttons .login-btn {
-  background: #fff;
-  border: 2px solid #2575fc;
-  color: #2575fc;
-}
-
-.top-right-buttons .signup-btn:hover,
-.top-right-buttons .login-btn:hover {
-  transform: scale(1.05);
-  transition: 0.3s ease;
-}
-

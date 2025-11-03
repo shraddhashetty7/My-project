@@ -22,7 +22,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
   { path: 'landing', component: LandingComponent },
-   { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'next-step', component: NextStepComponent },
   { path: 'education-career', component: EducationCareerComponent },

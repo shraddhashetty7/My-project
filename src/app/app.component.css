@@ -10,14 +10,19 @@
 
 .logo-container .logo {
   height: 100px;
+  margin-left: -25px; /* 👈 shift logo slightly left */
 }
+
 
 .navbar {
   display: flex;
   gap: 1rem;
   background: #2e7d32;
   padding: 1rem;
+  position: relative; /* required for offset movement */
+  left: -35px;        /* 👈 move navbar slightly left */
 }
+
 
 .navbar a {
   color: white;
