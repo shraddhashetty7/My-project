@@ -153,6 +153,31 @@ toggleMaritalStatus(status: string) {
 isMaritalStatusSelected(status: string): boolean {
   return this.selectedMaritalStatus.includes(status);
 }
+heightFrom: string = '';
+heightTo: string = '';
+casteOptions: string[] = ['Bunt', 'Billava', 'Other', 'Any Caste'];
+selectedCaste: string = '';
+heightOptions: string[] = [
+  '5.0', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '5.7', '5.8', '5.9', '6.0', '6.1', '6.2'
+];
+
+// 🕉️ Preferred Caste (Multi-select)
+
+selectedCastes: string[] = []; // store multiple selections
+
+isCasteSelected(caste: string): boolean {
+  return this.selectedCastes.includes(caste);
+}
+
+toggleCaste(caste: string) {
+  const index = this.selectedCastes.indexOf(caste);
+  if (index === -1) {
+    this.selectedCastes.push(caste);
+  } else {
+    this.selectedCastes.splice(index, 1);
+  }
+}
+
 
   // ✅ Submit handler
   onSubmit() {

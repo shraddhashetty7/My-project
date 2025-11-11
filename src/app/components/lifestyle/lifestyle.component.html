@@ -13,67 +13,92 @@
   <div class="lifestyle-form">
     <h2>Lifestyle Information</h2>
 
-   <form>
-  <!-- Diet -->
-  <label>Diet</label>
-  <div class="button-group">
-    <button type="button" [class.active]="model.diet === 'Vegetarian'" (click)="selectDiet('Vegetarian')">Vegetarian</button>
-    <button type="button" [class.active]="model.diet === 'Non-Vegetarian'" (click)="selectDiet('Non-Vegetarian')">Non-Vegetarian</button>
-  </div>
+    <form>
+      <!-- Height -->
+      <label>Height</label>
+      <div class="button-group height-group">
+        <button type="button" [class.active]="model.height === '5.0'" (click)="selectHeight('5.0')">5.0</button>
+        <button type="button" [class.active]="model.height === '5.1'" (click)="selectHeight('5.1')">5.1</button>
+        <button type="button" [class.active]="model.height === '5.2'" (click)="selectHeight('5.2')">5.2</button>
+        <button type="button" [class.active]="model.height === '5.3'" (click)="selectHeight('5.3')">5.3</button>
+        <button type="button" [class.active]="model.height === '5.4'" (click)="selectHeight('5.4')">5.4</button>
+        <button type="button" [class.active]="model.height === '5.5'" (click)="selectHeight('5.5')">5.5</button>
+        <button type="button" [class.active]="model.height === '5.6'" (click)="selectHeight('5.6')">5.6</button>
+        <button type="button" [class.active]="model.height === '5.7'" (click)="selectHeight('5.7')">5.7</button>
+        <button type="button" [class.active]="model.height === '5.8'" (click)="selectHeight('5.8')">5.8</button>
+        <button type="button" [class.active]="model.height === '5.9'" (click)="selectHeight('5.9')">5.9</button>
+        <button type="button" [class.active]="model.height === '6.0'" (click)="selectHeight('6.0')">6.0</button>
+        <button type="button" [class.active]="model.height === '6.1'" (click)="selectHeight('6.1')">6.1</button>
+        <button type="button" [class.active]="model.height === '6.2'" (click)="selectHeight('6.2')">6.2</button>
+      </div>
 
-  <!-- Complexion -->
-  <label>Complexion</label>
-  <div class="button-group">
-    <button type="button" [class.active]="model.complexion === 'Dark'" (click)="selectComplexion('Dark')">Dark</button>
-    <button type="button" [class.active]="model.complexion === 'Brown'" (click)="selectComplexion('Brown')">Brown</button>
-    <button type="button" [class.active]="model.complexion === 'Light brown'" (click)="selectComplexion('Light brown')">Light brown</button>
-    <button type="button" [class.active]="model.complexion === 'Fair'" (click)="selectComplexion('Fair')">Fair</button>
-    <button type="button" [class.active]="model.complexion === 'Very Fair'" (click)="selectComplexion('Very Fair')">Very Fair</button>
-    <button type="button" [class.active]="model.complexion === 'Wheatish'" (click)="selectComplexion('Wheatish')">Wheatish</button>
-  </div>
+      <!-- 🆕 Weight (manual input) -->
+      <label>Weight</label>
+      <input
+        type="text"
+        placeholder="Enter your weight (e.g., 65 kg)"
+        [(ngModel)]="model.weight"
+        name="weight"
+        class="text-input"
+      />
 
-  <!-- Physique -->
-  <label>Physique</label>
-  <div class="button-group">
-    <button type="button" [class.active]="model.physique === 'Athletic'" (click)="selectPhysique('Athletic')">Athletic</button>
-    <button type="button" [class.active]="model.physique === 'Average'" (click)="selectPhysique('Average')">Average</button>
-    <button type="button" [class.active]="model.physique === 'Heavy'" (click)="selectPhysique('Heavy')">Heavy</button>
-    <button type="button" [class.active]="model.physique === 'Slim'" (click)="selectPhysique('Slim')">Slim</button>
-    <button type="button" [class.active]="model.physique === 'Well Built'" (click)="selectPhysique('Well Built')">Well Built</button>
-  </div>
+      <!-- Diet -->
+      <label>Diet</label>
+      <div class="button-group">
+        <button type="button" [class.active]="model.diet === 'Vegetarian'" (click)="selectDiet('Vegetarian')">Vegetarian</button>
+        <button type="button" [class.active]="model.diet === 'Non-Vegetarian'" (click)="selectDiet('Non-Vegetarian')">Non-Vegetarian</button>
+      </div>
 
-  <!-- Physical Disability -->
-  <label>Physical Disability</label>
-  <div class="button-group">
-    <button type="button" [class.active]="model.disability === 'Yes'" (click)="selectDisability('Yes')">Yes</button>
-    <button type="button" [class.active]="model.disability === 'No'" (click)="selectDisability('No')">No</button>
-  </div>
+      <!-- Complexion -->
+      <label>Complexion</label>
+      <div class="button-group">
+        <button type="button" [class.active]="model.complexion === 'Dark'" (click)="selectComplexion('Dark')">Dark</button>
+        <button type="button" [class.active]="model.complexion === 'Brown'" (click)="selectComplexion('Brown')">Brown</button>
+        <button type="button" [class.active]="model.complexion === 'Light brown'" (click)="selectComplexion('Light brown')">Light brown</button>
+        <button type="button" [class.active]="model.complexion === 'Fair'" (click)="selectComplexion('Fair')">Fair</button>
+        <button type="button" [class.active]="model.complexion === 'Very Fair'" (click)="selectComplexion('Very Fair')">Very Fair</button>
+        <button type="button" [class.active]="model.complexion === 'Wheatish'" (click)="selectComplexion('Wheatish')">Wheatish</button>
+      </div>
 
-  <!-- Smoking -->
-  <label>Smoking Habits</label>
-  <div class="button-group">
-    <button type="button" [class.active]="model.smoke === 'No'" (click)="selectSmoke('No')">No</button>
-    <button type="button" [class.active]="model.smoke === 'Yes'" (click)="selectSmoke('Yes')">Yes</button>
-    <button type="button" [class.active]="model.smoke === 'Occasionally'" (click)="selectSmoke('Occasionally')">Occasionally</button>
-  </div>
+      <!-- Physique -->
+      <label>Physique</label>
+      <div class="button-group">
+        <button type="button" [class.active]="model.physique === 'Athletic'" (click)="selectPhysique('Athletic')">Athletic</button>
+        <button type="button" [class.active]="model.physique === 'Average'" (click)="selectPhysique('Average')">Average</button>
+        <button type="button" [class.active]="model.physique === 'Heavy'" (click)="selectPhysique('Heavy')">Heavy</button>
+        <button type="button" [class.active]="model.physique === 'Slim'" (click)="selectPhysique('Slim')">Slim</button>
+        <button type="button" [class.active]="model.physique === 'Well Built'" (click)="selectPhysique('Well Built')">Well Built</button>
+      </div>
 
-  <!-- Drinking -->
-  <label>Drinking Habits</label>
-  <div class="button-group">
-    <button type="button" [class.active]="model.drink === 'No'" (click)="selectDrink('No')">No</button>
-    <button type="button" [class.active]="model.drink === 'Yes'" (click)="selectDrink('Yes')">Yes</button>
-    <button type="button" [class.active]="model.drink === 'Occasionally'" (click)="selectDrink('Occasionally')">Occasionally</button>
-  </div>
+      <!-- Physical Disability -->
+      <label>Physical Disability</label>
+      <div class="button-group">
+        <button type="button" [class.active]="model.disability === 'Yes'" (click)="selectDisability('Yes')">Yes</button>
+        <button type="button" [class.active]="model.disability === 'No'" (click)="selectDisability('No')">No</button>
+      </div>
+
+      <!-- Smoking -->
+      <label>Smoking Habits</label>
+      <div class="button-group">
+        <button type="button" [class.active]="model.smoke === 'No'" (click)="selectSmoke('No')">No</button>
+        <button type="button" [class.active]="model.smoke === 'Yes'" (click)="selectSmoke('Yes')">Yes</button>
+        <button type="button" [class.active]="model.smoke === 'Occasionally'" (click)="selectSmoke('Occasionally')">Occasionally</button>
+      </div>
+
+      <!-- Drinking -->
+      <label>Drinking Habits</label>
+      <div class="button-group">
+        <button type="button" [class.active]="model.drink === 'No'" (click)="selectDrink('No')">No</button>
+        <button type="button" [class.active]="model.drink === 'Yes'" (click)="selectDrink('Yes')">Yes</button>
+        <button type="button" [class.active]="model.drink === 'Occasionally'" (click)="selectDrink('Occasionally')">Occasionally</button>
+      </div>
 
       <!-- Navigation Buttons -->
       <div class="buttons">
-        <button type="button" class="back-btn" (Onclick)="goBack()">⬅️ Back</button>
+        <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
         <button type="button" class="submit-btn" (click)="saveAndContinue()">Save & Continue ➡️</button>
         <button type="button" class="skip-btn" (click)="skip()">Skip & Continue ➡️</button>
       </div>
     </form>
   </div>
 </div>
-
-<!-- Debug (optional): -->
-<!-- <pre>{{ model | json }}</pre> -->

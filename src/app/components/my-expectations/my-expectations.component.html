@@ -29,6 +29,21 @@
       <span>years</span>
     </div>
 
+    <!-- 📏 Expected Height Range -->
+    <label>Expected Height Range (in feet)</label>
+    <div class="range-group">
+      <select [(ngModel)]="heightFrom" class="range-input" name="heightFrom" required>
+        <option value="" disabled selected>From</option>
+        <option *ngFor="let h of heightOptions" [value]="h">{{ h }}</option>
+      </select>
+      <span>to</span>
+      <select [(ngModel)]="heightTo" class="range-input" name="heightTo" required>
+        <option value="" disabled selected>To</option>
+        <option *ngFor="let h of heightOptions" [value]="h">{{ h }}</option>
+      </select>
+      <span>feet</span>
+    </div>
+
     <!-- 💰 Salary Range -->
     <label>Expected Salary Range (per annum)</label>
     <div class="range-group">
@@ -48,65 +63,73 @@
     </div>
 
     <!-- 💍 Marital Status -->
-<label>Marital Status</label>
-<div class="button-group">
-  <button
-    type="button"
-    *ngFor="let status of maritalStatusOptions"
-    [class.active]="isMaritalStatusSelected(status)"
-    (click)="toggleMaritalStatus(status)"
-  >
-    {{ status }}
-  </button>
-</div>
+    <label>Marital Status</label>
+    <div class="button-group">
+      <button
+        type="button"
+        *ngFor="let status of maritalStatusOptions"
+        [class.active]="isMaritalStatusSelected(status)"
+        (click)="toggleMaritalStatus(status)"
+      >
+        {{ status }}
+      </button>
+    </div>
 
-<!-- 🗣️ Expected Languages Known -->
-<div class="form-group">
-  <label>Expected Languages Known</label>
-
-  <div class="toggle-group">
-    <button
-      type="button"
-      *ngFor="let language of languageOptions"
-      (click)="toggleLanguage(language)"
-      [class.selected]="isLanguageSelected(language)">
-      {{ language }}
-    </button>
-  </div>
-</div>
-
-
+    <!-- 🗣️ Expected Languages Known -->
+    <div class="form-group">
+      <label>Expected Languages Known</label>
+      <div class="toggle-group">
+        <button
+          type="button"
+          *ngFor="let language of languageOptions"
+          (click)="toggleLanguage(language)"
+          [class.selected]="isLanguageSelected(language)"
+        >
+          {{ language }}
+        </button>
+      </div>
+    </div>
 
     <!-- 🌍 Preferred Regions -->
-<div class="section">
-  <h3>Preferred Regions</h3>
-  <div class="toggle-group">
-    <button
-      *ngFor="let region of regionOptions"
-      type="button"
-      [class.selected]="isRegionSelected(region)"
-      (click)="toggleRegion(region)"
-    >
-      {{ region }}
-    </button>
-  </div>
-</div>
-
+    <div class="section">
+      <h3>Preferred Regions</h3>
+      <div class="toggle-group">
+        <button
+          *ngFor="let region of regionOptions"
+          type="button"
+          [class.selected]="isRegionSelected(region)"
+          (click)="toggleRegion(region)"
+        >
+          {{ region }}
+        </button>
+      </div>
+    </div>
 
     <!-- 🎓 Profession (Multi-select) -->
-<label>Graduation / Profession</label>
+    <label>Graduation / Profession</label>
+    <div class="toggle-group">
+      <button
+        *ngFor="let profession of professionOptions"
+        type="button"
+        [class.selected]="isProfessionSelected(profession)"
+        (click)="toggleProfession(profession)"
+      >
+        {{ profession }}
+      </button>
+    </div>
+
+    <!-- 🙏 Preferred Caste (Multi-select) -->
+<label>Preferred Caste</label>
 <div class="toggle-group">
   <button
-    *ngFor="let profession of professionOptions"
+    *ngFor="let caste of casteOptions"
     type="button"
-    [class.selected]="isProfessionSelected(profession)"
-    (click)="toggleProfession(profession)"
+    [class.selected]="isCasteSelected(caste)"
+    (click)="toggleCaste(caste)"
   >
-    {{ profession }}
+    {{ caste }}
   </button>
 </div>
-
-    
 
 
     <!-- 💬 Opinion -->
@@ -117,11 +140,10 @@
     ></textarea>
 
     <!-- Buttons -->
-<div class="buttons">
-  <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
-  <button type="button" class="submit-btn" (click)="saveAndContinue()">Save & Continue ➡️</button>
-  <button type="button" class="skip-btn" (click)="goToUploadPhotos()">Skip & Continue ➡️</button>
-</div>
-
+    <div class="buttons">
+      <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
+      <button type="button" class="submit-btn" (click)="saveAndContinue()">Save & Continue ➡️</button>
+      <button type="button" class="skip-btn" (click)="goToUploadPhotos()">Skip & Continue ➡️</button>
+    </div>
   </div>
 </div>

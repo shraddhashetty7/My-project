@@ -6,62 +6,71 @@
 
   <!-- Left Side Form -->
   <div class="form-section">
-    <h2>Astrological Information</h2>  <!-- 👈 moved inside form-section -->
+    <h2>Astrological Information</h2>
     <form>
       <div class="alert">🔯 Rashi, Nakshatra & Birth Details</div>
 
       <div class="form-group small-field">
-  <label>Raasi (Zodiac Sign)</label>
-  <select [(ngModel)]="selectedRaasi" name="raasi" required>
-    <option value="" disabled>Select Raasi</option>
-    <option *ngFor="let raasi of raasis" [value]="raasi">{{ raasi }}</option>
-  </select>
-</div>
+        <label>Raasi (Zodiac Sign)</label>
+        <select [(ngModel)]="selectedRaasi" name="raasi" required>
+          <option value="" disabled>Select Raasi</option>
+          <option *ngFor="let raasi of raasis" [value]="raasi">{{ raasi }}</option>
+        </select>
+      </div>
 
+      <div class="form-group">
+        <label>Nakshatra (Birth Star)</label>
+        <select [(ngModel)]="selectedStar" name="star" required>
+          <option value="" disabled>Select Nakshatra</option>
+          <option *ngFor="let star of stars" [value]="star">{{ star }}</option>
+        </select>
+      </div>
 
-        <div class="form-group">
-          <label>Nakshatra (Birth Star)</label>
-          <select [(ngModel)]="selectedStar" name="star" required>
-            <option value="" disabled>Select Nakshatra</option>
-            <option *ngFor="let star of stars" [value]="star">{{ star }}</option>
+      <div class="form-group">
+        <label>Date of Birth</label>
+        <input type="date" [(ngModel)]="birthDate" name="birthDate" required />
+      </div>
+
+      <!-- Time of Birth (12-hour format with AM/PM) -->
+      <div class="form-group">
+        <label>Time of Birth</label>
+        <div class="time-picker">
+          <select [(ngModel)]="birthHour" name="birthHour" required>
+            <option value="" disabled>Hour</option>
+            <option *ngFor="let hour of hours" [value]="hour">{{ hour }}</option>
+          </select>
+
+          <select [(ngModel)]="birthMinute" name="birthMinute" required>
+            <option value="" disabled>Minute</option>
+            <option *ngFor="let minute of minutes" [value]="minute">{{ minute }}</option>
+          </select>
+
+          <select [(ngModel)]="birthPeriod" name="birthPeriod" required>
+            <option value="" disabled>AM/PM</option>
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
           </select>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label>Date of Birth</label>
-          <input type="date" [(ngModel)]="birthDate" name="birthDate" required />
-        </div>
-<!-- Time of Birth (12-hour format with AM/PM) -->
-<div class="form-group">
-  <label>Time of Birth</label>
-  <div class="time-picker">
-    <select [(ngModel)]="birthHour" name="birthHour" required>
-      <option value="" disabled>Hour</option>
-      <option *ngFor="let hour of hours" [value]="hour">{{ hour }}</option>
-    </select>
-
-    <select [(ngModel)]="birthMinute" name="birthMinute" required>
-      <option value="" disabled>Minute</option>
-      <option *ngFor="let minute of minutes" [value]="minute">{{ minute }}</option>
-    </select>
-
-    <select [(ngModel)]="birthPeriod" name="birthPeriod" required>
-      <option value="" disabled>AM/PM</option>
-      <option value="AM">AM</option>
-      <option value="PM">PM</option>
-    </select>
-  </div>
-</div>
-
-      
+      <!-- ✅ Place of Birth -->
+      <div class="form-group">
+        <label>Place of Birth</label>
+        <input
+          type="text"
+          [(ngModel)]="placeOfBirth"
+          name="placeOfBirth"
+          placeholder="Enter place of birth"
+          required
+        />
+      </div>
 
       <!-- Navigation Buttons -->
-<div class="buttons">
-  <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
-  <button type="button" class="submit-btn" (click)="saveAndContinue()">Save & Continue ➡️</button>
-  <button type="button" class="skip-btn" (click)="skip()">Skip & Continue ➡️</button>
+      <div class="buttons">
+        <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
+        <button type="button" class="submit-btn" (click)="saveAndContinue()">Save & Continue ➡️</button>
+        <button type="button" class="skip-btn" (click)="skip()">Skip & Continue ➡️</button>
+      </div>
+    </form>
   </div>
-
-
-    
-
+</div>

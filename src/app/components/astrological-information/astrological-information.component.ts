@@ -48,6 +48,9 @@ export class AstrologicalInformationComponent {
   hours: number[] = Array.from({ length: 12 }, (_, i) => i + 1); // 1 to 12
   minutes: string[] = Array.from({ length: 60 }, (_, i) => (i < 10 ? '0' + i : '' + i)); // 00 to 59
 
+  // ✅ Add this line
+  placeOfBirth: string = '';
+  
   // ========================
   // 🔹 SAVE & NAVIGATION
   // ========================

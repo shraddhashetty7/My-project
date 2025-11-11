@@ -11,14 +11,16 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./lifestyle.component.css']
 })
 export class LifestyleComponent {
-  model: any = {
-    diet: '',
-    complexion: '',
-    physique: '',
-    disability: '',
-    smoke: '',
-    drink: ''
-  };
+  model = {
+  height: '',
+  weight: '',
+  diet: '',
+  complexion: '',
+  physique: '',
+  disability: '',
+  smoke: '',
+  drink: ''
+};
 
   constructor(private router: Router) {}
 
@@ -46,6 +48,11 @@ export class LifestyleComponent {
   selectDrink(value: string) {
     this.model.drink = value;
   }
+  selectHeight(value: string) {
+  this.model.height = value;
+}
+
+
 
   // ✅ Navigation
   saveAndContinue() {
