@@ -1,150 +1,165 @@
 <div class="education-career-container">
   <h2>Education & Career Details</h2>
 
-
   <div class="content-wrapper">
-    <!-- right Image -->
+    <!-- Right Image -->
     <div class="image-section">
       <img src="assets/education-career.jpg" alt="Education & Career" />
     </div>
 
-
-    <!-- left Form -->
+    <!-- Left Form -->
     <div class="form-section">
       <form #careerForm="ngForm" (ngSubmit)="saveAndContinue()">
-       
-       
-       
+
         <!-- 🌟 Career Details -->
-<h3>Career Details</h3>
+        <h3>Career Details</h3>
 
-<label>Occupation</label>
-<select
-  name="occupation"
-  [(ngModel)]="model.occupation"
-  (change)="onOccupationChange(model.occupation)"
-  #occupation="ngModel"
->
-  <option value="">Select Occupation</option>
-  <option *ngFor="let o of occupations" [value]="o">{{ o }}</option>
-</select>
+        <!-- Occupation -->
+        <label>Occupation</label>
+        <select
+          name="occupation"
+          [(ngModel)]="model.occupation"
+          (change)="onOccupationChange(model.occupation)"
+          required
+        >
+          <option value="">Select Occupation</option>
+          <option *ngFor="let o of occupations" [value]="o">
+            {{ o }}
+          </option>
+        </select>
 
-<!-- ✅ Show NON-BUSINESS fields only when not business -->
-<div *ngIf="!isBusinessSelected">
-  <!-- Designation -->
-  <label>Designation</label>
-  <input
-    type="text"
-    [(ngModel)]="model.designation"
-    name="designation"
-    placeholder="Eg: Software Engineer"
-  />
+        <!-- ===== JOB DETAILS (NON-BUSINESS) ===== -->
+        <div *ngIf="!isBusinessSelected">
+          <label>Designation</label>
+          <input
+            type="text"
+            name="designation"
+            [(ngModel)]="model.designation"
+            placeholder="Eg: Software Engineer"
+            [required]="!isBusinessSelected"
+          />
 
-  <!-- Organization -->
-  <label>Organization</label>
-  <input
-    type="text"
-    [(ngModel)]="model.organization"
-    name="organization"
-    placeholder="Eg: Infosys"
-  />
+          <label>Organization</label>
+          <input
+            type="text"
+            name="organization"
+            [(ngModel)]="model.organization"
+            placeholder="Eg: Infosys"
+          />
 
-  <!-- Total Experience -->
-  <label>Total Experience (Years)</label>
-  <input
-    type="number"
-    [(ngModel)]="model.totalExperience"
-    name="totalExperience"
-    min="0"
-    placeholder="Eg: 7"
-  />
+          <label>Total Experience (Years)</label>
+          <input
+            type="number"
+            name="totalExperience"
+            [(ngModel)]="model.totalExperience"
+            min="0"
+            step="1"
+            placeholder="Eg: 7"
+          />
 
-  <!-- Relevant Experience -->
-  <label>Relevant Experience (Years)</label>
-  <input
-    type="number"
-    [(ngModel)]="model.relevantExperience"
-    name="relevantExperience"
-    min="0"
-    placeholder="Eg: 5"
-  />
+          <label>Relevant Experience (Years)</label>
+          <input
+            type="number"
+            name="relevantExperience"
+            [(ngModel)]="model.relevantExperience"
+            min="0"
+            step="1"
+            placeholder="Eg: 5"
+          />
 
-  <!-- Annual Income -->
-  <label>Annual Income</label>
-  <input
-    type="number"
-    [(ngModel)]="model.annualIncome"
-    name="annualIncome"
-    min="0"
-    placeholder="Eg: 5 LPA"
-  />
+          <label>Annual Income (in LPA)</label>
+<input
+  type="number"
+  name="annualIncome"
+  [(ngModel)]="model.annualIncome"
+  min="0"
+  step="1"
+  placeholder="Example: 5"
+/>
 </div>
 
-<!-- ✅ Show BUSINESS fields only when business is selected -->
-<div *ngIf="isBusinessSelected" class="business-section">
-  <h3>Business Details</h3>
+        <!-- ===== BUSINESS DETAILS ===== -->
+        <div *ngIf="isBusinessSelected" class="business-section">
+          <h3>Business Details</h3>
 
-  <label>Business Name</label>
-  <input
-    type="text"
-    [(ngModel)]="model.businessName"
-    name="businessName"
-    placeholder="Eg: Shetty Enterprises"
-  />
+          <label>Business Name</label>
+          <input
+            type="text"
+            name="businessName"
+            [(ngModel)]="model.businessName"
+            placeholder="Eg: Shetty Enterprises"
+            [required]="isBusinessSelected"
+          />
 
-  <label>Business Type</label>
-  <input
-    type="text"
-    [(ngModel)]="model.businessType"
-    name="businessType"
-    placeholder="Eg: Manufacturing / IT / Retail"
-  />
+          <label>Business Type</label>
+          <input
+            type="text"
+            name="businessType"
+            [(ngModel)]="model.businessType"
+            placeholder="Eg: Manufacturing / IT / Retail"
+          />
 
-  <label>Key Designations / Roles</label>
-  <textarea
-    [(ngModel)]="model.businessDesignations"
-    name="businessDesignations"
-    placeholder="Eg: Owner, Manager, Director"
-  ></textarea>
+          <label>Key Designations / Roles</label>
+          <textarea
+            name="businessDesignations"
+            [(ngModel)]="model.businessDesignations"
+            placeholder="Eg: Owner, Manager, Director"
+          ></textarea>
 
-  <label>Approximate Annual Income</label>
-  <input
-    type="number"
-    [(ngModel)]="model.businessIncome"
-    name="businessIncome"
-    min="0"
-    placeholder="Eg: 5000000"
-  />
-</div>
+          <label>Approximate Annual Income</label>
+          <input
+            type="number"
+            name="businessIncome"
+            [(ngModel)]="model.businessIncome"
+            min="0"
+            step="1000"
+            placeholder="Eg: 5000000"
+          />
+        </div>
 
         <!-- ===== Education Section ===== -->
         <h3>Education Details</h3>
+
         <label>Education Level</label>
-        <select [(ngModel)]="model.education" name="education">
+        <select
+          name="education"
+          [(ngModel)]="model.education"
+          required
+        >
           <option value="" disabled>Select Education</option>
           <option *ngFor="let edu of educationLevels" [value]="edu">
             {{ edu }}
           </option>
         </select>
 
-
         <label>Education Detail</label>
         <input
           type="text"
-          [(ngModel)]="model.educationDetail"
           name="educationDetail"
+          [(ngModel)]="model.educationDetail"
           placeholder="Eg: Electronics & Communication"
+          required
         />
-        
 
-
-        <!-- Buttons -->
+        <!-- ===== Buttons ===== -->
         <div class="buttons">
-          <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
-          <button type="submit" class="submit-btn" [disabled]="careerForm.invalid">
+          <button
+            type="button"
+            class="back-btn"
+            (click)="goBack()"
+          >
+            ⬅️ Back
+          </button>
+
+          <button
+            type="submit"
+            class="submit-btn"
+            [disabled]="careerForm.invalid"
+          >
             Save & Continue ➡️
           </button>
         </div>
+
       </form>
     </div>
   </div>

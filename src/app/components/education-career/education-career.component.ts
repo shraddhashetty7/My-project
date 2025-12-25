@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EducationCareerService } from '../../services/education-career.service';//1️⃣ changes
+
 
 @Component({
   selector: 'app-education-career',
@@ -11,8 +13,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./education-career.component.css']
 })
 export class EducationCareerComponent {
+// 2️⃣ changes
+  constructor(
+  private router: Router,
+  private eduService: EducationCareerService
+) {}
 
-  constructor(private router: Router) {}
 
   // Dropdown arrays
   currencies: string[] = ['INR', 'USD', 'EUR', 'GBP', 'AUD'];
@@ -75,11 +81,24 @@ export class EducationCareerComponent {
     this.isBusinessSelected = businessOptions.includes(occupation);
   }
 
-  // 💾 Save & Continue
+  // 💾 Save & Continue // 3️⃣ changes
   saveAndContinue() {
-    console.log('Saved Education & Career Details:', this.model);
-    this.router.navigate(['/family-information']);
-  }
+
+  console.log('Sending Education & Career to backend:', this.model);
+
+  this.eduService.create(this.model).subscribe(
+    (res) => {
+      console.log('API Response:', res);
+      alert('Education & Career saved successfully!');
+      this.router.navigate(['/family-information']);
+    },
+    (err) => {
+      console.error('API Error:', err);
+      alert('Failed to save Education & Career');
+    }
+  );
+}
+
 
   // ⬅️ Go Back
   goBack() {

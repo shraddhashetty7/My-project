@@ -179,24 +179,35 @@ toggleCaste(caste: string) {
 }
 
 
-  // ✅ Submit handler
   onSubmit() {
-    console.log('Expectations submitted:', {
-      ageRange: `${this.ageFrom} - ${this.ageTo}`,
-      salaryRange: `${this.salaryFrom} - ${this.salaryTo}`,
-      maritalStatus: this.selectedMaritalStatus,
-      regions: this.selectedRegions,
-      professions: this.selectedProfessions,
-      opinion: this.opinion
-    });
 
-    alert('Expectations submitted successfully!');
-  }
+  const model = {
+    ageFrom: this.ageFrom,
+    ageTo: this.ageTo,
+    salaryFrom: this.salaryFrom,
+    salaryTo: this.salaryTo,
+    maritalStatus: this.selectedMaritalStatus,
+    expectedLanguages: this.expectedLanguages,
+    regions: this.selectedRegions,
+    professions: this.selectedProfessions,
+    castes: this.selectedCastes,
+    heightFrom: this.heightFrom,
+    heightTo: this.heightTo,
+    opinion: this.opinion
+  };
 
-  // ✅ Navigate to Upload Photos
-  goToUploadPhotos() {
-    this.router.navigate(['/upload-photos']);
-  }
+  console.log("Sending to backend:", model);
+  alert('Expectations submitted successfully!');
+
+  // ❌ Remove during testing
+   this.router.navigate(['/upload-photos']);
+}
+
+// ⭐ Add this function — required by template
+goToUploadPhotos() {
+  this.router.navigate(['/upload-photos']);
+}
+
 
   // ✅ Back navigation
   goBack() {
