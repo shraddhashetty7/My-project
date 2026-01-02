@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegisterService } from '../../services/next_step.service';
 
 @Component({
   selector: 'app-next-step',
@@ -11,77 +12,68 @@ import { Router } from '@angular/router';
   styleUrls: ['./next-step.component.css']
 })
 export class NextStepComponent {
-form: any;
-  constructor(private router: Router) {}
 
-  // --- Dropdown / Radio Data ---
-  currencies: string[] = ['INR', 'USD', 'EUR', 'GBP', 'AUD'];
+  constructor(
+    private router: Router,
+    private registerService: RegisterService
+  ) {}
 
-  educationLevels: string[] = [
-    'Bachelors in Engineering',
-    'M.tech',
-    'Doctor',
-    'Lawyer',
-    'PhD',
-    'Diploma',
-    'Degree',
-    'Other'
-  ];
-
-  occupations: string[] = [
-    'Software Engineer',
-    'Doctor',
-    'Teacher / Professor',
-    'Lawyer',
-    'Business',
-    'Government Job',
-    'Banking / Finance',
-    'Healthcare Professional',
-    'Freelancer',
-    'Small business',
-    'Mid-level business',
-    'Large business',
-    'Other'
-  ];
-
-  // --- Model for Form Data ---
+  // ✅ MODEL MATCHES BACKEND
   model = {
-    occupation: '',
-    designation: '',
-    organization: '',
-    totalExperience: 0,
-    relevantExperience: 0,
-    annualIncome: 0,
-    currency: 'INR',
-    incomeType: '',
-    education: '',
-    educationDetail: '',
-    caste: '',            // ✅ Added caste field
-    otherCaste: '' ,        // ✅ Added otherCaste for text box
-    workLocation: ''  // ✅ Added new property
+    fullName: '',
+    email: '',
+    phone: '',
+    gender: '',
+    workLocation: '',
+    caste: '',
+    otherCaste: ''
   };
 
-  // --- Track 'Other' caste selection ---
   isOtherCasteSelected = false;
 
   onCasteChange(selected: string) {
     this.isOtherCasteSelected = selected === 'Other';
     if (!this.isOtherCasteSelected) {
-      this.model.otherCaste = ''; // clear when switching back
+      this.model.otherCaste = '';
     }
   }
 
-  // --- Save & Continue → Education & Career ---
+  // ✅ SUBMIT FORM
   goToEducationCareer(form: NgForm) {
     if (form.invalid) {
-      Object.values(form.controls).forEach((control: any) =>
-        control.markAsTouched()
-      );
+      Object.values(form.controls).forEach((c: any) => c.markAsTouched());
       return;
     }
 
-    console.log('Saved details:', this.model);
-    this.router.navigate(['/education-career']);
+    // ✅ PREPARE PAYLOAD FOR API
+   const apiModel = {
+  fullName: this.model.fullName?.trim() || '',
+  email: this.model.email?.trim() || '',
+  phone: this.model.phone?.trim() || '',
+  gender: this.model.gender?.trim() || '',
+  workLocation: this.model.workLocation?.trim() || '',
+  caste: this.model.caste === 'Other'
+          ? this.model.otherCaste?.trim() || ''
+          : this.model.caste?.trim() || '',
+  otherCaste: this.model.caste === 'Other'
+          ? this.model.otherCaste?.trim() || null
+          : null
+};
+
+
+    // 🔍 DEBUG LOG
+    console.log('Sending to API:', apiModel);
+
+    // 🌐 API CALL
+    this.registerService.create(apiModel).subscribe(
+      res => {
+        console.log('✅ API Response:', res);
+        this.router.navigate(['/education-career']); // keep disabled for testing
+      },
+      err => {
+        console.error('❌ API Error:', err);
+      }
+    );
   }
 
   goBack() {

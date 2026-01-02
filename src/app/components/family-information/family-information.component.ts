@@ -2,6 +2,34 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { FamilyInformationService } from '../../services/family-information.service';
+
+// -------------------------------
+// 🔹 SIBLING INTERFACE
+// -------------------------------
+interface Sibling {
+  name: string;
+  gender: string;
+  maritalStatus: string;
+  occupation: string;
+}
+
+// -------------------------------
+// 🔹 FAMILY MODEL INTERFACE
+// -------------------------------
+interface FamilyModel {
+  userID: number;
+  fatherName: string;
+  fatherHometown: string;
+  fatherProfession: string;
+  motherName: string;
+  motherHometown: string;
+  motherProfession: string;
+  currentHometown: string;
+  languagesKnown: string[];
+  familyValue: string;
+  familyStatus: string;
+}
 
 @Component({
   selector: 'app-family-information',
@@ -11,47 +39,55 @@ import { Router } from '@angular/router';
   styleUrls: ['./family-information.component.css']
 })
 export class FamilyInformationComponent {
-  // Model for family info
-  model = {
-  fatherName: '',
-  fatherHometown: '',
-  fatherProfession: '',
-  motherName: '',
-  motherHometown: '',
-  motherProfession: '',
-  currentHometown: '',
-  languagesKnown: [] as string[],   // store selected languages
-  familyValue: '',
-  familyStatus: ''
-};
 
-// ✅ Toggle language selection on/off
-toggleLanguage(language: string) {
-  const index = this.model.languagesKnown.indexOf(language);
-  if (index === -1) {
-    this.model.languagesKnown.push(language); // Add language
-  } else {
-    this.model.languagesKnown.splice(index, 1); // Remove if already selected
+  // -------------------------------
+  // 🔹 FAMILY MODEL
+  // -------------------------------
+  model: FamilyModel = {
+    userID: 1, // 🔴 Replace later with logged-in user id
+    fatherName: '',
+    fatherHometown: '',
+    fatherProfession: '',
+    motherName: '',
+    motherHometown: '',
+    motherProfession: '',
+    currentHometown: '',
+    languagesKnown: [],
+    familyValue: '',
+    familyStatus: ''
+  };
+
+  // -------------------------------
+  // 🔹 SIBLING DATA
+  // -------------------------------
+  numSiblings = 0;
+  siblings: Sibling[] = [];
+  readonly MAX_SIBLINGS = 5;
+
+  constructor(
+    private router: Router,
+    private familyService: FamilyInformationService
+  ) {}
+
+  // -------------------------------
+  // 🔹 LANGUAGE SELECTION
+  // -------------------------------
+  toggleLanguage(language: string) {
+    if (this.model.languagesKnown.includes(language)) {
+      this.model.languagesKnown =
+        this.model.languagesKnown.filter(l => l !== language);
+    } else {
+      this.model.languagesKnown.push(language);
+    }
   }
-}
 
-// ✅ Check if language is active (for button highlight)
-isLanguageSelected(language: string): boolean {
-  return this.model.languagesKnown.includes(language);
-}
+  isLanguageSelected(language: string): boolean {
+    return this.model.languagesKnown.includes(language);
+  }
 
-
-
-
-  // Sibling fields
-  numSiblings: number = 0;
-  siblings: any[] = [];
-
-  constructor(private router: Router) {}
-
-  // ========================
+  // -------------------------------
   // 🔹 FAMILY VALUE & STATUS
-  // ========================
+  // -------------------------------
   selectFamilyValue(value: string) {
     this.model.familyValue = value;
   }
@@ -60,21 +96,28 @@ isLanguageSelected(language: string): boolean {
     this.model.familyStatus = status;
   }
 
-  // ========================
-  // 🔹 DYNAMIC SIBLING LOGIC
-  // ========================
+  // -------------------------------
+  // 🔹 SIBLING MANAGEMENT
+  // -------------------------------
   updateSiblings() {
-    const count = Math.max(0, Math.min(this.numSiblings, 5)); // limit 0–5
-    this.siblings = Array.from({ length: count }, () => ({
-      name: '',
-      gender: '',
-      maritalStatus: '',
-      occupation: ''
-    }));
+    const count = Math.min(Math.max(this.numSiblings, 0), this.MAX_SIBLINGS);
+
+    while (this.siblings.length < count) {
+      this.siblings.push({
+        name: '',
+        gender: '',
+        maritalStatus: '',
+        occupation: ''
+      });
+    }
+
+    while (this.siblings.length > count) {
+      this.siblings.pop();
+    }
   }
 
   addSibling() {
-    if (this.siblings.length < 5) {
+    if (this.siblings.length < this.MAX_SIBLINGS) {
       this.siblings.push({
         name: '',
         gender: '',
@@ -90,27 +133,49 @@ isLanguageSelected(language: string): boolean {
     this.numSiblings = this.siblings.length;
   }
 
-  // ========================
-// 🔹 SAVE & NAVIGATION
-// ========================
-saveAndContinue() {
-  const familyInfo = {
-    ...this.model,
-    siblings: this.siblings
-  };
+  // -------------------------------
+  // 🔹 SAVE FAMILY INFO (400 SAFE)
+  // -------------------------------
+  saveAndContinue() {
 
-  console.log('✅ Family Information Saved:', familyInfo);
+    // 🔐 Frontend required validation
+    if (
+      !this.model.fatherName ||
+      !this.model.motherName ||
+      !this.model.familyValue ||
+      !this.model.familyStatus
+    ) {
+      alert('Please fill all required family details');
+      return;
+    }
 
-  // Navigate to Lifestyle page
-  this.router.navigate(['/lifestyle']);
-}
+    const payload = {
+      ...this.model,
+      languagesKnown: this.model.languagesKnown.join(', '),
+      siblings: this.siblings
+    };
 
-skip() {
-  console.log('⏭️ Skipped Family Info');
-  this.router.navigate(['/lifestyle']);
-}
+    console.log('📤 Sending Family Info:', payload);
 
-goBack() {
-  this.router.navigate(['/education-career']);
-}
+    this.familyService.saveFamilyInfo(payload).subscribe({
+      next: res => {
+        console.log('✅ Family Info saved successfully', res);
+        // this.router.navigate(['/lifestyle']);
+      },
+      error: err => {
+        console.error('❌ API Error:', err.error);
+      }
+    });
+  }
+
+  // -------------------------------
+  // 🔹 NAVIGATION
+  // -------------------------------
+  goBack() {
+    this.router.navigate(['/education-career']);
+  }
+
+  skip() {
+    this.router.navigate(['/lifestyle']);
+  }
 }

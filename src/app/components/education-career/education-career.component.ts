@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EducationCareerService } from '../../services/education-career.service';
 
 @Component({
   selector: 'app-education-career',
@@ -12,11 +13,12 @@ import { Router } from '@angular/router';
 })
 export class EducationCareerComponent {
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private eduService: EducationCareerService
+  ) {}
 
   // Dropdown arrays
-  currencies: string[] = ['INR', 'USD', 'EUR', 'GBP', 'AUD'];
-
   educationLevels: string[] = [
     'Bachelors in Engineering',
     'M.Tech',
@@ -29,59 +31,68 @@ export class EducationCareerComponent {
   ];
 
   occupations: string[] = [
-  'Software Engineer',
-  'Doctor',
-  'Teacher / Professor',
-  'Lawyer',
-  'Government Job',
-  'Banking / Finance',
-  'Healthcare Professional',
-  'Freelancer',
-  'Small business',
-  'Mid-level business',
-  'Large business',
-  'Other'
-];
+    'Software Engineer',
+    'Doctor',
+    'Teacher / Professor',
+    'Lawyer',
+    'Government Job',
+    'Banking / Finance',
+    'Healthcare Professional',
+    'Freelancer',
+    'Small business',
+    'Mid-level business',
+    'Large business',
+    'Other'
+  ];
 
-
-  // 🧠 Model (Form Data)
+  // 🧠 FORM MODEL (MATCHES BACKEND 1:1)
   model = {
-    occupation: '',
+    userId: 14, // 🔴 TEMP: replace with logged-in user later
+
+    educationLevel: '',
+    educationDetails: '',
+
     designation: '',
     organization: '',
-    totalExperience: 0,
-    relevantExperience: 0,
-    annualIncome: 0,
-    currency: 'INR',
-    incomeType: '',
-    education: '',
-    educationDetail: '',
 
-    // ✅ Business section
-    businessLevel: '',
+    totalExperience: null as number | null,
+    relevantExperience: null as number | null,
+    annualIncome: null as number | null,
+
+    jobLocation: '',
+
     businessName: '',
     businessType: '',
-    businessDesignations: '',
-    businessIncome: ''
+    keyDesignation: ''
   };
 
-  // 🌟 UI Control Flag
-  isBusinessSelected: boolean = false;
+  // UI flag
+  isBusinessSelected = false;
 
-  // 🔁 When occupation changes
   onOccupationChange(occupation: string) {
-    // If any of the 3 business types is selected, show business details section
     const businessOptions = ['Small business', 'Mid-level business', 'Large business'];
     this.isBusinessSelected = businessOptions.includes(occupation);
   }
 
-  // 💾 Save & Continue
+  // 💾 SAVE
   saveAndContinue() {
-    console.log('Saved Education & Career Details:', this.model);
-    this.router.navigate(['/family-information']);
+
+    console.log('✅ Sending payload:', this.model);
+
+    this.eduService.create(this.model).subscribe({
+      next: res => {
+        console.log('✅ API Response:', res);
+        alert('Education & Career saved successfully!');
+        this.router.navigate(['/family-information']);
+      },
+      error: err => {
+        console.error('❌ API Error:', err.error);
+        console.error('❌ Validation:', err.error?.errors);
+        alert('Failed to save Education & Career');
+      }
+    });
   }
 
-  // ⬅️ Go Back
   goBack() {
     this.router.navigate(['/next-step']);
   }
