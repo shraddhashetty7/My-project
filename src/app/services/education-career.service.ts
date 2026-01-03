@@ -1,38 +1,25 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EducationCareerService {
 
-  private apiUrl = 'https://localhost:7011/api/EducationCareer';
-
+  private apiUrl = 'https://localhost:7058/api/EducationCareer';
 
   constructor(private http: HttpClient) {}
 
-  // CREATE
-  create(model: any) {
-    return this.http.post(this.apiUrl, model);
+  create(data: any): Observable<any> {
+    return this.http.post(this.apiUrl, data);
   }
 
-  // READ ALL
-  getAll() {
-    return this.http.get(this.apiUrl);
+  getByUserId(userId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/user/${userId}`);
   }
 
-  // READ BY ID
-  getById(id: number) {
-    return this.http.get(`${this.apiUrl}/${id}`);
-  }
-
-  // UPDATE
-  update(id: number, model: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, model);
-  }
-
-  // DELETE
-  delete(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  update(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
   }
 }

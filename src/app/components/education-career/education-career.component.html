@@ -14,83 +14,117 @@
         <!-- ================= CAREER DETAILS ================= -->
         <h3>Career Details</h3>
 
-        <label>Designation</label>
-        <input
-          type="text"
-          name="designation"
-          [(ngModel)]="model.designation"
-          placeholder="Eg: Software Engineer"
+        <!-- Occupation -->
+        <label>Occupation</label>
+        <select
+          name="occupation"
+          [(ngModel)]="model.occupation"
+          (change)="onOccupationChange(model.occupation)"
           required
-        />
+        >
+          <option value="">Select Occupation</option>
+          <option *ngFor="let o of occupations" [value]="o">
+            {{ o }}
+          </option>
+        </select>
 
-        <label>Organization</label>
-        <input
-          type="text"
-          name="organization"
-          [(ngModel)]="model.organization"
-          placeholder="Eg: Infosys"
-        />
+        <!-- ===== JOB DETAILS (NON-BUSINESS) ===== -->
+        <div *ngIf="!isBusinessSelected">
 
-        <label>Total Experience (Years)</label>
-        <input
-          type="number"
-          name="totalExperience"
-          [(ngModel)]="model.totalExperience"
-          min="0"
-          step="1"
-        />
+          <label>Designation</label>
+          <input
+            type="text"
+            name="designation"
+            [(ngModel)]="model.designation"
+            placeholder="Eg: Software Engineer"
+            required
+          />
 
-        <label>Relevant Experience (Years)</label>
-        <input
-          type="number"
-          name="relevantExperience"
-          [(ngModel)]="model.relevantExperience"
-          min="0"
-          step="1"
-        />
+          <label>Organization</label>
+          <input
+            type="text"
+            name="organization"
+            [(ngModel)]="model.organization"
+            placeholder="Eg: Infosys"
+          />
 
-        <label>Annual Income (in LPA)</label>
-        <input
-          type="number"
-          name="annualIncome"
-          [(ngModel)]="model.annualIncome"
-          min="0"
-          step="1"
-        />
+          <label>Total Experience (Years)</label>
+          <input
+            type="number"
+            name="totalExperience"
+            [(ngModel)]="model.totalExperience"
+            min="0"
+            step="1"
+            placeholder="Eg: 7"
+          />
 
-        <label>Job Location</label>
-        <input
-          type="text"
-          name="jobLocation"
-          [(ngModel)]="model.jobLocation"
-          placeholder="Eg: Bangalore"
-        />
+          <label>Relevant Experience (Years)</label>
+          <input
+            type="number"
+            name="relevantExperience"
+            [(ngModel)]="model.relevantExperience"
+            min="0"
+            step="1"
+            placeholder="Eg: 5"
+          />
 
-        <!-- ================= BUSINESS DETAILS ================= -->
-        <h3>Business Details</h3>
+          <label>Annual Income (in LPA)</label>
+          <input
+            type="number"
+            name="annualIncome"
+            [(ngModel)]="model.annualIncome"
+            min="0"
+            step="1"
+            placeholder="Eg: 5"
+          />
 
-        <label>Business Name</label>
-        <input
-          type="text"
-          name="businessName"
-          [(ngModel)]="model.businessName"
-          placeholder="Eg: Shetty Enterprises"
-        />
+          <label>Job Location</label>
+          <input
+            type="text"
+            name="jobLocation"
+            [(ngModel)]="model.jobLocation"
+            placeholder="Eg: Bangalore"
+          />
+        </div>
 
-        <label>Business Type</label>
-        <input
-          type="text"
-          name="businessType"
-          [(ngModel)]="model.businessType"
-          placeholder="Eg: Manufacturing / IT / Retail"
-        />
+        <!-- ===== BUSINESS DETAILS ===== -->
+        <div *ngIf="isBusinessSelected" class="business-section">
+          <h3>Business Details</h3>
 
-        <label>Key Designation / Role</label>
-        <textarea
-          name="keyDesignation"
-          [(ngModel)]="model.keyDesignation"
-          placeholder="Eg: Owner / Partner / Director"
-        ></textarea>
+          <label>Business Name</label>
+          <input
+            type="text"
+            name="businessName"
+            [(ngModel)]="model.businessName"
+            placeholder="Eg: Shetty Enterprises"
+            required
+          />
+
+          <label>Business Type</label>
+          <input
+            type="text"
+            name="businessType"
+            [(ngModel)]="model.businessType"
+            placeholder="Eg: Manufacturing / IT / Retail"
+          />
+
+          <label>Key Designations / Roles</label>
+          <textarea
+            name="businessDesignations"
+            [(ngModel)]="model.businessDesignations"
+            placeholder="Eg: Owner, Partner, Director"
+          ></textarea>
+
+          <label>Approximate Annual Income</label>
+          <input
+            type="number"
+            name="businessIncome"
+            [(ngModel)]="model.businessIncome"
+            min="0"
+            step="1000"
+            placeholder="Eg: 5000000"
+          />
+        </div>
 
         <!-- ================= EDUCATION DETAILS ================= -->
         <h3>Education Details</h3>
@@ -101,7 +135,7 @@
           [(ngModel)]="model.educationLevel"
           required
         >
-          <option value="" disabled>Select Education</option>
+          <option value="">Select Education</option>
           <option *ngFor="let edu of educationLevels" [value]="edu">
             {{ edu }}
           </option>
@@ -118,11 +152,7 @@
 
         <!-- ================= BUTTONS ================= -->
         <div class="buttons">
-          <button
-            type="button"
-            class="back-btn"
-            (click)="goBack()"
-          >
+          <button type="button" class="back-btn" (click)="goBack()">
             ⬅️ Back
           </button>
 

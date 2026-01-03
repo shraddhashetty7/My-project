@@ -7,11 +7,28 @@ import { Observable } from 'rxjs';
 })
 export class FamilyInformationService {
 
-  private apiUrl = 'https://localhost:7011/api/FamilyInfo';
+  private apiUrl = 'https://localhost:7058/api/FamilyInfo';
+  // 🔁 Change URL if your backend route is different
 
   constructor(private http: HttpClient) {}
 
-  saveFamilyInfo(data: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, data);
+  /* ================= CREATE ================= */
+  create(data: any): Observable<any> {
+    return this.http.post(this.apiUrl, data);
+  }
+
+  /* ================= GET BY USER ID ================= */
+  getByUserId(userId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/user/${userId}`);
+  }
+
+  /* ================= UPDATE ================= */
+  update(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
+  }
+
+  /* ================= DELETE ================= */
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
