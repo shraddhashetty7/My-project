@@ -157,15 +157,16 @@ export class FamilyInformationComponent {
 
     console.log('📤 Sending Family Info:', payload);
 
-    this.familyService.saveFamilyInfo(payload).subscribe({
-      next: res => {
-        console.log('✅ Family Info saved successfully', res);
-        // this.router.navigate(['/lifestyle']);
-      },
-      error: err => {
-        console.error('❌ API Error:', err.error);
-      }
-    });
+    this.familyService.create(payload).subscribe({
+  next: (res: any) => {
+    console.log('✅ Family Info saved successfully', res);
+    // this.router.navigate(['/lifestyle']);
+  },
+  error: (err: any) => {
+    console.error('❌ API Error:', err.error);
+  }
+});
+
   }
 
   // -------------------------------

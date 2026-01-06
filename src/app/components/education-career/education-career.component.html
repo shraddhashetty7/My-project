@@ -2,144 +2,90 @@
   <h2>Education & Career Details</h2>
 
   <div class="content-wrapper">
-    <!-- Right Image -->
+
+    <!-- Left Image -->
     <div class="image-section">
       <img src="assets/education-career.jpg" alt="Education & Career" />
     </div>
 
-    <!-- Left Form -->
+    <!-- Right Form -->
     <div class="form-section">
       <form #careerForm="ngForm" (ngSubmit)="saveAndContinue()">
 
-        <!-- ================= CAREER DETAILS ================= -->
+        <!-- ===================== -->
+        <!-- 💼 CAREER DETAILS -->
+        <!-- ===================== -->
         <h3>Career Details</h3>
 
-        <!-- Occupation -->
-        <label>Occupation</label>
-        <select
-          name="occupation"
-          [(ngModel)]="model.occupation"
-          (change)="onOccupationChange(model.occupation)"
-          required
-        >
-          <option value="">Select Occupation</option>
-          <option *ngFor="let o of occupations" [value]="o">
-            {{ o }}
-          </option>
-        </select>
+        <!-- Designation -->
+        <label>Designation</label>
+        <input
+          type="text"
+          name="designation"
+          [(ngModel)]="model.designation"
+          placeholder="Eg: Software Engineer"
+        />
 
-        <!-- ===== JOB DETAILS (NON-BUSINESS) ===== -->
-        <div *ngIf="!isBusinessSelected">
+        <!-- Organization -->
+        <label>Organization</label>
+        <input
+          type="text"
+          name="organization"
+          [(ngModel)]="model.organization"
+          placeholder="Eg: Infosys"
+        />
 
-          <label>Designation</label>
-          <input
-            type="text"
-            name="designation"
-            [(ngModel)]="model.designation"
-            placeholder="Eg: Software Engineer"
-            required
-          />
+        <!-- Total Experience -->
+        <label>Total Experience (Years)</label>
+        <input
+          type="number"
+          name="totalExperience"
+          [(ngModel)]="model.totalExperience"
+          min="0"
+          placeholder="Eg: 7"
+        />
 
-          <label>Organization</label>
-          <input
-            type="text"
-            name="organization"
-            [(ngModel)]="model.organization"
-            placeholder="Eg: Infosys"
-          />
+        <!-- Relevant Experience -->
+        <label>Relevant Experience (Years)</label>
+        <input
+          type="number"
+          name="relevantExperience"
+          [(ngModel)]="model.relevantExperience"
+          min="0"
+          placeholder="Eg: 5"
+        />
 
-          <label>Total Experience (Years)</label>
-          <input
-            type="number"
-            name="totalExperience"
-            [(ngModel)]="model.totalExperience"
-            min="0"
-            step="1"
-            placeholder="Eg: 7"
-          />
+        <!-- Annual Income -->
+        <label>Annual Income</label>
+        <input
+          type="number"
+          name="annualIncome"
+          [(ngModel)]="model.annualIncome"
+          min="0"
+          placeholder="Eg: 1200000"
+        />
 
-          <label>Relevant Experience (Years)</label>
-          <input
-            type="number"
-            name="relevantExperience"
-            [(ngModel)]="model.relevantExperience"
-            min="0"
-            step="1"
-            placeholder="Eg: 5"
-          />
+        <!-- Job Location -->
+        <label>Job Location</label>
+        <input
+          type="text"
+          name="jobLocation"
+          [(ngModel)]="model.jobLocation"
+          placeholder="Eg: Bangalore"
+        />
 
-          <label>Annual Income (in LPA)</label>
-          <input
-            type="number"
-            name="annualIncome"
-            [(ngModel)]="model.annualIncome"
-            min="0"
-            step="1"
-            placeholder="Eg: 5"
-          />
-
-          <label>Job Location</label>
-          <input
-            type="text"
-            name="jobLocation"
-            [(ngModel)]="model.jobLocation"
-            placeholder="Eg: Bangalore"
-          />
-        </div>
-
-        <!-- ===== BUSINESS DETAILS ===== -->
-        <div *ngIf="isBusinessSelected" class="business-section">
-          <h3>Business Details</h3>
-
-          <label>Business Name</label>
-          <input
-            type="text"
-            name="businessName"
-            [(ngModel)]="model.businessName"
-            placeholder="Eg: Shetty Enterprises"
-            required
-          />
-
-          <label>Business Type</label>
-          <input
-            type="text"
-            name="businessType"
-            [(ngModel)]="model.businessType"
-            placeholder="Eg: Manufacturing / IT / Retail"
-          />
-
-          <label>Key Designations / Roles</label>
-          <textarea
-            name="businessDesignations"
-            [(ngModel)]="model.businessDesignations"
-            placeholder="Eg: Owner, Partner, Director"
-          ></textarea>
-
-          <label>Approximate Annual Income</label>
-          <input
-            type="number"
-            name="businessIncome"
-            [(ngModel)]="model.businessIncome"
-            min="0"
-            step="1000"
-            placeholder="Eg: 5000000"
-          />
-        </div>
-
-        <!-- ================= EDUCATION DETAILS ================= -->
+        <!-- ===================== -->
+        <!-- 🎓 EDUCATION DETAILS -->
+        <!-- ===================== -->
         <h3>Education Details</h3>
 
         <label>Education Level</label>
-        <select
+        <input
+          type="text"
           name="educationLevel"
           [(ngModel)]="model.educationLevel"
-          required
-        >
-          <option value="">Select Education</option>
-          <option *ngFor="let edu of educationLevels" [value]="edu">
-            {{ edu }}
-          </option>
-        </select>
+          placeholder="Eg: B.E / MBA / M.Sc"
+        />
 
         <label>Education Details</label>
         <input
@@ -147,10 +93,40 @@
           name="educationDetails"
           [(ngModel)]="model.educationDetails"
           placeholder="Eg: Electronics & Communication"
-          required
         />
 
-        <!-- ================= BUTTONS ================= -->
+        <!-- ===================== -->
+        <!-- 🏢 BUSINESS DETAILS -->
+        <!-- ===================== -->
+        <h3>Business Details (Optional)</h3>
+
+        <label>Business Name</label>
+        <input
+          type="text"
+          name="businessName"
+          [(ngModel)]="model.businessName"
+          placeholder="Eg: ABC Enterprises"
+        />
+
+        <label>Business Type</label>
+        <input
+          type="text"
+          name="businessType"
+          [(ngModel)]="model.businessType"
+          placeholder="Eg: IT / Retail"
+        />
+
+        <label>Key Designation</label>
+        <input
+          type="text"
+          name="keyDesignation"
+          [(ngModel)]="model.keyDesignation"
+          placeholder="Eg: Owner / Partner"
+        />
+
+        <!-- ===================== -->
+        <!-- BUTTONS -->
+        <!-- ===================== -->
         <div class="buttons">
           <button type="button" class="back-btn" (click)="goBack()">
             ⬅️ Back
@@ -159,8 +135,7 @@
           <button
             type="submit"
             class="submit-btn"
-            [disabled]="careerForm.invalid"
-          >
+            [disabled]="careerForm.invalid">
             Save & Continue ➡️
           </button>
         </div>

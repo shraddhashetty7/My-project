@@ -18,8 +18,7 @@ export class EducationCareerComponent {
     private eduService: EducationCareerService
   ) {}
 
-  /* ===================== DROPDOWNS ===================== */
-
+  // Dropdown arrays
   educationLevels: string[] = [
     'Bachelors in Engineering',
     'M.Tech',
@@ -46,73 +45,55 @@ export class EducationCareerComponent {
     'Other'
   ];
 
-  /* ===================== FORM MODEL ===================== */
+  // 🧠 FORM MODEL (MATCHES BACKEND 1:1)
   model = {
-    userId: 14, // TODO: Replace with logged-in userId
+    userId: 15, // 🔴 TEMP: replace with logged-in user later
 
-    // Occupation
-    occupation: '',
+    educationLevel: '',
+    educationDetails: '',
 
-    // Job Details
     designation: '',
     organization: '',
+
     totalExperience: null as number | null,
     relevantExperience: null as number | null,
     annualIncome: null as number | null,
+
     jobLocation: '',
 
-    // Business Details
     businessName: '',
     businessType: '',
-    businessDesignations: '',
-    businessIncome: null as number | null,
-
-    // Education
-    educationLevel: '',
-    educationDetails: ''
+    keyDesignation: ''
   };
 
-  /* ===================== UI FLAGS ===================== */
+  // UI flag
   isBusinessSelected = false;
 
-  onOccupationChange(occupation: string): void {
-    const businessOptions = [
-      'Small business',
-      'Mid-level business',
-      'Large business'
-    ];
-
+  onOccupationChange(occupation: string) {
+    const businessOptions = ['Small business', 'Mid-level business', 'Large business'];
     this.isBusinessSelected = businessOptions.includes(occupation);
-
-    // Optional cleanup when switching
-    if (!this.isBusinessSelected) {
-      this.model.businessName = '';
-      this.model.businessType = '';
-      this.model.businessDesignations = '';
-      this.model.businessIncome = null;
-    }
   }
 
-  /* ===================== SAVE ===================== */
-  saveAndContinue(): void {
+  // 💾 SAVE
+  saveAndContinue() {
+
     console.log('✅ Sending payload:', this.model);
 
     this.eduService.create(this.model).subscribe({
-      next: (res) => {
+      next: res => {
         console.log('✅ API Response:', res);
         alert('Education & Career saved successfully!');
         this.router.navigate(['/family-information']);
       },
-      error: (err) => {
-        console.error('❌ API Error:', err);
-        console.error('❌ Validation Errors:', err?.error?.errors);
+      error: err => {
+        console.error('❌ API Error:', err.error);
+        console.error('❌ Validation:', err.error?.errors);
         alert('Failed to save Education & Career');
       }
     });
   }
 
-  /* ===================== NAVIGATION ===================== */
-  goBack(): void {
+  goBack() {
     this.router.navigate(['/next-step']);
   }
 }

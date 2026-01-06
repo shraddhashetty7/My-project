@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class EducationCareerService {
 
-  private apiUrl = 'https://localhost:7058/api/EducationCareer';
+ private apiUrl = 'https://localhost:7011/api/EducationCareer';
+
 
   constructor(private http: HttpClient) {}
 
