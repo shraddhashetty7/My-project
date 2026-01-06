@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FamilyInformationService {
 
-  private apiUrl = 'https://localhost:7058/api/FamilyInfo';
+  private apiUrl = 'https://localhost:7011/api/FamilyInfo';
   // 🔁 Change URL if your backend route is different
 
   constructor(private http: HttpClient) {}

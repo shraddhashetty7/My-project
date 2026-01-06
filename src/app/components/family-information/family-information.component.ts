@@ -44,7 +44,7 @@ export class FamilyInformationComponent {
   // 🔹 FAMILY MODEL
   // -------------------------------
   model: FamilyModel = {
-    userID: 1, // 🔴 Replace later with logged-in user id
+    userID: 10, // 🔴 Replace later with logged-in user id
     fatherName: '',
     fatherHometown: '',
     fatherProfession: '',
