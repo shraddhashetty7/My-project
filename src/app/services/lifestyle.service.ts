@@ -1,38 +1,16 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegistrationService {
+export class LifestyleService {
 
   private apiUrl = 'https://localhost:7011/api/Lifestyle';
 
-
   constructor(private http: HttpClient) {}
 
-  // CREATE
-  create(model: any) {
-    return this.http.post(this.apiUrl, model);
-  }
-
-  // READ ALL
-  getAll() {
-    return this.http.get(this.apiUrl);
-  }
-
-  // READ BY ID
-  getById(id: number) {
-    return this.http.get(`${this.apiUrl}/${id}`);
-  }
-
-  // UPDATE
-  update(id: number, model: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, model);
-  }
-
-  // DELETE
-  delete(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  create(payload: any) {
+    return this.http.post(this.apiUrl, payload);
   }
 }

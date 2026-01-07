@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LifestyleService } from '../../services/lifestyle.service';
 
 @Component({
   selector: 'app-lifestyle',
@@ -11,20 +12,30 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./lifestyle.component.css']
 })
 export class LifestyleComponent {
+
+  // Model holding all lifestyle info
   model = {
-  height: '',
-  weight: '',
-  diet: '',
-  complexion: '',
-  physique: '',
-  disability: '',
-  smoke: '',
-  drink: ''
-};
+    userID: 10,
+    height: '',
+    weight: '',
+    diet: '',
+    complexion: '',
+    physique: '',
+    disability: '',
+    smoke: '',
+    drink: ''
+  };
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private lifestyleService: LifestyleService
+  ) {}
 
-  // ✅ Selection Methods
+  // Methods to update model when buttons are clicked
+  selectHeight(value: string) {
+    this.model.height = value;
+  }
+
   selectDiet(value: string) {
     this.model.diet = value;
   }
@@ -48,16 +59,27 @@ export class LifestyleComponent {
   selectDrink(value: string) {
     this.model.drink = value;
   }
-  selectHeight(value: string) {
-  this.model.height = value;
-}
 
-
-
-  // ✅ Navigation
+  // Save data and navigate
   saveAndContinue() {
-    console.log('✅ Lifestyle Information Saved:', this.model);
-    this.router.navigate(['/astrological-information']);
+    if (!this.model.height || !this.model.weight || !this.model.diet) {
+      alert('Please fill all required lifestyle details');
+      return;
+    }
+
+    const payload = { ...this.model };
+
+    console.log('📤 Sending Lifestyle Info:', payload);
+
+    this.lifestyleService.create(payload).subscribe({
+      next: (res: any) => {
+        console.log('✅ Lifestyle Info saved successfully', res);
+        // this.router.navigate(['/astrological-information']);
+      },
+      error: (err: any) => {
+        console.error('❌ API Error:', err.error);
+      }
+    });
   }
 
   goBack() {
@@ -65,7 +87,6 @@ export class LifestyleComponent {
   }
 
   skip() {
-    console.log('⏭️ Skipped Lifestyle Info');
     this.router.navigate(['/astrological-information']);
   }
 }
