@@ -12,7 +12,8 @@
 
       <div class="form-group small-field">
         <label>Raasi (Zodiac Sign)</label>
-        <select [(ngModel)]="selectedRaasi" name="raasi" required>
+        <select [(ngModel)]="model.raasi" name="raasi" required>
+
           <option value="" disabled>Select Raasi</option>
           <option *ngFor="let raasi of raasis" [value]="raasi">{{ raasi }}</option>
         </select>
@@ -20,7 +21,8 @@
 
       <div class="form-group">
         <label>Nakshatra (Birth Star)</label>
-        <select [(ngModel)]="selectedStar" name="star" required>
+        <select [(ngModel)]="model.nakshatra" name="nakshatra" required>
+
           <option value="" disabled>Select Nakshatra</option>
           <option *ngFor="let star of stars" [value]="star">{{ star }}</option>
         </select>
@@ -28,7 +30,8 @@
 
       <div class="form-group">
         <label>Date of Birth</label>
-        <input type="date" [(ngModel)]="birthDate" name="birthDate" required />
+        <input type="date" [(ngModel)]="model.birthDate" name="birthDate" required />
+
       </div>
 
       <!-- Time of Birth (12-hour format with AM/PM) -->
@@ -57,12 +60,10 @@
       <div class="form-group">
         <label>Place of Birth</label>
         <input
-          type="text"
-          [(ngModel)]="placeOfBirth"
-          name="placeOfBirth"
-          placeholder="Enter place of birth"
-          required
-        />
+  type="text"
+  name="placeOfBirth"
+  [(ngModel)]="model.placeOfBirth">
+
       </div>
 
       <!-- Navigation Buttons -->

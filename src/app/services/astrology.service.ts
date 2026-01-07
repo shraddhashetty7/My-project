@@ -4,34 +4,21 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class RegistrationService {
+export class AstrologyService {
 
- private apiUrl = 'https://localhost:7011/api/Astrology';
+  private apiUrl = 'https://localhost:7011/api/AstrologyInfo';
 
   constructor(private http: HttpClient) {}
 
-  // CREATE
-  create(model: any) {
-    return this.http.post(this.apiUrl, model);
+  create(data: any) {
+    return this.http.post(this.apiUrl, data);
   }
 
-  // READ ALL
-  getAll() {
-    return this.http.get(this.apiUrl);
+  getByUserId(userId: number) {
+    return this.http.get(`${this.apiUrl}/User/${userId}`);
   }
 
-  // READ BY ID
-  getById(id: number) {
-    return this.http.get(`${this.apiUrl}/${id}`);
-  }
-
-  // UPDATE
-  update(id: number, model: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, model);
-  }
-
-  // DELETE
-  delete(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  update(id: number, data: any) {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
   }
 }
