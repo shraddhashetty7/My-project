@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router'; // ✅ Import Router
+import { Router } from '@angular/router';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-my-expectations',
@@ -11,91 +12,95 @@ import { Router } from '@angular/router'; // ✅ Import Router
   styleUrls: ['./my-expectations.component.css']
 })
 export class MyExpectationsComponent {
+goToUploadPhotos() {
+throw new Error('Method not implemented.');
+}
 
-  constructor(private router: Router) {} // ✅ Proper dependency injection
+  // 🔗 API URL
+  private apiUrl = 'https://localhost:7011/api/Expectations';
 
+  // 🆔 Logged-in user id (example)
+  userId: number = 1;
+
+  constructor(
+    private router: Router,
+    private http: HttpClient
+  ) {}
+
+  // 💬 Opinion
   opinion: string = '';
 
+  // 💍 Marital Status
   maritalStatusOptions: string[] = [
     'Single',
     'Married',
     'Divorced',
     'Widow / Widower'
   ];
+  selectedMaritalStatus: string[] = [];
 
-
-  // 🗣️ Expected Languages Known
-expectedLanguages: string[] = []; // To store selected languages
-languageOptions: string[] = [
-  'Kannada',
-  'Tulu',
-  'Kundapura Kannada',
-  'English',
-  'Hindi'
-];
-
-// ✅ Toggle a language on/off
-toggleLanguage(language: string) {
-  const index = this.expectedLanguages.indexOf(language);
-  if (index === -1) {
-    this.expectedLanguages.push(language); // Add
-  } else {
-    this.expectedLanguages.splice(index, 1); // Remove
+  toggleMaritalStatus(status: string) {
+    const index = this.selectedMaritalStatus.indexOf(status);
+    index === -1
+      ? this.selectedMaritalStatus.push(status)
+      : this.selectedMaritalStatus.splice(index, 1);
   }
-}
 
-// ✅ Check if a language is already selected
-isLanguageSelected(language: string): boolean {
-  return this.expectedLanguages.includes(language);
-}
-
-  // 🌍 Multi-select Regions
-selectedRegions: string[] = [];
-regionOptions: string[] = [
-  'Udupi',
-  'Kundapura',
-  'Mangalore',
-  'Bangalore',
-  'Other parts of Karnataka',
-  'Mumbai',
-  'Pune',
-  'Goa',
-  'Other states of India',
-  'Gulf Countries (UAE, Qatar, Oman, etc.)',
-  'Europe Countries',
-  'USA / Canada',
-  'Australia / New Zealand',
-  'Other Foreign Countries'
-];
-
-// ✅ Toggle Region
-toggleRegion(region: string) {
-  const index = this.selectedRegions.indexOf(region);
-  if (index === -1) {
-    this.selectedRegions.push(region);
-  } else {
-    this.selectedRegions.splice(index, 1);
+  isMaritalStatusSelected(status: string): boolean {
+    return this.selectedMaritalStatus.includes(status);
   }
-}
 
-// ✅ Check if region is selected
-isRegionSelected(region: string): boolean {
-  return this.selectedRegions.includes(region);
-}
+  // 🗣️ Languages
+  expectedLanguages: string[] = [];
+  languageOptions: string[] = [
+    'Kannada',
+    'Tulu',
+    'Kundapura Kannada',
+    'English',
+    'Hindi'
+  ];
 
-  // 🎓 Multi-select Professions
+  toggleLanguage(language: string) {
+    const index = this.expectedLanguages.indexOf(language);
+    index === -1
+      ? this.expectedLanguages.push(language)
+      : this.expectedLanguages.splice(index, 1);
+  }
+
+  isLanguageSelected(language: string): boolean {
+    return this.expectedLanguages.includes(language);
+  }
+
+  // 🌍 Regions
+  selectedRegions: string[] = [];
+  regionOptions: string[] = [
+    'Udupi', 'Kundapura', 'Mangalore', 'Bangalore',
+    'Other parts of Karnataka', 'Mumbai', 'Pune', 'Goa',
+    'Other states of India',
+    'Gulf Countries (UAE, Qatar, Oman, etc.)',
+    'Europe Countries',
+    'USA / Canada',
+    'Australia / New Zealand',
+    'Other Foreign Countries'
+  ];
+
+  toggleRegion(region: string) {
+    const index = this.selectedRegions.indexOf(region);
+    index === -1
+      ? this.selectedRegions.push(region)
+      : this.selectedRegions.splice(index, 1);
+  }
+
+  isRegionSelected(region: string): boolean {
+    return this.selectedRegions.includes(region);
+  }
+
+  // 🎓 Professions
   selectedProfessions: string[] = [];
   professionOptions: string[] = [
-    'Engineer',
-    'Doctor',
-    'Teacher / Professor',
-    'Medical Sector',
-    'Business',
-    'Lawyer',
-    'Artist',
-    'Government Employee',
-    'Private Sector Employee',
-    'IT / Software Professional',
+    'Engineer', 'Doctor', 'Teacher / Professor', 'Medical Sector',
+    'Business', 'Lawyer', 'Artist', 'Government Employee',
+    'Private Sector Employee', 'IT / Software Professional',
     'Banking / Finance Professional',
     'Chartered Accountant / Auditor',
     'Architect',
@@ -112,110 +117,89 @@ isRegionSelected(region: string): boolean {
     'Not Working',
     'Other'
   ];
-  // ✅ Toggle Profession
-toggleProfession(profession: string) {
-  const index = this.selectedProfessions.indexOf(profession);
-  if (index === -1) {
-    this.selectedProfessions.push(profession);
-  } else {
-    this.selectedProfessions.splice(index, 1);
+
+  toggleProfession(profession: string) {
+    const index = this.selectedProfessions.indexOf(profession);
+    index === -1
+      ? this.selectedProfessions.push(profession)
+      : this.selectedProfessions.splice(index, 1);
   }
-}
 
-// ✅ Check if Profession is selected
-isProfessionSelected(profession: string): boolean {
-  return this.selectedProfessions.includes(profession);
-}
+  isProfessionSelected(profession: string): boolean {
+    return this.selectedProfessions.includes(profession);
+  }
 
-
-  // 🧍 Age + Salary range fields
+  // 🧍 Age / Salary / Height
   ageFrom: string = '';
   ageTo: string = '';
   salaryFrom: string = '';
   salaryTo: string = '';
+  heightFrom: string = '';
+  heightTo: string = '';
 
-  
+  heightOptions: string[] = [
+    '5.0','5.1','5.2','5.3','5.4','5.5',
+    '5.6','5.7','5.8','5.9','6.0','6.1','6.2'
+  ];
 
-// To store selected statuses
-selectedMaritalStatus: string[] = [];
+  // 🕉️ Castes
+  casteOptions: string[] = ['Bunt', 'Billava', 'Other', 'Any Caste'];
+  selectedCastes: string[] = [];
 
-// ✅ Toggle a marital status on/off
-toggleMaritalStatus(status: string) {
-  const index = this.selectedMaritalStatus.indexOf(status);
-  if (index === -1) {
-    this.selectedMaritalStatus.push(status); // Add
-  } else {
-    this.selectedMaritalStatus.splice(index, 1); // Remove
+  toggleCaste(caste: string) {
+    const index = this.selectedCastes.indexOf(caste);
+    index === -1
+      ? this.selectedCastes.push(caste)
+      : this.selectedCastes.splice(index, 1);
   }
-}
 
-// ✅ Check if a status is already selected
-isMaritalStatusSelected(status: string): boolean {
-  return this.selectedMaritalStatus.includes(status);
-}
-heightFrom: string = '';
-heightTo: string = '';
-casteOptions: string[] = ['Bunt', 'Billava', 'Other', 'Any Caste'];
-selectedCaste: string = '';
-heightOptions: string[] = [
-  '5.0', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '5.7', '5.8', '5.9', '6.0', '6.1', '6.2'
-];
-
-// 🕉️ Preferred Caste (Multi-select)
-
-selectedCastes: string[] = []; // store multiple selections
-
-isCasteSelected(caste: string): boolean {
-  return this.selectedCastes.includes(caste);
-}
-
-toggleCaste(caste: string) {
-  const index = this.selectedCastes.indexOf(caste);
-  if (index === -1) {
-    this.selectedCastes.push(caste);
-  } else {
-    this.selectedCastes.splice(index, 1);
+  isCasteSelected(caste: string): boolean {
+    return this.selectedCastes.includes(caste);
   }
-}
 
-
+  // 🚀 SUBMIT (CREATE EXPECTATION)
   onSubmit() {
 
-  const model = {
-    ageFrom: this.ageFrom,
-    ageTo: this.ageTo,
-    salaryFrom: this.salaryFrom,
-    salaryTo: this.salaryTo,
-    maritalStatus: this.selectedMaritalStatus,
-    expectedLanguages: this.expectedLanguages,
-    regions: this.selectedRegions,
-    professions: this.selectedProfessions,
-    castes: this.selectedCastes,
-    heightFrom: this.heightFrom,
-    heightTo: this.heightTo,
-    opinion: this.opinion
-  };
+    const payload = {
+      userId: this.userId,
 
-  console.log("Sending to backend:", model);
-  alert('Expectations submitted successfully!');
+      ageFrom: this.ageFrom || null,
+      ageTo: this.ageTo || null,
+      salaryFrom: this.salaryFrom || null,
+      salaryTo: this.salaryTo || null,
+      heightFrom: this.heightFrom || null,
+      heightTo: this.heightTo || null,
 
-  // ❌ Remove during testing
-   this.router.navigate(['/upload-photos']);
-}
+      maritalStatus: this.selectedMaritalStatus.join(','),
+      expectedLanguages: this.expectedLanguages.join(','),
+      regions: this.selectedRegions.join(','),
+      professions: this.selectedProfessions.join(','),
+      castes: this.selectedCastes.join(','),
 
-// ⭐ Add this function — required by template
-goToUploadPhotos() {
-  this.router.navigate(['/upload-photos']);
-}
+      opinion: this.opinion
+    };
 
+    console.log('📦 Sending to backend:', payload);
 
-  // ✅ Back navigation
+    this.http.post<any>(this.apiUrl, payload).subscribe({
+      next: (res) => {
+        console.log('✅ Saved Successfully');
+        console.log('🆔 Expectation ID:', res.expectationID);
+        this.router.navigate(['/upload-photos']);
+      },
+      error: (err: HttpErrorResponse) => {
+        console.error('❌ Status:', err.status);
+        console.error('❌ Error:', err.error);
+      }
+    });
+  }
+
+  // 🔙 Navigation
   goBack() {
     this.router.navigate(['/astrological-information']);
   }
 
-  // ✅ Save & Continue logic (optional)
   saveAndContinue() {
-    this.router.navigate(['/upload-photos']);
+    //this.router.navigate(['/upload-photos']);
   }
 }
