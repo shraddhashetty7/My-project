@@ -3,22 +3,99 @@
 
 
   <div class="content-wrapper">
-    <!-- LEFT SIDE -->
-    <div class="left-section">
-      <div class="photo-upload-box">
-        <div class="photo-placeholder">
-          <img src="assets/upload.jpg" alt="Profile Placeholder" />
-          <button class="upload-btn">📷</button>
-        </div>
+    <!--⬅️ LEFT SIDE -->
+<div class="left-section">
+  <h2 class="section-title">Upload Your Photos</h2>
+  <p class="upload-note">
+  <h3 class="upload-note">
+  You must upload a minimum of <strong>2</strong> photos and a maximum of <strong>6</strong> photos.
+</h3>
 
-        <div class="upload-actions">
-          <button class="btn-primary">Upload From Computer</button>
-          <button class="btn-secondary">Email your Photos</button>
-        </div>
+
+
+
+  <div class="photo-grid">
+    <div
+      class="photo-upload-box"
+      *ngFor="let photo of photos; let i = index"
+    >
+      <div class="photo-placeholder">
+        <!-- Preview -->
+        <img
+          *ngIf="photo.preview; else placeholder"
+          [src]="photo.preview"
+          alt="Uploaded Photo"
+        />
+
+        <!-- Placeholder -->
+        <ng-template #placeholder>
+          <img src="assets/upload.jpg" alt="Upload Placeholder" />
+        </ng-template>
+
+        <!-- Hidden File Input -->
+        <input
+          type="file"
+          accept="image/*"
+          hidden
+          #fileInput
+          (change)="onFileSelected($event, i)"
+
+        />
+
+        <!-- Camera Button -->
+        <button
+          type="button"
+          class="upload-btn"
+          (click)="fileInput.click()"
+        >
+          📷
+        </button>
+
+        <!-- Remove Button -->
+        <button
+          *ngIf="photo.file"
+          type="button"
+          class="remove-btn"
+          (click)="removePhoto(i)"
+        >
+          ✖
+        </button>
       </div>
-    </div>
-     
 
+      <p class="photo-label">
+          {{ i === 0 ? 'Profile Photo' : 'Option ' + i }}
+      </p>
+
+    </div>
+  </div>
+
+ <!-- Upload Action Buttons -->
+<div class="upload-actions">
+  <button
+    class="btn-primary"
+    (click)="uploadPhoto()"
+    [disabled]="isUploading"
+  >
+    Save & Upload Photos
+  </button>
+</div>
+
+<!-- Upload count -->
+<p class="upload-count">
+  📊 You have uploaded <strong>{{ uploadedPhotoCount }}</strong> of {{ totalPhotos }} photos
+</p>
+
+<!-- Upload Progress Bar (LEFT SIDE, BELOW PARAGRAPH) -->
+<div class="upload-progress-wrapper">
+  <div class="upload-progress-bar">
+    <div
+      class="upload-progress-fill"
+      [style.width.%]="uploadProgress">
+    </div>
+  </div>
+</div>
+
+</div>
     <!-- RIGHT SIDE -->
     <div class="right-section">
       <!-- Guidelines Section -->
@@ -38,7 +115,7 @@
             <p>✔ Full view</p>
           </div>
           <div class="guideline not-allowed">
-            <img src="assets/side.jpg" alt="Side face" />
+            <img src="assets/sideview.jpg" alt="Side face" />
             <p>❌ Side face</p>
           </div>
           <div class="guideline not-allowed">
@@ -79,7 +156,10 @@
       <!-- Buttons -->
 <div class="button-row">
   <button (click)="goBack()" class="back-btn">⬅️ Back</button>
-  <button (click)="goToVerify()" class="submit-btn">Save & Continue ➡️</button>
+  <button (click)="uploadPhoto()" class="submit-btn">
+  Save & Continue ➡️
+</button>
+
   <button (click)="skipAndContinue()" class="skip-btn">Skip & Continue ➡️</button>
 </div>
 
