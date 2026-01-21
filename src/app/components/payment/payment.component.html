@@ -1,55 +1,80 @@
 <div class="payment-container">
-  <h2>UPI Payment</h2>
-  <p>Secure your profile by completing your UPI payment below.</p>
+  <h1>UPI Payment</h1>
+  <p class="subtitle">
+    Secure your profile by completing the UPI payment below.
+  </p>
 
   <div class="payment-content">
-    <!-- Left Section: UPI Input + Scanner -->
+    <!-- LEFT SECTION -->
     <div class="upi-section">
       <div class="method-box">
-        <label>Enter UPI ID</label>
+        <!-- UPI ID -->
+        <label>Your UPI ID</label>
         <input
           type="text"
-          placeholder="example@upi"
-          [(ngModel)]="upiId"
+          value="yourupi@bank"
           class="upi-input"
+          readonly
         />
 
-        <p class="scan-text">Or scan UPI QR code:</p>
+        <!-- QR CODE -->
+        <p class="scan-text">Scan this UPI QR code to pay</p>
 
-        <!-- UPI QR Scanner -->
-        <zxing-scanner
-          (scanSuccess)="onCodeResult($event)"
-          [formats]="qrFormats"
-          style="
-            width: 100%;
-            max-width: 300px;
-            margin: 15px auto;
-            display: block;
-            border-radius: 12px;
-            overflow: hidden;
-          "
-        ></zxing-scanner>
+        <div class="qr-box">
+          <img
+            src="assets/QRcode.jpeg"
+            alt="UPI QR Code"
+            class="upi-qr"
+          />
+          <p class="qr-note">
+            Supports Google Pay, PhonePe, Paytm & all UPI apps
+          </p>
+        </div>
 
-        <!-- Transaction ID -->
-        <label>Transaction ID</label>
+        <!-- TRANSACTION ID -->
+        <label>Transaction ID (UTR)</label>
         <input
           type="text"
-          placeholder="Enter Transaction ID"
+          placeholder="Enter UPI Transaction ID"
           [(ngModel)]="transactionId"
           class="txn-input"
         />
+        <small class="hint">
+          You can find the Transaction ID in your UPI app after payment.
+        </small>
+
+        <!-- INFO -->
+        <div class="payment-info">
+          <p>✔ Complete payment using the QR code</p>
+          <p>✔ Enter the Transaction ID</p>
+          <p>✔ Click Proceed to verify</p>
+        </div>
       </div>
     </div>
 
-    <!-- Right Section: Payment Summary -->
+    <!-- RIGHT SECTION -->
     <div class="summary">
       <h3>Order Summary</h3>
-      <p>Product: <strong>{{ product }}</strong></p>
+
+      <p>
+        Product:
+        <strong>{{ product }}</strong>
+      </p>
+
       <p>Subtotal: ₹{{ subtotal }}</p>
       <p>GST ({{ gstPercent }}%): ₹{{ gst }}</p>
+
       <hr />
+
       <p class="total">Total: ₹{{ total }}</p>
-      <button class="pay-btn" (click)="proceed()">Proceed to Pay</button>
+
+      <button
+        class="pay-btn"
+        [disabled]="!transactionId"
+        (click)="proceed()"
+      >
+        Proceed to Pay
+      </button>
     </div>
   </div>
 </div>

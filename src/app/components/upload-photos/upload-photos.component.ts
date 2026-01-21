@@ -16,15 +16,19 @@ export class UploadPhotosComponent {
   minPhotos = 2;
   maxPhotos = 6;
 
+  // 🖼 Photo slots
   photos: Array<{ file: File | null; preview: string | null }> = [];
 
   isUploading = false;
+
+  // 🔐 TEMP TEST USER ID (must exist in DB)
+  userId: number = 14;
 
   constructor(
     private router: Router,
     private uploadPhotosService: UploadPhotosService
   ) {
-    // ✅ Create 6 empty slots
+    // Create fixed slots (6)
     this.photos = Array.from({ length: this.maxPhotos }, () => ({
       file: null,
       preview: null
@@ -44,21 +48,21 @@ export class UploadPhotosComponent {
     return (this.uploadedPhotoCount / this.totalPhotos) * 100;
   }
 
-  // 📸 Select photo (index-aware)
+  // 📸 File selection
   onFileSelected(event: Event, index: number): void {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) return;
 
     const file = input.files[0];
 
-    // ✅ Image validation
+    // Validate type
     if (!file.type.startsWith('image/')) {
       alert('Only image files are allowed');
       input.value = '';
       return;
     }
 
-    // ✅ Size validation (5MB)
+    // Validate size (5MB)
     if (file.size > 5 * 1024 * 1024) {
       alert('Image size must be less than 5MB');
       input.value = '';
@@ -77,16 +81,15 @@ export class UploadPhotosComponent {
     input.value = '';
   }
 
-  // ❌ Remove photo
+  // ❌ Remove selected photo
   removePhoto(index: number): void {
     this.photos[index] = { file: null, preview: null };
   }
 
-  // ⬆️ Upload photos
+  // ⬆️ Upload photos to API
   uploadPhoto(): void {
     if (this.isUploading) return;
 
-    // ✅ MIN 2 validation
     if (this.uploadedPhotoCount < this.minPhotos) {
       alert(`Please upload at least ${this.minPhotos} photos`);
       return;
@@ -95,21 +98,25 @@ export class UploadPhotosComponent {
     this.isUploading = true;
 
     const formData = new FormData();
-    formData.append('userId', '1'); // replace with real userId
+
+    // 🔥 MUST MATCH DTO EXACTLY
+    formData.append('UserId', this.userId.toString());
 
     this.photos.forEach(p => {
       if (p.file) {
-        formData.append('photos', p.file);
+        formData.append('Photos', p.file); // 🔥 EXACT KEY
       }
     });
 
-    this.uploadPhotosService.uploadPhoto(formData).subscribe({
+    this.uploadPhotosService.uploadPhotos(formData).subscribe({
       next: () => {
         this.isUploading = false;
+        alert('Photos uploaded successfully');
         this.router.navigate(['/verify']);
       },
-      error: () => {
+      error: err => {
         this.isUploading = false;
+        console.error(err);
         alert('Photo upload failed');
       }
     });

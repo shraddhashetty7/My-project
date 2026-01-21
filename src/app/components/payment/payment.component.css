@@ -1,137 +1,274 @@
-/* Container */
-.payment-container {
-  max-width: 1100px;
-  margin: 2rem auto;
-  background: #fff;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  font-family: "Poppins", sans-serif;
+/* ================= ROOT THEME ================= */
+:root {
+  --primary: #6a11cb;
+  --secondary: #2575fc;
+  --accent: #ff6ec4;
+  --success: #2e7d32;
+  --danger: #d32f2f;
+  --warning: #f9a825;
+  --text-dark: #1f1f1f;
+  --text-light: #6b6b6b;
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --blur: blur(14px);
 }
 
-/* Heading */
+/* ================= PAGE ================= */
+.payment-container {
+  position: relative;
+}
+.payment-container h1,
+.payment-container .subtitle {
+  text-align: center;
+}
+
+
+/* CENTER HEADER AT TOP */
+.payment-title {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+   background-clip: text;          /* ✅ Standard */
+  -webkit-background-clip: text;  /* ✅ Safari / Chrome */
+
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  text-align: center;
+  margin-top: 0;
+}
+
+/* ================= HEADER ================= */
 .payment-container h2 {
   text-align: center;
-  font-size: 2rem;
-  color: #1d3557;
-  margin-bottom: 10px;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--secondary),
+    var(--accent)
+  );
+   background-clip: text;          /* ✅ Standard */
+  -webkit-background-clip: text;  /* ✅ Safari / Chrome */
+
+  -webkit-text-fill-color: transparent;
 }
 
-.payment-container p {
+.subtitle {
   text-align: center;
-  color: #555;
-  margin-bottom: 25px;
+  color: var(--text-light);
+  margin: 12px 0 40px;
+  font-size: 15px;
 }
 
-/* Layout: Split into 2 halves */
+/* ================= LAYOUT ================= */
 .payment-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 35px;
 }
 
-/* Left UPI Section */
-.upi-section {
-  flex: 1;
-  background: #f9f9ff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+@media (max-width: 768px) {
+  .payment-content {
+    grid-template-columns: 1fr;
+  }
 }
 
-.method-box label {
+/* ================= LEFT CARD ================= */
+.method-box {
+  position: relative;
+  padding: 32px;
+  border-radius: 24px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* Gradient glow */
+.method-box::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 24px;
+  background: linear-gradient(
+    120deg,
+    var(--primary),
+    var(--secondary),
+    var(--accent)
+  );
+  z-index: -1;
+}
+
+/* ================= LABELS ================= */
+label {
   display: block;
-  font-weight: 600;
-  margin-top: 1rem;
-  color: #333;
+  font-weight: 700;
+  margin: 18px 0 8px;
+  color: var(--text-dark);
 }
 
+/* ================= INPUTS ================= */
 .upi-input,
 .txn-input {
   width: 100%;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1.5px solid #ccc;
-  font-size: 1rem;
-  margin-top: 0.4rem;
-  transition: border-color 0.3s;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.25s ease;
 }
 
 .upi-input:focus,
 .txn-input:focus {
   outline: none;
-  border-color: #3b3b98;
-  box-shadow: 0 0 6px rgba(59, 59, 152, 0.2);
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 4px rgba(37, 117, 252, 0.25);
+  transform: translateY(-1px);
 }
 
+/* ================= QR ================= */
 .scan-text {
+  margin: 26px 0 14px;
   text-align: center;
-  color: #555;
-  margin: 1rem 0;
-  font-weight: 500;
+  font-weight: 700;
+  color: var(--primary);
 }
 
-/* Right Payment Summary */
+.qr-box {
+  text-align: center;
+  padding: 24px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #ffffff, #eef1ff);
+  box-shadow: inset 0 0 0 2px #e1e5ff, 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.upi-qr {
+  width: 230px;
+  max-width: 100%;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+.upi-qr:hover {
+  transform: scale(1.05);
+}
+
+.qr-note {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* ================= HELPER ================= */
+.hint {
+  font-size: 12px;
+  margin-top: 6px;
+  color: var(--text-light);
+}
+
+.payment-info {
+  margin-top: 22px;
+  font-size: 14px;
+  background: linear-gradient(135deg, #f5f9ff, #ffffff);
+  padding: 14px;
+  border-radius: 14px;
+  border-left: 5px solid var(--secondary);
+}
+
+/* ================= RIGHT CARD ================= */
 .summary {
-  flex: 0.9;
-  background: #ffffff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  padding: 32px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffffff, #fff1ff);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
 .summary h3 {
-  color: #1d3557;
-  margin-bottom: 1rem;
-  text-align: center;
+  color: var(--primary);
+  font-size: 22px;
+  margin-bottom: 16px;
 }
 
 .summary p {
-  margin: 8px 0;
-  color: #333;
+  margin: 10px 0;
+  color: var(--text-dark);
 }
 
 .summary hr {
-  margin: 15px 0;
+  margin: 20px 0;
   border: none;
-  height: 1px;
-  background: #ddd;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--primary),
+    var(--secondary)
+  );
 }
 
 .total {
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: #1d5d2f;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--secondary);
 }
 
-/* Pay Button */
+/* ================= BUTTON ================= */
 .pay-btn {
-  display: block;
   width: 100%;
-  margin-top: 1.5rem;
-  padding: 12px;
-  background: #3b3b98;
-  color: white;
+  margin-top: 22px;
+  padding: 16px;
+  border-radius: 18px;
   border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a0d61;
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary),
+    var(--accent)
+  );
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .pay-btn:hover {
-  background: #2d2d7f;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(106, 17, 203, 0.45);
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-  .payment-content {
-    flex-direction: column;
-  }
+.pay-btn:disabled {
+  background: rgb(112, 112, 221);
+  cursor: not-allowed;
+}
 
-  .summary {
-    width: 100%;
+/* ================= MESSAGES ================= */
+.error {
+  color: var(--danger);
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.success {
+  color: var(--success);
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

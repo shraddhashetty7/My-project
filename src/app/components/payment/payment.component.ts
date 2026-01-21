@@ -1,37 +1,85 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { BarcodeFormat } from '@zxing/library';
+import { PaymentService } from '../../services/payment.service';
+
 
 @Component({
   selector: 'app-payment',
   standalone: true,
-  imports: [FormsModule, ZXingScannerModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
-export class PaymentComponent {
-  upiId = '';
-  transactionId = '';
-  
-  // ✅ Correct type and values
-  qrFormats: BarcodeFormat[] = [BarcodeFormat.QR_CODE];
+export class PaymentComponent implements OnInit {
 
-  product = 'Profile Activation';
-  subtotal = 1000;
-  gstPercent = 18;
-  gst = (this.subtotal * this.gstPercent) / 100;
-  total = this.subtotal + this.gst;
+  testUserId: number = 10; // ✅ TEMP USER ID
 
-  onCodeResult(result: string) {
-    this.upiId = result;
+  readonly upiId: string = 'yourupi@bank';
+  transactionId: string = '';
+
+  product: string = 'Profile Verification';
+  subtotal: number = 499;
+  gstPercent: number = 18;
+  gst: number = 0;
+  total: number = 0;
+
+  errorMessage = '';
+  successMessage = '';
+  isSubmitting = false;
+
+  constructor(private paymentService: PaymentService) {}
+
+  ngOnInit(): void {
+    this.calculateTotal();
   }
 
-  proceed() {
-    if (!this.transactionId || !this.upiId) {
-      alert('Please enter UPI ID and Transaction ID before proceeding.');
+  calculateTotal(): void {
+    this.gst = Math.round((this.subtotal * this.gstPercent) / 100);
+    this.total = this.subtotal + this.gst;
+  }
+
+  isValidTransactionId(): boolean {
+    return /^[a-zA-Z0-9]{10,22}$/.test(this.transactionId.trim());
+  }
+
+  proceed(): void {
+    this.errorMessage = '';
+    this.successMessage = '';
+
+    if (!this.transactionId) {
+      this.errorMessage = 'Please enter the Transaction ID.';
       return;
     }
-    alert(`✅ Payment initiated for ₹${this.total} via ${this.upiId}`);
+
+    if (!this.isValidTransactionId()) {
+      this.errorMessage = 'Invalid Transaction ID (UTR).';
+      return;
+    }
+
+    const paymentDto = {
+      userId: this.testUserId, // ✅ explicit
+      amount: this.total,
+      paymentMethod: 'UPI',
+      transactionId: this.transactionId.trim()
+    };
+
+    console.log('➡️ Sending Payment DTO to API:', paymentDto);
+
+    this.isSubmitting = true;
+
+    this.paymentService.createPayment(paymentDto).subscribe({
+      next: (res) => {
+        console.log('✅ API Response:', res);
+        this.successMessage = 'Payment submitted successfully.';
+        this.transactionId = '';
+        this.isSubmitting = false;
+      },
+      error: (err) => {
+        console.error('❌ API Error:', err);
+        this.errorMessage = 'Payment failed. Please try again.';
+        this.isSubmitting = false;
+      }
+    });
   }
 }

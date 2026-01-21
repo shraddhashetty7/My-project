@@ -139,15 +139,32 @@
       placeholder="Write your thoughts here..."
     ></textarea>
 
-    <!-- Buttons -->
-    <div class="buttons">
-      <button type="button" class="back-btn" (click)="goBack()">⬅️ Back</button>
-      <button type="button" class="submit-btn" (click)="onSubmit()">
-   Save & Continue ➡️
-</button>
+    <!-- ========================= -->
+<!-- Buttons -->
+<!-- ========================= -->
+<div class="buttons">
+  <button
+    type="button"
+    class="back-btn"
+    (click)="goBack()"
+  >
+    ⬅️ Back
+  </button>
 
+  <button
+    type="button"
+    class="submit-btn"
+    (click)="submitVerification()"
+  >
+    Save & Continue ➡️
+  </button>
 
-      <button type="button" class="skip-btn" (click)="goToUploadPhotos()">Skip & Continue ➡️</button>
-    </div>
-  </div>
+  <button
+    type="button"
+    class="skip-btn"
+    (click)="skipAndContinue()"
+  >
+    Skip & Continue ➡️
+  </button>
 </div>
+

@@ -12,6 +12,12 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./my-expectations.component.css']
 })
 export class MyExpectationsComponent {
+skipAndContinue() {
+throw new Error('Method not implemented.');
+}
+submitVerification() {
+throw new Error('Method not implemented.');
+}
 goToUploadPhotos() {
 throw new Error('Method not implemented.');
 }

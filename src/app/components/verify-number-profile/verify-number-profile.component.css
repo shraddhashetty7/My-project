@@ -1,122 +1,323 @@
+/* =========================
+   PAGE CONTAINER
+========================= */
 .verify-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-  margin-top: 2rem;
+  gap: 35px;
+  font-family: "Segoe UI", sans-serif;
 }
 
+/* =========================
+   SECTION
+========================= */
 .verify-section {
-  width: 80%;
-  max-width: 800px;
+  width: 100%;
 }
 
-/* Card Styles (applies to both sections) */
-.card,
-.profile-card {
+/* =========================
+   CARD
+========================= */
+.card {
   display: flex;
-  flex-direction: row;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  align-items: center;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 }
 
-/* Left side */
+/* =========================
+   LEFT SIDE
+========================= */
 .card-left {
-  flex: 1;
+  width: 35%;
+  background: linear-gradient(135deg, #f54e77, #ff8a65);
+  color: #fff;
   text-align: center;
+  padding: 35px 20px;
 }
 
 .card-left img {
-  width: 180px;
-  max-width: 100%;
-  margin-bottom: 1rem;
+  width: 160px;
+  margin-bottom: 18px;
 }
 
 .trusted {
-  font-weight: bold;
-  color: #b36b00;
-  font-size: 0.9rem;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
-/* Right side */
+.trusted small {
+  display: block;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* =========================
+   RIGHT SIDE
+========================= */
 .card-right {
-  flex: 2;
-  padding-left: 2rem;
+  width: 65%;
+  padding: 35px 40px;
 }
 
+.card-right h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card-right p {
+  margin-bottom: 12px;
+}
+
+/* =========================
+   INPUTS
+========================= */
 .input-box {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-/* Note section under verify button */
-.note-section {
-  display: flex;
-  align-items: center;
-  margin-top: 15px;
-}
-
-.note-img {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  background: #f0f0f0; /* fallback box if image not available */
+  padding: 13px 14px;
+  margin-bottom: 16px;
   border-radius: 8px;
-  object-fit: cover;
+  border: 1px solid #ccc;
+  font-size: 15px;
 }
 
-.note {
-  margin: 0;
-  font-size: 0.85rem;
-  color: #555;
+.input-box:focus {
+  outline: none;
+  border-color: #f54e77;
+  box-shadow: 0 0 0 2px rgba(245, 78, 119, 0.15);
 }
 
-.button-group {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px; /* spacing between buttons */
-  margin-top: 25px;
-  flex-wrap: wrap;
+/* =========================
+   DECLARATION
+========================= */
+.declaration {
+  display: block;
+  margin: 15px 0 20px;
+  font-size: 14px;
+  color: #444;
 }
 
+.declaration input {
+  margin-right: 8px;
+}
 
-/* Button base */
+/* =========================
+   BUTTONS
+========================= */
 .btn {
-  min-width: 180px;
-  padding: 10px 25px;
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 12px;
   border: none;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
+  color: #fff;
   cursor: pointer;
-  color: white;
-  background-color:blue;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s ease, background 0.3s ease;
 }
 
-/* Hover effect */
-.btn:hover {
+.btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: yellow;
 }
 
-/* Different button colors */
+/* Primary action */
+.primary-btn {
+  background: #f54e77;
+}
+
+.primary-btn:hover {
+  background: #e5446d;
+}
+
+/* Disabled */
+.btn:disabled {
+  background: #cfcfcf;
+  cursor: not-allowed;
+}
+
+/* =========================
+   STATUS / NOTE
+========================= */
+.note {
+  font-size: 13px;
+  color: #666;
+}
+
+.success {
+  margin-top: 10px;
+  color: #2e7d32;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ================================
+   🔘 BUTTON ROW
+================================ */
+.button-row {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+/* ================================
+   🌈 MAIN BUTTON STYLES
+================================ */
+.submit-btn,
+.skip-btn,
 .back-btn {
+  position: relative;
+  overflow: hidden;
+  margin-top: 20px;
+  padding: 12px 28px;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.6px;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 5px 15px rgba(0, 120, 212, 0.25);
+  transform: translateY(0);
+}
+
+/* ✅ Submit Button */
+.submit-btn {
+  background: linear-gradient(135deg, #00b894, #2ecc71);
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #1dd1a1, #10ac84);
+  box-shadow: 0 10px 25px rgba(0, 184, 148, 0.5);
+  transform: translateY(-3px) scale(1.1);
+}
+
+.submit-btn:active {
+  transform: translateY(2px) scale(0.95);
+}
+
+/* 🔹 Back Button */
+.back-btn {
+  width: 180px !important;
+  padding: 10px 20px;
+  font-size: 15px;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
 }
 
-.continue-btn {
-  background: linear-gradient(135deg, #ff9f43, #ff6b6b);
+.back-btn:hover {
+  background: linear-gradient(135deg, #de7f53, #ff9f43);
+  box-shadow: 0 10px 25px rgba(255, 159, 67, 0.4);
+  transform: translateY(-2px);
 }
 
+/* 🌼 Skip Button */
 .skip-btn {
-  background: linear-gradient(135deg, #43cea2, #185a9d);
+  background: linear-gradient(135deg, #f4b400, #ffe082);
+  color: #000;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 20px;
 }
 
+.skip-btn:hover {
+  background: linear-gradient(135deg, #ffd54f, #fff176);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 8px 20px rgba(244, 180, 0, 0.4);
+}
+
+.skip-btn:active {
+  transform: translateY(2px) scale(0.95);
+}
+
+/* ✨ Shine Effect */
+.submit-btn::after,
+.back-btn::after,
+.skip-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-25deg);
+  transition: left 0.6s ease-in-out;
+}
+
+.submit-btn:hover::after,
+.back-btn:hover::after,
+.skip-btn:hover::after {
+  left: 100%;
+}
+
+/* Upload Action Section */
+.upload-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Primary Upload Button */
+.btn-primary {
+  background: linear-gradient(135deg, #e91e63, #ff4081);
+  color: #ffffff;
+  border: none;
+  padding: 14px 34px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(233, 30, 99, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(233, 30, 99, 0.45);
+}
+
+/* Active Click */
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(233, 30, 99, 0.35);
+}
+
+/* Disabled State */
+.btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+  }
+
+  .card-left,
+  .card-right {
+    width: 100%;
+  }
+
+  .card-left img {
+    width: 130px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+}
